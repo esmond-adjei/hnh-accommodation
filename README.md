@@ -1,4 +1,4 @@
-![hnh-coming-soon](docs/hnh-coming-soon.gif)
+![hnh-coming-soon|5000](docs/hnh-coming-soon.gif)
 
 ---
 
