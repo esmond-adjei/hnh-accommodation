@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Register from './components/register';
 import Login from './components/login';
+import HostelListings from './components/hostelListings';
 
 
 const App = () => {
@@ -11,6 +12,8 @@ const App = () => {
       <h1>Hostel Accommodation App</h1>
       <Register/>
       <Login/>
+      <hr/>
+      <HostelListings/>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { registerUser, loginUser } from './api';
+import { useState, useEffect } from 'react';
+import { registerUser, loginUser, getHostelRoomListings } from './api';
 
-
+// REGISTRATION STATE
 export const useRegisterState = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -39,6 +39,7 @@ export const useRegisterState = () => {
   };
 };
 
+// LOGIN STATE
 export const useLoginState = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -62,4 +63,29 @@ export const useLoginState = () => {
   };
 
   return { username, setUsername, password, setPassword, handleLogin };
+};
+
+// ROOM LISTINGS
+export const useRoomListings = (hostelId) => {
+  const [roomListings, setRoomListings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const getRoomListings = async () => {
+      try {
+        const listings = await getHostelRoomListings(hostelId);
+        setRoomListings(listings);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    getRoomListings();
+  }, [hostelId]);
+
+  console.log('Room listings:', roomListings);
+  return { roomListings, loading, error };
 };

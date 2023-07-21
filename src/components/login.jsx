@@ -6,16 +6,16 @@ const Login = () => {
   const [loginResponse, setLoginResponse] = useState(null);
   const { username, setUsername, password, setPassword, handleLogin } = useLoginState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    const response = handleLogin();
+    const response = await handleLogin();
     setLoginResponse(response);
-    console.log("Login response in component:", response);
   };
 
 
   return (
     <div>
+      <h2>Login</h2>
       {loginResponse && (
         <div className='devView'>
           <h2>Response:</h2>

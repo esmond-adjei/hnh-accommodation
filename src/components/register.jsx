@@ -21,6 +21,7 @@ const Register = () => {
 
   return (
     <div>
+      <h2>Register</h2>
       <form onSubmit={handleSubmit}  className='devForm'>
         <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />

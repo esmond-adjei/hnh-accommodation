@@ -1,22 +1,62 @@
 /* ---------- CUSTOM FORMS ------------ */
-.devForm {
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-  border: 2px solid #ccc;
-  background-color: #eee;
+.devForm, .devView, .devListings, .devRoomListings {
   margin: auto;
   width: 500px;
-  gap: 20px;
+  padding: 20px;
   margin-bottom: 50px;
 }
 
+.devForm {
+  border: 2px solid #ccc;
+  background-color: #eee;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .devView {
-  margin: auto;
-  width: 500px;
+  margin-bottom: 0;
   background-color: #ffe2e2;
-  padding: 20px;
   border: 2px solid #fcc;
+}
+
+.devListings {
+  background-color: #bdf;
+  border: 2px solid #86c2ff;
+}
+
+.devHostel {
+  border: 1px solid #5198ff;
+  background-color: #87c5ff;
+  padding: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+h1 {
+  color: #518eff;
+}
+
+h1, h2 {
+  margin: 0;
+  text-align: center;
+}
+
+.devRoomListings {
+  background-color: #cbffe5;
+  border: 2px solid #7ce9b3;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.devRoom {
+  background-color: #00d080;
+  border: 1px solid #127c3c;
+  padding: 20px;
+  font-size: 12px;
 }
 
 /* ------------------ */
