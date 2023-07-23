@@ -4,7 +4,7 @@ import hostelIcon from '../assets/icons/home.svg';
 import roomIcon from '../assets/icons/room.svg';
 import mapIcon from '../assets/icons/home_map.svg';
 import collectionsIcon from '../assets/icons/collections.svg';
-import profilePicture from '../assets/profile_pictures/profile.jpg';
+import profilePicture from '../assets/images/profile.jpg';
 
 
 const SideNav = () => {
