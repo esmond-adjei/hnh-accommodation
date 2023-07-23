@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSearchState } from '../services/states';
 
-const Search = ({ onSearch }) => {
-  const [query, setLocation] = useState('');
+const Search = ({ setResults }) => {
 
-  const handleSubmit = (e) => {
+  const { 
+    query, 
+    setQuery, 
+    handleSearch
+    } = useSearchState();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const searchData = {q: query};
-    onSearch(searchData);
+    const searchResults = await handleSearch();
+    setResults(searchResults);
   };
 
   return (
@@ -17,7 +23,7 @@ const Search = ({ onSearch }) => {
           type='search'
           placeholder='search hostel, location, bedspace, ...'
           value={query}
-          onChange={(e) => setLocation(e.target.value)}
+          onChange={(e) => setQuery(e.target.value)}
         />
         <button type='submit'>Search</button>
       </form>

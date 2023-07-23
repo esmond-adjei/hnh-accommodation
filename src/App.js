@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Register from './components/register';
 import Login from './components/login';
+import HostelCreateForm from './components/createHostel';
 import HostelListings from './components/hostelListings';
 
 
@@ -13,7 +14,9 @@ const App = () => {
       <Register/>
       <Login/>
       <hr/>
-      <HostelListings/>
+      <HostelListings />
+      <hr/>
+      <HostelCreateForm />
     </div>
   );
 };

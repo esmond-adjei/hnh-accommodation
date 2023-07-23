@@ -43,6 +43,12 @@ h1, h2 {
   text-align: center;
 }
 
+.refreshButton {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: orange;
+}
+
 .devRoomListings {
   background-color: #cbffe5;
   border: 2px solid #7ce9b3;

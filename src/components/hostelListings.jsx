@@ -1,58 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { getHostelListings, searchHostels } from '../services/api';
+import React, {useState} from 'react';
+import { useHostelListingsState } from '../services/states';
 import HostelRoomListings from './roomListings';
+import HostelUpdateForm from './updateHostel';
 import Search from './search';
 
 const HostelListings = () => {
-  const [hostelListings, setHostelListings] = useState([]);
-  const [selectedHostelId, setSelectedHostelId] = useState(null);
 
-  useEffect(() => {
-    // Fetch the hostel data when the component mounts
-    fetchHostelListings();
-  }, []);
+  const [isUpdateMode, setIsUpdateMode] = useState(false); // State to toggle update mode
 
-  const fetchHostelListings = async () => {
-    try {
-      const response = await getHostelListings();
-      setHostelListings(response); // Update the hostel listings state
-    } catch (error) {
-      console.error('Error fetching hostel listings:', error.message);
-    }
-  };
 
-  const handleHostelClick = (hostelId) => {
-    setSelectedHostelId(hostelId); // Set the selected hostelId in state
-  };
+  const { 
+      hostelListings, 
+      setHostelListings, 
+      selectedHostelId,
+      handleHostelDelete,
+      fetchHostelListings,
+      handleHostelClick
+  } = useHostelListingsState();
 
-  const handleSearch = async (searchData) => {
-    try {
-      const response = await searchHostels(searchData);
-      setHostelListings(response['hostel-results']); // Update the hostel listings state with search results
-    } catch (error) {
-      console.error('Error searching for hostels:', error.message);
-      setHostelListings([]); // Clear the hostel listings in case of error
-    }
+
+  const handleHostelUpdate = (hostelId) => {
+    setIsUpdateMode(true);
   };
 
   return (
     <div>
-      <Search onSearch={handleSearch} />
+      <Search setResults={setHostelListings} />
 
       <h2>Hostel Listings</h2>
       <div className='devListings'>
+      <button onClick={fetchHostelListings} className='refreshButton'>Refresh List</button>
         {hostelListings.map((hostel) => (
           <div key={hostel.id} className='devHostel' onClick={() => handleHostelClick(hostel.id)}>
-            {/* Render hostel information here */}
             <h3>{hostel.name}</h3>
             <p>Location: {hostel.location}</p>
             <p>{hostel.available_rooms}</p>
             <p>Rating: {hostel.rating}</p>
+
+            {/* Delete button to handle hostel deletion */}
+            <button onClick={() => handleHostelDelete(hostel.id)}>Delete</button>
+            <button onClick={() => handleHostelUpdate(hostel.id)}>Update</button>
           </div>
         ))}
       </div>
+     {/* Conditionally render the HostelUpdateForm component */}
+     { isUpdateMode && <HostelUpdateForm hostelId={selectedHostelId} />}
 
-      {/* Conditionally render the HostelRoomListings component */}
       {selectedHostelId && 
       <HostelRoomListings hostelId={selectedHostelId} />}
     </div>

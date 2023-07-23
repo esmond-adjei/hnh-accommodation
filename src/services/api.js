@@ -30,6 +30,17 @@ export const getHostelListings = async () => {
   }
 }
 
+// API REQUEST: Delete a hostel by ID
+export const deleteHostel = async (hostelId) => {
+  try {
+    const response = await axios.delete(`http://localhost:8000/api/hostel/${hostelId}/delete`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while deleting the hostel.');
+  }
+};
+
+
 // HOSTEL ROOM LISTINGS API REQUEST
 export const getHostelRoomListings = async (hostelId) => {
   try {
@@ -39,6 +50,17 @@ export const getHostelRoomListings = async (hostelId) => {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel room listings.');
   }
 }
+
+// API REQUEST: Create a new hostel
+export const createHostel = async (hostelData) => {
+  try {
+    const response = await axios.post('http://localhost:8000/api/hostel/create/', hostelData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while creating the hostel.');
+  }
+};
+
 
 // API Request to search hostels
 export const searchHostels = async (searchData) => {
@@ -51,3 +73,25 @@ export const searchHostels = async (searchData) => {
     );
   }
 };
+
+
+// API Request to update a hostel
+export const updateHostel = async (hostelId, updateData) => {
+  try {
+    const response = await axios.put(`http://localhost:8000/api/hostel/${hostelId}/update/`, updateData);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while updating the hostel.');
+  }
+};
+
+
+// API REQUEST TO GET HOSTEL
+export const getHostel = async (hostelId) => {
+  try {
+    const response = await axios.get(`http://localhost:8000/api/hostel/${hostelId}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel.');
+  }
+}
