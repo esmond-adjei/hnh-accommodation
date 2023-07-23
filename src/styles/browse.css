@@ -1,0 +1,404 @@
+/* --------------- IMPORTS ------------------ */
+@import "./previewCard.css";
+/* ------------------------------------------ */
+* {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", Arial, sans-serif;
+    --whitish: #fefefe;
+    --grey: #dfdfdf;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* -------------- HEADER STYLES ------------- */
+header.nav-bar {
+    /* DISPLAY */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* SPACIING */
+    padding: 8px 16px;
+}
+
+/* ------ logo box ------- */
+.header {
+    box-shadow: 0px 14px 40px #333;
+}
+
+header .logo-box {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .logo-box .menu {
+    width: 40px;
+    padding: 8px;
+    border-radius: 50%;
+}
+header .logo-box .menu:hover {
+    background-color: var(--grey);
+}
+
+header .logo-box .youtube-logo {
+    height: 30px;
+}
+
+/* -------- search box --------- */
+header .search-box {
+    margin: 0px 13%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 730px; /* flex-grow, flex-shrink, flex-basis */
+}
+
+header .search-box .search {
+    display: flex;
+    width: 100%;
+}
+
+header .search-box input[type="search"] {
+    width: 100%;
+    
+    /* SPACING */
+    padding: 0px 12px;
+    
+    /* BORDER STYLES */
+    border-style: none;
+    border: 1px solid #e2e2e2;
+    border-radius: 120px 0 0 120px;
+}
+
+header .search-box input[type="search"]:focus-visible {
+    outline: thin solid rgb(0, 98, 255);
+    outline-offset: -2px;
+}
+
+header .search-box input[type="image"] {
+    /* dimensions */
+    width: 70px;
+    height: 40px;
+    
+    /* spacing */
+    padding: 8px;
+    
+    /* decoration */
+    border: 1px solid #e2e2e2;
+    border-left-width: 0;
+    border-radius: 0 120px 120px 0;
+    background-color: var(--grey);
+} 
+
+header div.search-box > a,
+header .search-box > a {
+    /* dimensions */
+    width: 42.5px;
+    height: 40px;
+
+    /* spacing  */
+    padding: 8px;
+    margin-left: 10px;
+    
+    /* decorations */
+    border-radius: 100%;
+}
+header .search-box > a:hover {
+    background-color: var(--grey);
+}
+
+/* ------- PROFILE BOX ---------- */
+header .utility-box {
+    height: 40px;
+    display: flex;
+    gap: 10px;
+}
+
+header .utility-box .round-icon {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 100%;
+}
+
+header .utility-box .create,
+header .utility-box .notification {
+    cursor: pointer;
+    border-radius: 100%;
+}
+header .utility-box .round-icon:hover {
+    background-color: var(--grey);
+}
+
+header div.utility-box div.profile {
+    /* used width of image (profile) = 100% not pixels
+        The advantage is that the image would adjust to fit into
+        the space available in this container.
+        Used padding = 5px to remove 5 pixels of space around the border.
+
+        NOTE: if image width had been in pixels, it would be pushed
+            of the box when the box space is not enough to accommodate it.
+    */
+    padding: 5px;
+    margin-right: 20px;
+}
+
+/* ================= CONTAINER STYLES ============== */
+main {
+    min-height: 100vh;
+    --side-nav-width: 65px; /* this is a variable */
+}
+
+
+main .side-nav,
+main .main-content {
+    display: inline-block;
+    background-color: var(--whitish);
+}
+
+main .side-nav {
+    min-width: var(--side-nav-width);
+    padding: 10px;
+    min-height: inherit;
+    
+    position: fixed;
+    top: 56px;
+    z-index: 10;
+}
+
+header {
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background-color: white;
+    width: 100%;
+}
+
+main .side-nav .side-nav-icon {
+    height: 70px;
+    margin: 4px;
+    padding: 4px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+main .side-nav .side-nav-icon:hover {
+    background-color: var(--grey);
+}
+
+main .side-nav .side-nav-icon > p {
+    font-size: 10px;
+}
+.user-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+.center-absolute {
+    position: absolute;
+    bottom: 72px;
+    left: 10%;
+    right: 10%;
+}
+/* ------------- main content ----------- */
+main .main-content {
+    width: calc( 100% - 1.1 * var(--side-nav-width)); /* this is a calculation */
+    min-height: inherit;
+    margin-left: var(--side-nav-width);
+}
+
+.filters {
+    height: 50px;
+    padding: 0 30px;
+    background-color: var(--whitish);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    overflow-x: hidden;
+    position: sticky;
+    z-index: 10;
+    top: 56px;
+}
+
+.filters span {
+    font-size: 14px;
+    min-width: fit-content;
+    padding: 8px 12px;
+
+    border-radius: 8px;
+    background-color: var(--grey);
+}
+
+.filters span:hover {
+    cursor: pointer;
+    background-color: var(--grey);
+}
+
+main .main-content .hostel-previews {
+    min-height: inherit;
+    padding: 10px 40px;
+    display: flex;
+    gap: 30px 20px;
+    flex-wrap: wrap;
+}
+
+/* responsive styles with media queries */
+@media screen and (max-width:1000px){
+    main .main-content .hostel-previews {
+        grid-template-columns: 1fr 1fr;
+        /* this is to help see the effect 
+        ... when the screen size is 1000px and below
+        */
+        background-color: pink;
+    }
+}
+@media screen and (max-width:800px){
+    main .main-content .hostel-previews {
+        grid-template-columns: 1fr;
+        /* this is to help see the effect 
+        ... when the screen size is 800px and below
+        */
+        background-color: lightgreen;
+    }
+}
+/* end of responsive styles */
+
+main .main-content .hostel-previews .hostel-card {
+    width: 360px;
+    min-height: 280px;
+    cursor: pointer;
+    position: relative;
+}
+
+span.hostel-timer {
+    position: absolute;
+    right: 5px;
+    top: 178px;
+
+    background-color: rgba(0,0,0,0.7);
+    padding: 3px;
+    border-radius: 3px;
+
+    width: 40px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+
+    transition: all 0.5s;
+}
+
+button.hostel-actions {
+    position: absolute;
+    right: -5px;
+    top: 205px;
+    width: 35px;
+    height: 35px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 600;
+    font-size: 18px;
+    color: black;
+    border-style: none;
+
+    border-radius: 100%;
+    background: transparent;
+    cursor: pointer;
+
+    opacity: 0;
+}
+
+button.hostel-timer:active {
+    background-color: #e2e2e2;
+}
+
+main .main-content .hostel-previews .hostel-card .hostel-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.3s;
+}
+main
+.main-content
+.hostel-previews
+.hostel-card:hover
+.hostel-image {
+    border-radius: 0%;
+}
+main
+.main-content
+.hostel-previews
+.hostel-card:hover
+.hostel-timer {
+    opacity: 0;
+}
+main
+.main-content
+.hostel-previews
+.hostel-card:hover
+.hostel-actions {
+    opacity: 1;
+}
+
+main .main-content .hostel-previews .hostel-card .hostel-details {
+    padding: 8px 0px;
+    font-size: 14px;
+    color: grey;
+
+    display: flex;
+    gap: 10px;
+}
+
+
+main .main-content .hostel-previews .hostel-card .profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
+
+main
+.main-content
+.hostel-previews
+.hostel-card
+.hostel-description
+.hostel-title {
+    color: black;
+    margin: 0 4px 0 0;
+}
+
+main
+.main-content
+.hostel-previews
+.hostel-card
+.hostel-description
+.channel-verified {
+    color: white;
+    background-color: grey;
+    border-radius: 100%;
+    padding: 0.5px 2.3px;
+    font-size: 10px;
+}
+
+main
+.main-content
+.hostel-previews
+.hostel-card
+.hostel-description
+p {
+    margin: 4px 0;
+}

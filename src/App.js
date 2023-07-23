@@ -1,22 +1,27 @@
 import React from 'react';
-import './App.css';
-import Register from './components/register';
-import Login from './components/login';
-import HostelCreateForm from './components/createHostel';
-import HostelListings from './components/hostelListings';
+// import './App.css';
+import Browse from './components/browse';
+
+// import Register from './microcomponents/register';
+// import Login from './microcomponents/login';
+// import HostelCreateForm from './microcomponents/createHostel';
+// import HostelListings from './microcomponents/hostelListings';
 
 
 const App = () => {
 
   return (
     <div>
+      {/*
       <h1>Hostel Accommodation App</h1>
-      <Register/>
+       <Register/>
       <Login/>
       <hr/>
       <HostelListings />
       <hr/>
-      <HostelCreateForm />
+      <HostelCreateForm /> */}
+      <Browse />
+
     </div>
   );
 };
