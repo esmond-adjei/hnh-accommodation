@@ -1,10 +1,23 @@
 import React from 'react';
+import { useListings } from './listingsContext';
 
 
-const PreviewCard = ({ imageSrc, hostelName, hostelLocation, rating, availableRooms, description, managerLink, }) => {
+const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, availableRooms, description, managerLink, }) => {
+
+  const { setSelectedHostelId } = useListings();
+
+  const openPanel = () => {
+    const roomPreviews = document.querySelector('.room-previews');
+    roomPreviews.classList.add('show');
+  };
+
+  const handleClick = () => {
+    setSelectedHostelId(hostelID);
+    openPanel();
+  };
 
   return (
-    <div className="card">
+    <div className="card" onClick={handleClick}>
         <div className='card__image' style={{backgroundImage: `url(${imageSrc})`}}> 
         </div>
     
@@ -19,7 +32,7 @@ const PreviewCard = ({ imageSrc, hostelName, hostelLocation, rating, availableRo
           <a href={managerLink} className="card__link">
             Hostle Manager Name
           </a>
-          <p>{rating} ⭐</p>
+          <p>⭐ {rating}</p>
           
         </div>
       </div>

@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import { useHostelListingsState } from '../services/states';
+
 import HostelRoomListings from './roomListings';
 import HostelUpdateForm from './updateHostel';
 import Search from './search';
 
 const HostelListings = () => {
-
   const [isUpdateMode, setIsUpdateMode] = useState(false); // State to toggle update mode
-
 
   const { 
       hostelListings, 
@@ -17,7 +16,6 @@ const HostelListings = () => {
       fetchHostelListings,
       handleHostelClick
   } = useHostelListingsState();
-
 
   const handleHostelUpdate = (hostelId) => {
     setIsUpdateMode(true);
@@ -46,8 +44,7 @@ const HostelListings = () => {
      {/* Conditionally render the HostelUpdateForm component */}
      { isUpdateMode && <HostelUpdateForm hostelId={selectedHostelId} />}
 
-      {selectedHostelId && 
-      <HostelRoomListings hostelId={selectedHostelId} />}
+      {selectedHostelId && <HostelRoomListings hostelId={selectedHostelId} />}
     </div>
   );
 };

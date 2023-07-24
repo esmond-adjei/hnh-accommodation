@@ -3,63 +3,28 @@ import '../styles/browse.css';
 
 import Header from './Header';
 import SideNav from './SideNav';
-import PreviewCard from './Card';
+import HostelListings from './hostelListings';
+import HostelRoomListings from './roomListings';
+import { useListings } from './listingsContext';
+
 
 const Browse = () => {
+
+  const { selectedHostelId } = useListings();
+
   return (
     <>
-      <Header />
       <main>
+        <Header />
         <SideNav />
         <div className="main-content">
+          <div>
           <div className="hostel-previews">
-            {/* hostel Preview Cards  */}
-            <PreviewCard
-              imageSrc={'https://i.pinimg.com/originals/c2/d6/8b/c2d68ba7103b2e8882829812333e8e6f.jpg'}
-              hostelName={'esmond Hostel'}
-              hostelLocation={'home'}
-              availableRooms={'50'}
-              rating={3.4}
-              description={'Nice place to live'}
-              managerLink={'https://www.example.com'}
-            />
-            <PreviewCard
-              imageSrc={'https://i.pinimg.com/originals/c2/d6/8b/c2d68ba7103b2e8882829812333e8e6f.jpg'}
-              hostelName={'esmond Hostel'}
-              hostelLocation={'home'}
-              availableRooms={'50'}
-              rating={3.4}
-              description={'Nice place to live'}
-              managerLink={'https://www.example.com'}
-            />
-            <PreviewCard
-              imageSrc={'https://i.pinimg.com/originals/c2/d6/8b/c2d68ba7103b2e8882829812333e8e6f.jpg'}
-              hostelName={'esmond Hostel'}
-              hostelLocation={'home'}
-              availableRooms={'50'}
-              rating={3.4}
-              description={'Nice place to live'}
-              managerLink={'https://www.example.com'}
-            />
-            <PreviewCard
-              imageSrc={'https://i.pinimg.com/originals/c2/d6/8b/c2d68ba7103b2e8882829812333e8e6f.jpg'}
-              hostelName={'esmond Hostel'}
-              hostelLocation={'home'}
-              availableRooms={'50'}
-              rating={3.4}
-              description={'Nice place to live'}
-              managerLink={'https://www.example.com'}
-            />
-            <PreviewCard
-              imageSrc={'https://i.pinimg.com/originals/c2/d6/8b/c2d68ba7103b2e8882829812333e8e6f.jpg'}
-              hostelName={'esmond Hostel'}
-              hostelLocation={'home'}
-              availableRooms={'50'}
-              rating={3.4}
-              description={'Nice place to live'}
-              managerLink={'https://www.example.com'}
-            />
-            {/* More hostel Preview Cards */}
+            <HostelListings />
+            </div>
+          </div>
+          <div className='room-previews'>
+            { selectedHostelId && <HostelRoomListings /> }
           </div>
         </div>
       </main>

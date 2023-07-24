@@ -7,6 +7,7 @@
     font-family: "Roboto", Arial, sans-serif;
     --whitish: #fefefe;
     --grey: #dfdfdf;
+    --primary-color: #5a70ff;
 }
 
 a {
@@ -168,8 +169,8 @@ main .side-nav {
     min-height: inherit;
     
     position: fixed;
-    top: 56px;
-    z-index: 10;
+    top: 103px;
+    z-index: 5;
 }
 
 header {
@@ -206,21 +207,26 @@ main .side-nav .side-nav-icon > p {
 }
 .center-absolute {
     position: absolute;
-    bottom: 72px;
+    bottom: 123px;
     left: 10%;
     right: 10%;
 }
 /* ------------- main content ----------- */
 main .main-content {
-    width: calc( 100% - 1.1 * var(--side-nav-width)); /* this is a calculation */
+    width: calc( 100% - var(--side-nav-width)); /* this is a calculation */
     min-height: inherit;
     margin-left: var(--side-nav-width);
+
+    display: flex;
+    justify-content: space-between;
+    position: relative;
 }
 
 .filters {
     height: 50px;
     padding: 0 30px;
     background-color: var(--whitish);
+    border-bottom: 1px solid #ccc;
 
     display: flex;
     align-items: center;
@@ -239,7 +245,7 @@ main .main-content {
     padding: 8px 12px;
 
     border-radius: 8px;
-    background-color: var(--grey);
+    border: 1px solid var(--grey);
 }
 
 .filters span:hover {
@@ -248,17 +254,17 @@ main .main-content {
 }
 
 main .main-content .hostel-previews {
-    min-height: inherit;
     padding: 10px 40px;
     display: flex;
     gap: 30px 20px;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: flex-start;
 }
 
 /* responsive styles with media queries */
 @media screen and (max-width:1000px){
     main .main-content .hostel-previews {
-        grid-template-columns: 1fr 1fr;
         /* this is to help see the effect 
         ... when the screen size is 1000px and below
         */
@@ -267,7 +273,6 @@ main .main-content .hostel-previews {
 }
 @media screen and (max-width:800px){
     main .main-content .hostel-previews {
-        grid-template-columns: 1fr;
         /* this is to help see the effect 
         ... when the screen size is 800px and below
         */
@@ -401,4 +406,81 @@ main
 .hostel-description
 p {
     margin: 4px 0;
+}
+
+/* ROOM PREVIEW */
+.room-previews {
+    /* min-width: 0%; */
+    height: 84vh;
+    position: sticky;
+    top: 106px;
+    border-radius: 16px 0px 0px 16px;
+    box-shadow: 7px 10px 20px 3px #4f4f4f9e;
+    animation: slide-out 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 0;
+}
+.room-previews.show {
+    min-width: 40%;
+    width: 40%;
+    animation: slide-in 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: var(--whitish);
+    cursor: pointer;
+
+    /* xxx */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+}
+
+.room {
+    font-size: 14px;
+    padding: 20px;
+    margin: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--grey);
+    background-color: #f9f9f9;
+}
+
+.room-listings-header {
+    background-color: var(--grey);
+    border-bottom: 1px solid #aaa;
+    color: var(--primary-color);
+    overflow: hidden;
+    position: sticky;
+    height: 54px;
+    top: 0;
+    padding: 12px 24px;
+}
+
+@keyframes slide-in {
+    0% {
+        /* min-width: 0%; */
+        transform: translateX(100%);
+    }
+    100% {
+        /* min-width: 40%; */
+        transform: translateX(0%);
+    }
+}
+@keyframes slide-out {
+    0% {
+        /* min-width: 40%; */
+        trasnform: translateX(0%);
+    }
+    100% {
+        /* min-width: 0%; */
+        transform: translateX(100%);
+    }
 }

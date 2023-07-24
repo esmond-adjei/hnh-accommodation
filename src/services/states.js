@@ -82,6 +82,7 @@ export const useRoomListings = (hostelId) => {
   useEffect(() => {
     const getRoomListings = async () => {
       try {
+        console.log('Fetching room listings for hostel:', hostelId);
         const listings = await getHostelRoomListings(hostelId);
         setRoomListings(listings);
         setLoading(false);
@@ -106,6 +107,7 @@ export const useHostelListingsState = () => {
   const fetchHostelListings = async () => {
     try {
       const response = await getHostelListings();
+      console.log('Hostel listings response:', response);
       setHostelListings(response);
     } catch (error) {
       console.error('Error fetching hostel listings:', error.message);
@@ -128,9 +130,6 @@ export const useHostelListingsState = () => {
     }
   };
 
-  const handleHostelClick = (hostelId) => {
-    setSelectedHostelId(hostelId);
-  };
 
   return { 
     hostelListings, 
@@ -138,7 +137,7 @@ export const useHostelListingsState = () => {
     selectedHostelId,
     handleHostelDelete,
     fetchHostelListings,
-    handleHostelClick
+    setSelectedHostelId
   };
 };
 

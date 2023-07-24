@@ -1,5 +1,4 @@
 .card {
-    --primary-color: #ff5a5f;
     padding: 8px;
     max-width: 700px;
     width: 275px;
@@ -20,7 +19,7 @@
     flex-grow: 2;
     background-size: cover;
     background-position: center;
-    background-color: red;
+    background-color: rgb(191, 191, 191);
   
     width: 400px;
     height: 250px;
@@ -29,7 +28,7 @@
     transition: all 0.3s ease;
 }
 .card:hover .card__image {
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 
 .card__details {
@@ -39,7 +38,7 @@
 }
 
 .card__title {
-    font-size: 1.625rem;
+    /* font-size: 1.625rem; */
     margin: 0;
     color: var(--primary-color);
 }
@@ -72,7 +71,7 @@
 }
 
 
-@media (max-width: 720px) {
+@media (max-width: 620px) {
     /* CARD */
     .card {
         flex-direction: column;
