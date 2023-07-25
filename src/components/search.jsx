@@ -20,7 +20,7 @@ const Search = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const searchResults = await handleSearch();
-    console.log("Search Results: ", searchResults);
+    console.log("Setting Results: ", searchResults);
     showRooms ? setRoomListings(searchResults) : setHostelListings(searchResults);
   };
 

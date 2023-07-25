@@ -8,13 +8,14 @@ const HostelListings = () => {
 
   const {hostelListings} = useListings();
 
-  // const handleHostelUpdate = (hostelId) => {
-  //   setIsUpdateMode(true);
-  // };
-
   return (
     <>
-        {hostelListings.map((hostel) => (
+      {
+        (hostelListings.length === 0 || hostelListings === undefined) ?
+          <h1>No Hostel Listings</h1>
+          :
+          <>
+          {hostelListings.map((hostel) => (
           <PreviewCard
             key={hostel.id}
             hostelID={hostel.id}
@@ -25,11 +26,9 @@ const HostelListings = () => {
             rating={hostel.rating}
             description={hostel.description}
             managerLink={'https://www.example.com'}
-          />
-      ))}
-      {/* </div> */}
-     {/* Conditionally render the HostelUpdateForm component */}
-     {/* { isUpdateMode && <HostelUpdateForm hostelId={selectedHostelId} />} */}
+          />))}
+          </>
+      }
     </>
   );
 };
