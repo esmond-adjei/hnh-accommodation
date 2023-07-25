@@ -52,8 +52,13 @@
 }
 
 .card__subtitle {
-    color: #aaa;
-    padding: 4px 0;
+    color: #707070;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.card__subtitle img {
+    width: 25px;
 }
 
 .card__icons {

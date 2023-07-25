@@ -1,6 +1,9 @@
 import React from 'react';
 import { useListings } from './listingsContext';
 
+import roomIcon from '../assets/icons/room-icon.svg';
+import locationIcon from '../assets/icons/location-icon.svg';
+
 
 const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, availableRooms, managerLink, }) => {
 
@@ -24,14 +27,19 @@ const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, a
       <div className="card__details">
 
         <h2 className="card__title">{hostelName}</h2>
-        <p className="card__subtitle">{hostelLocation}</p>
-        <p className="card__subtitle">{availableRooms}</p>
+        <p className="card__subtitle">
+          <img src={locationIcon} alt="location" />
+          {hostelLocation}
+        </p>
+        <p className="card__subtitle">
+          <img src={roomIcon} alt="rooms available" />
+          {availableRooms}
+        </p>
         <div className="card__links">
           <a href={managerLink} className="card__link">
             Hostle Manager Name
           </a>
           <p>⭐ {rating}</p>
-          
         </div>
       </div>
     </div>
