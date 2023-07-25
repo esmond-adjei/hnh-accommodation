@@ -263,7 +263,7 @@ main .main-content .hostel-previews {
     display: flex;
     gap: 30px 20px;
     flex-wrap: wrap;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-content: flex-start;
 }
 
@@ -492,4 +492,14 @@ p {
     gap: 20px;
     padding: 20px 50px;
     flex-wrap: wrap;
+}
+
+
+/* ===================== MAP VIEWS ================= */
+.esri-view{
+    padding: 0;
+    overflow: hidden;
+    height: 81vh;
+    margin: 10px 24px 0 100px;
+    border-radius: 16px;
 }

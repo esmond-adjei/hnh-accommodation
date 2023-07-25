@@ -227,7 +227,8 @@ export const useSearchState = (category) => {
 // APP NAVIGATIO TRIGGERS
 export const useAppNavigation = () => {
   const [showRooms, setShowRooms] = useState(false);
-  const [showHostels, setShowHostels] = useState(false);
+  const [showHostels, setShowHostels] = useState(true);
+  const [showMap, setShowMap] = useState(false);
 
   const handleActiveState = (e) => {
     const sideNavIcons = document.querySelectorAll('.side-nav-icon');
@@ -241,14 +242,23 @@ export const useAppNavigation = () => {
   const handleShowRooms = (e) => {
     setShowRooms(true);
     setShowHostels(false);
+    setShowMap(false);
     handleActiveState(e);
   }
 
   const handleShowHostels = (e) => {
     setShowRooms(false);
     setShowHostels(true);
+    setShowMap(false);
     handleActiveState(e);
   }
 
-  return { showRooms, showHostels, handleShowRooms, handleShowHostels };
+  const handleShowMap = (e) => {
+    setShowRooms(false);
+    setShowHostels(false);
+    setShowMap(true);
+    handleActiveState(e);
+  }
+
+  return { showRooms, showHostels, showMap, handleShowRooms, handleShowHostels, handleShowMap };
 };

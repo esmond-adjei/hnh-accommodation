@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import hostelIcon from '../assets/icons/home.svg';
 import roomIcon from '../assets/icons/room.svg';
@@ -7,30 +8,55 @@ import collectionsIcon from '../assets/icons/collections.svg';
 import profilePicture from '../assets/images/profile.jpg';
 
 import { useListings } from './listingsContext';
+import { NavElement } from './navELement';
 
 const SideNav = () => {
 
-  const { handleShowRooms, handleShowHostels } = useListings();
-
+  const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
+  const navigationElements = [
+      {
+        name: 'Hostel',
+        icon: hostelIcon,
+        link: '/hostels',
+        handleFunction: handleShowHostels,
+      },
+      {
+        name: 'Rooms',
+        icon: roomIcon,
+        link: '/rooms',
+        handleFunction: handleShowRooms,
+      },
+      {
+        name: 'Map view',
+        icon: mapIcon,
+        link: '/map',
+        handleFunction: handleShowMap,
+      },
+      {
+        name: 'Collections',
+        icon: collectionsIcon,
+        link: '/collections',
+        handleFunction: handleShowHostels,
+      }
+    ]
 
   return (
     <div className="side-nav">
-      <div className="side-nav-icon active" onClick={(e) => handleShowHostels(e)}>
-        <img src={hostelIcon} alt="home" width="30px" />
-        <p>Hostel</p>
-      </div>
-      <div className="side-nav-icon" onClick={(e) => handleShowRooms(e)}>
-        <img src={roomIcon} alt="Shorts" width="30px" />
-        <p>Rooms</p>
-      </div>
-      <div className="side-nav-icon">
-        <img src={mapIcon} alt="subscriptions" width="30px" />
-        <p>Map view</p>
-      </div>
-      <div className="side-nav-icon">
-        <img src={collectionsIcon} alt="Library" width="30px" />
-        <p>Collections</p>
-      </div>
+      {
+        navigationElements.map((element, index) => {
+          return (
+            <Link to={element.link} key={index}>
+              <NavElement
+                key={index}
+                icon={element.icon}
+                title={element.name}
+                handleFunction={element.handleFunction}
+              />
+            </Link>
+          )
+        })
+      }
+
       <hr />
       <div className="side-nav-icon center-absolute">
           <img

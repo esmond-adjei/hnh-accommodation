@@ -19,9 +19,11 @@ export function ListingsProvider({ children }) {
 
     const {
       showRooms,
-      showHostels,
       handleShowRooms,
-      handleShowHostels
+      showHostels,
+      handleShowHostels,
+      showMap,
+      handleShowMap,
     } = useAppNavigation();
 
     return (
@@ -36,6 +38,8 @@ export function ListingsProvider({ children }) {
             showHostels,
             handleShowRooms,
             handleShowHostels,
+            showMap,
+            handleShowMap,
         }}>
       {children}
     </ListingsContext.Provider>
