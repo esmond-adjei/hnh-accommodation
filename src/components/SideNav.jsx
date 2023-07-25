@@ -6,15 +6,20 @@ import mapIcon from '../assets/icons/home_map.svg';
 import collectionsIcon from '../assets/icons/collections.svg';
 import profilePicture from '../assets/images/profile.jpg';
 
+import { useListings } from './listingsContext';
 
 const SideNav = () => {
+
+  const { handleShowRooms, handleShowHostels } = useListings();
+
+
   return (
     <div className="side-nav">
-      <div className="side-nav-icon">
+      <div className="side-nav-icon active" onClick={(e) => handleShowHostels(e)}>
         <img src={hostelIcon} alt="home" width="30px" />
         <p>Hostel</p>
       </div>
-      <div className="side-nav-icon">
+      <div className="side-nav-icon" onClick={(e) => handleShowRooms(e)}>
         <img src={roomIcon} alt="Shorts" width="30px" />
         <p>Rooms</p>
       </div>

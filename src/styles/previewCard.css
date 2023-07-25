@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+:root {
+    --whitish: #fefefe;
+    --grey: #dfdfdf;
+    --primary-color: #5a70ff;
+    font-family: 'Nunito', sans-serif;
+}
+
 .card {
     padding: 8px;
     max-width: 700px;
@@ -91,4 +99,81 @@
     .card .card__description {
         height: fit-content;
     }
+}
+
+/* ROOM CARD */
+
+.room-card {
+    font-size: 14px;
+    padding: 20px;
+    margin: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--grey);
+    background-color: #f9f9f9;
+    align-self: flex-start;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.main-content.rooms-view .room-card {
+    align-self: flex-start;
+    width: 375px;
+    margin: 0;
+}
+
+.room-card .card__links {
+    color: var(--primary-color);
+    background-color: var(--grey);
+    margin-top: 20px;
+}
+.room-card .amenity-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin: 8px 0;
+    flex-wrap: wrap;
+    padding: 8px;
+    font-size: 10px;
+    text-align: center;
+}
+.room-card .amenity-icon {
+    list-style: none;
+    border: 1px solid #c1c1c1;
+    border-radius: 8px;
+    padding: 4px;
+    background-color: #f0f0f0;
+}
+.room-card .bedspace {
+    font-size: 30px;
+    transition: all 0.3s ease;
+}
+.room-card:hover .bedspace{
+    color: var(--primary-color);
+}
+.room-card .amenity-icons img {
+    width: 20px;
+    height: 20px;
+}
+.room-card .price {
+    position: absolute;
+    right: 10px;
+    top: 16px;
+    font-size: 24px;
+    color: #d34095;
+}
+.room-card .description {
+    color: #777777;
+    margin-bottom: 8px;
+}
+
+.room-card .sex {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.room-card .sex-icon {
+    width: 20px;
+    background-color: var(--grey);
+    border-radius: 100%;
+    padding: 3px;
 }

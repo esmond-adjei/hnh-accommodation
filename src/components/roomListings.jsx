@@ -1,12 +1,12 @@
 import React from 'react';
 import { useRoomListings } from '../services/states';
 import { useListings } from './listingsContext';
+import RoomCard from './roomCard';
 
 const HostelRoomListings = () => {
   const { selectedHostelId } = useListings();
   const { roomListings, loading, error } = useRoomListings(selectedHostelId);
-  
-  console.log("id set in room listings", selectedHostelId, typeof selectedHostelId);
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -37,19 +37,16 @@ const HostelRoomListings = () => {
         <span className="close-panel" onClick={collapsePanel}>X</span>
       </div>
         {roomListings.map((room) => (
-          <div key={room.room_id} className='room'>
-            <h3>Bedspace: {room.bedspace}</h3>
-            <p>{room.description}</p>
-            <p>Price: {room.price}</p>
-            <p>Number Available: {room.number_available}</p>
-            <p>Sex: {room.sex}</p>
-            <b>Amenities:</b>
-            <ul>
-              {room.amenities.map((amenity) => (
-                <li key={amenity.id}>{amenity.name}</li>
-                ))}
-            </ul>
-          </div>
+          <RoomCard
+            key={room.room_id}
+            room_id={room.room_id}
+            bedspace={room.bedspace}
+            description={room.description}
+            price={room.price}
+            number_available={room.number_available}
+            sex={room.sex}
+            amenities={room.amenities}
+          />
         ))}
       </>
     }

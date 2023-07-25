@@ -3,21 +3,25 @@ import { useSearchState } from '../services/states';
 import { useListings } from './listingsContext';
 
 import searchIcon from '../assets/icons/search.svg';
+import {useRoomListings} from '../services/states';
 
 
 const Search = () => {
-  const { setHostelListings } = useListings();
+  const { setHostelListings, showRooms } = useListings();
+  const { setRoomListings } = useRoomListings('__search__');
 
+  const category = showRooms ? 'room' : 'hostel';
   const {
     query,
     setQuery,
     handleSearch
-  } = useSearchState();
+  } = useSearchState(category);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const searchResults = await handleSearch();
-    setHostelListings(searchResults);
+    console.log("Search Results: ", searchResults);
+    showRooms ? setRoomListings(searchResults) : setHostelListings(searchResults);
   };
 
   return (

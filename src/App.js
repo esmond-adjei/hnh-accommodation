@@ -1,25 +1,29 @@
 import React from 'react';
 // import './App.css';
-import Browse from './components/browse';
-import { ListingsProvider } from './components/listingsContext';
+import BrowseHostel from './components/browseHostel';
+import BrowseRooms from './components/browseRooms';
+import { useListings } from './components/listingsContext';
+import Header from './components/Header';
+import SideNav from './components/SideNav';
+
 
 const App = () => {
 
+  const { showRooms } = useListings();
+
+
   return (
     <>
-      {/*
-      <h1>Hostel Accommodation App</h1>
-       <Register/>
-      <Login/>
-      <hr/>
-      <HostelListings />
-      <hr/>
-      <HostelCreateForm /> */}
-
-      <ListingsProvider>
-      <Browse />
-      </ListingsProvider>
-
+      <main>
+        <Header />
+        <SideNav />
+        {
+          showRooms ? 
+            <BrowseRooms />
+          : 
+            <BrowseHostel />
+        }
+      </main>
     </>
   );
 };

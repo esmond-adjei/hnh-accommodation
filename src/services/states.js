@@ -5,6 +5,7 @@ import {
   getHostelRoomListings, 
   getHostelListings,
   searchHostels,
+  searchRoom,
   deleteHostel,
   createHostel,
   updateHostel,
@@ -82,10 +83,14 @@ export const useRoomListings = (hostelId) => {
   useEffect(() => {
     const getRoomListings = async () => {
       try {
-        console.log('Fetching room listings for hostel:', hostelId);
-        const listings = await getHostelRoomListings(hostelId);
-        setRoomListings(listings);
-        setLoading(false);
+        if (hostelId === '__search__') { // this is a choke; update in the future
+          console.log('searching for rooms...');
+        } else {
+          console.log('Fetching room listings for hostel:', hostelId);
+          const listings = await getHostelRoomListings(hostelId);
+          setRoomListings(listings);
+          setLoading(false);
+        }
       } catch (error) {
         setError(error.message);
         setLoading(false);
@@ -95,7 +100,7 @@ export const useRoomListings = (hostelId) => {
     getRoomListings();
   }, [hostelId]);
 
-  return { roomListings, loading, error };
+  return { roomListings, setRoomListings, loading, error };
 };
 
 
@@ -107,7 +112,6 @@ export const useHostelListingsState = () => {
   const fetchHostelListings = async () => {
     try {
       const response = await getHostelListings();
-      console.log('Hostel listings response:', response);
       setHostelListings(response);
     } catch (error) {
       console.error('Error fetching hostel listings:', error.message);
@@ -200,16 +204,16 @@ export const useHostelUpdateState = (hostelId) => {
 
 
 // SEARCH STATE
-export const useSearchState = () => {
+export const useSearchState = (category) => {
   const [query, setQuery] = useState('');
 
   const handleSearch = async () => {
     const searchData = {q: query};
 
     try {
-      const response = await searchHostels(searchData);
+      const response = (category === 'hostel') ? await searchHostels(searchData) : await searchRoom(searchData);
       console.log('Search response:', response);
-      return response['hostelResults'];
+      return response[`${category}Results`];
     } catch (error) {
       console.error('Search error:', error.message);
       return [];
@@ -217,4 +221,34 @@ export const useSearchState = () => {
   };
 
   return { query, setQuery, handleSearch };
+};
+
+
+// APP NAVIGATIO TRIGGERS
+export const useAppNavigation = () => {
+  const [showRooms, setShowRooms] = useState(false);
+  const [showHostels, setShowHostels] = useState(false);
+
+  const handleActiveState = (e) => {
+    const sideNavIcons = document.querySelectorAll('.side-nav-icon');
+    sideNavIcons.forEach((icon) => {
+      icon.classList.remove('active');
+    });
+    e.target.classList.add('active');
+  };
+
+
+  const handleShowRooms = (e) => {
+    setShowRooms(true);
+    setShowHostels(false);
+    handleActiveState(e);
+  }
+
+  const handleShowHostels = (e) => {
+    setShowRooms(false);
+    setShowHostels(true);
+    handleActiveState(e);
+  }
+
+  return { showRooms, showHostels, handleShowRooms, handleShowHostels };
 };

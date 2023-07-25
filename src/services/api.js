@@ -44,12 +44,30 @@ export const deleteHostel = async (hostelId) => {
 // HOSTEL ROOM LISTINGS API REQUEST
 export const getHostelRoomListings = async (hostelId) => {
   try {
-    const response = await axios.get(`http://localhost:8000/api/hostel/${hostelId}/rooms/`);
+    console.log('Fetching room listings for hostel:', hostelId);
+    const url = (!hostelId) ? // this is a choke; update in the future
+    `http://localhost:8000/api/rooms/` :
+     `http://localhost:8000/api/hostel/${hostelId}/rooms/`;
+    const response = await axios.get(url);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel room listings.');
   }
 }
+
+// API Request to search rooms
+export const searchRoom = async (searchData) => {
+  try {
+    const response = await axios.get('http://localhost:8000/api/search/rooms', { params: searchData });
+    console.log('API Search response:', response.data);
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || 'An error occurred while searching for rooms.'
+    );
+  }
+};
+
 
 // API REQUEST: Create a new hostel
 export const createHostel = async (hostelData) => {
@@ -65,7 +83,8 @@ export const createHostel = async (hostelData) => {
 // API Request to search hostels
 export const searchHostels = async (searchData) => {
   try {
-    const response = await axios.get('http://localhost:8000/api/search/', { params: searchData });
+    const response = await axios.get('http://localhost:8000/api/search/hostels', { params: searchData });
+    console.log('API Search response:', response.data);
     return response.data;
   } catch (error) {
     throw new Error(
