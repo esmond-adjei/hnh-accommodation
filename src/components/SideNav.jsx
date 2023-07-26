@@ -58,7 +58,7 @@ const SideNav = () => {
       }
 
       <hr />
-      <Link to="/sign-up">
+      <Link to="/sign-up" target='_blank'>
         <div className="side-nav-icon center-absolute">
           <img
             className="user-profile-icon"

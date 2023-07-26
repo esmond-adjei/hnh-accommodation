@@ -1,20 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import '../../styles/auth_form.css';
 import logo from '../../assets/images/hnh-gradient-logo.png';
+import { Link } from "react-router-dom";
 
-const AuthForm = ({ type }) => {
-  const [isSignUp, setIsSignUp] = useState(type === 'sign-up');
 
-  const handleSignUpClick = () => {
-    setIsSignUp(true);
-  };
+const AuthForm = ({ formType }) => {
 
-  const handleSignInClick = () => {
-    setIsSignUp(false);
-  };
+  const isSignUp = formType === '/sign-up' ? true : false;
 
   return (
-    <div className="a-wrapper">
+    <div className="main-container a-wrapper">
       <div className="form-wrapper sign-up">
         <form action="">
 
@@ -52,13 +47,11 @@ const AuthForm = ({ type }) => {
           <div className="sign-link">
             <p>
               {isSignUp ? "Already have an account? " : "Don't have an account? "}
-              <a
-                href="/"
-                className="signIn-link"
-                onClick={isSignUp ? handleSignInClick : handleSignUpClick}
-              >
-                {isSignUp ? "Sign In" : "Sign Up"}
-              </a>
+                  <Link to={isSignUp ? "/sign-in" : "/sign-up"}
+                    className="signIn-link"
+                  >
+                    {isSignUp ? "Sign In" : "Sign Up"}
+                  </Link>
             </p>
           </div>
 
