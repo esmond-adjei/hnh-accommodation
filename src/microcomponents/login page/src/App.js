@@ -1,7 +1,5 @@
 import "../public/style.css";
-import Card from "./card";
-
-import Form from "./form";
+import Form from "../../../components/pages/authPage";
 
 export default function App() {
   return (

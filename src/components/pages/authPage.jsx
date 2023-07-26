@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import '../../styles/auth_form.css';
+import logo from '../../assets/images/hnh-gradient-logo.png';
 
-export default function Form() {
-  const [value, setIsSignUp] = useState(true);
+const AuthForm = ({ type }) => {
+  const [isSignUp, setIsSignUp] = useState(type === 'sign-up');
 
   const handleSignUpClick = () => {
     setIsSignUp(true);
@@ -15,45 +17,55 @@ export default function Form() {
     <div className="a-wrapper">
       <div className="form-wrapper sign-up">
         <form action="">
+
           <div className="imageAndHeading">
-            <img src="./hnh.png" alt="" srcset="" />
-            <h2>{value ? "Sign Up" : "Sign In"}</h2>
+            <img src={logo} alt="logo"/>
+            <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
           </div>
+
           <div className="input-group">
             <input type="text" required />
             <label htmlFor="">Username</label>
           </div>
+
           <div className="input-group">
             <input type="email" required />
             <label htmlFor="">Email</label>
           </div>
+
           <div className="input-group">
             <input type="password" required />
             <label htmlFor="">Password</label>
           </div>
-          {value && (
+
+          {isSignUp && (
             <div className="input-group">
               <input type="password" required />
               <label htmlFor="">Confirm Password</label>
             </div>
           )}
-          <button type="submit" className="btn">
-            {value ? "Sign Up" : "Sign In"}
+
+          <button type="submit" className="form-btn">
+            {isSignUp ? "Sign Up" : "Sign In"}
           </button>
+          
           <div className="sign-link">
             <p>
-              {value ? "Already have an account? " : "Don't have an account? "}
+              {isSignUp ? "Already have an account? " : "Don't have an account? "}
               <a
-                href="#"
+                href="/"
                 className="signIn-link"
-                onClick={value ? handleSignInClick : handleSignUpClick}
+                onClick={isSignUp ? handleSignInClick : handleSignUpClick}
               >
-                {value ? "Sign In" : "Sign Up"}
+                {isSignUp ? "Sign In" : "Sign Up"}
               </a>
             </p>
           </div>
+
         </form>
       </div>
     </div>
   );
-}
+};
+
+export default AuthForm;

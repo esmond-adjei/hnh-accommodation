@@ -1,21 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(#2196f3, #e91e63);
-  overflow: hidden;
-}
-
 .wrapper {
   position: relative;
   width: 400px;
@@ -35,8 +19,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-
-h2 {
+.imageAndHeading h2 {
   font-size: 30px;
   color: #555;
   text-align: center;
@@ -93,7 +76,7 @@ h2 {
   text-decoration: underline;
 }
 
-.btn {
+.form-btn {
   position: relative;
   top: 0;
   left: 0;
@@ -130,54 +113,20 @@ h2 {
   text-decoration: underline;
 }
 
-img {
+.imageAndHeading img {
   height: 100px;
 }
+
 .imageAndHeading {
   display: flex;
   gap: 20px;
   flex-direction: column;
   align-items: center;
 }
+
 .a-wrapper {
   position: relative;
   width: 400px;
   height: 600px;
   border-radius: 70px;
-}
-
-/* css for card */
-.imageContainer {
-  background-image: url("https://i.pinimg.com/236x/1e/6b/8c/1e6b8c6a8d7d5d3165aaadab3f36b12c.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  height: 300px;
-  width: 300px;
-}
-.info {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin-top: 10px;
-}
-p {
-}
-.imageContainer {
-  position: relative;
-}
-.imageContainer a {
-  position: absolute;
-  top: 10px;
-  right: 0px;
-  height: 50px;
-  width: 50px;
-  color: inherit;
-  text-decoration: none;
-}
-.card {
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 15px 5px 10px rgba(0, 0, 0, 0.2);
 }

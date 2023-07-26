@@ -58,14 +58,16 @@ const SideNav = () => {
       }
 
       <hr />
-      <div className="side-nav-icon center-absolute">
+      <Link to="/sign-up">
+        <div className="side-nav-icon center-absolute">
           <img
             className="user-profile-icon"
             src={profilePicture}
             width="100%"
             alt="profile"
           />
-      </div>
+        </div>
+      </Link>
     </div>
   );
 };
