@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { useHostelListingsState, useAppNavigation } from '../services/states';
+import { useDarkMode } from '../services/utilityState';
 
 const ListingsContext = createContext();
 
@@ -26,6 +27,9 @@ export function ListingsProvider({ children }) {
       handleShowMap,
     } = useAppNavigation();
 
+    const [darkMode, toggleDarkMode] = useDarkMode();
+
+
     return (
         <ListingsContext.Provider value={{ 
             hostelListings, 
@@ -40,6 +44,8 @@ export function ListingsProvider({ children }) {
             handleShowHostels,
             showMap,
             handleShowMap,
+            darkMode,
+            toggleDarkMode
         }}>
       {children}
     </ListingsContext.Provider>

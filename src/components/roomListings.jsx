@@ -20,6 +20,7 @@ const HostelRoomListings = () => {
   const collapsePanel = () => {
     const roomPreviews = document.querySelector('.room-previews');
     roomPreviews.classList.remove('show');
+    roomPreviews.classList.add('closed');
   };
 
 

@@ -5,6 +5,7 @@ import { useListings } from './listingsContext';
 import searchIcon from '../assets/icons/search.svg';
 import {useRoomListings} from '../services/states';
 
+import Filter from './filter';
 
 const Search = () => {
   const { setHostelListings, showRooms } = useListings();
@@ -35,6 +36,8 @@ const Search = () => {
         />
           <input type="image" src={searchIcon} alt='search icons'/>
       </form>
+      {/* FILTER */}
+      <Filter/>
     </div>
   );
 };

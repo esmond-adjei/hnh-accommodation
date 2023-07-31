@@ -1,15 +1,20 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import { useListings } from './listingsContext';
+// assets
 import logo from '../assets/images/hnh-logo-30.png';
 import menu from '../assets/icons/hamburger-menu.svg';
 import darkIcon from '../assets/icons/dark_mode.svg';
+import lightIcon from '../assets/icons/light_mode.svg';
 import notificationIcon from '../assets/icons/notifications.svg';
-
+// components
 import Search from './search';
-import { Link } from 'react-router-dom';
 
 
 const Header = () => {
+
+  const { darkMode, toggleDarkMode } = useListings();
+
   return (
     <>
     <header className="nav-bar">
@@ -33,10 +38,13 @@ const Header = () => {
 
       {/* profile box */}
       <div className="utility-box">
-        <img src={darkIcon} alt="dark mode" className='round-icon'/>
+        <img src={ darkMode? darkIcon: lightIcon} 
+             alt="switch theme" className='round-icon' onClick={toggleDarkMode}/>
         <img src={notificationIcon} alt="notifications" className='round-icon'/>
       </div>
     </header>
+
+    {/* filters panel*/}
     <div className='filters'>
         <span>Location</span>
         <span>Price</span>

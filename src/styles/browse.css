@@ -9,7 +9,9 @@ a {
 }
 
 /* --------------- IMPORTS ------------------ */
-@import "./previewCard.css";
+@import "./hostel_card.css";
+@import "./room_card.css";
+@import "./filter.css";
 /* ------------------------------------------ */
 
 
@@ -56,7 +58,8 @@ header .search-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 1 730px; /* flex-grow, flex-shrink, flex-basis */
+    gap: 40px;
+    flex: 0 1 700px; /* flex-grow, flex-shrink, flex-basis */
 }
 
 header .search-box .search {
@@ -168,15 +171,16 @@ main .side-nav {
     min-height: inherit;
     
     position: fixed;
-    top: 103px;
-    z-index: 5;
+    top: 106px;
+    z-index: 4;
+    border-right: 1px solid var(--grey);
 }
 
 header {
     position: sticky;
-    z-index: 10;
+    z-index: 5;
     top: 0;
-    background-color: white;
+    background-color: var(--whitish);
     width: 100%;
 }
 
@@ -199,10 +203,12 @@ main .side-nav .side-nav-icon:hover {
 main .side-nav .side-nav-icon > p {
     font-size: 10px;
 }
+
 .user-profile-icon {
     width: 40px;
     height: 40px;
     border-radius: 100%;
+    background-color: var(--secondary-color);
 }
 .center-absolute {
     position: absolute;
@@ -210,11 +216,36 @@ main .side-nav .side-nav-icon > p {
     left: 10%;
     right: 10%;
 }
+
+.profile-menu {
+    position: relative;
+    font-size: 12px;
+    position: absolute;
+    background: var(--whitish);
+    width: 200px;
+    left: 100px;
+    bottom: 150px;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 32px -4px #7c7c7ca6;
+}
+.profile-menu p {
+    color: var(--text-color);
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+.profile-menu p:hover {
+    background: var(--grey);
+    border-radius: 6px;
+}
+
 /* ------------- main content ----------- */
 main .main-content {
     width: calc( 100% - var(--side-nav-width)); /* this is a calculation */
     min-height: inherit;
     margin-left: var(--side-nav-width);
+    background-color: var(--light-primary-color);
 
     display: flex;
     justify-content: space-between;
@@ -225,7 +256,8 @@ main .main-content {
     height: 50px;
     padding: 0 30px;
     background-color: var(--whitish);
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--grey);
+    box-shadow: 0px 6px 14px -12px #333;
 
     display: flex;
     align-items: center;
@@ -234,7 +266,7 @@ main .main-content {
 
     overflow-x: hidden;
     position: sticky;
-    z-index: 10;
+    z-index: 4;
     top: 56px;
 }
 
@@ -298,7 +330,7 @@ span.hostel-timer {
 
     width: 40px;
     font-size: 12px;
-    color: white;
+    color: var(--whitish);
     text-align: center;
 
     transition: all 0.5s;
@@ -391,7 +423,7 @@ main
 .hostel-card
 .hostel-description
 .channel-verified {
-    color: white;
+    color: var(--whitish);
     background-color: grey;
     border-radius: 100%;
     padding: 0.5px 2.3px;
@@ -412,17 +444,21 @@ p {
     height: 84vh;
     position: sticky;
     top: 106px;
+    background-color: var(--whitish);
     border-radius: 16px 0px 0px 16px;
-    box-shadow: 7px 10px 20px 0px #4f4f4f9e;
-    animation: slide-out 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+    box-shadow: 7px 10px 20px 0px #6161619e;
     overflow-y: scroll;
     overflow-x: hidden;
     width: 0;
+    transition: width 0.6s;
 }
 .room-previews.show {
     min-width: 40%;
     width: 40%;
     animation: slide-in 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+}
+.room-previews.closed {
+    animation: slide-out 0.6s cubic-bezier(0, 0, 0.25, 0.99);
 }
 
 .close-panel {
@@ -443,15 +479,15 @@ p {
 }
 
 .room-listings-header {
-    background-color: var(--grey);
     border-bottom: 1px solid #aaa;
-    color: var(--primary-color);
     overflow: hidden;
     position: sticky;
     height: 54px;
     top: 0;
     padding: 12px 24px;
-    z-index: 5;
+    z-index: 4;
+    color: var(--whitish);
+    background-color: var(--primary-color);
 }
 
 @keyframes slide-in {

@@ -1,0 +1,188 @@
+
+.room-card {
+    --room-card-background-color: var(--whitish);
+    font-size: 14px;
+    /* padding: 20px; */
+    height: 250px;
+    overflow: hidden;
+    margin: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--grey);
+    background-color: var(--room-card-background-color);
+    align-self: flex-start;
+    position: relative;
+    transition: all 0.3s ease;
+
+    background: url("https://rnb.scene7.com/is/image/roomandboard/MHH_Liv_ES1021_0523?size=900,900&scl=1");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.main-content.rooms-view .room-card {
+    align-self: flex-start;
+    width: 375px;
+    height: 275px;
+    margin: 0;
+}
+
+.room-card .card-overlay {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--room-card-background-color);
+    background: linear-gradient(45deg, 
+        var(--room-card-background-color), 
+        var(--room-card-background-color), 
+        66%, #bcbcbc75);
+
+    transition: all 0.4s ease;    
+}
+
+.card-overlay {        
+    opacity: 0;
+}
+
+.room-card:hover .card-overlay {
+    opacity: 1;
+}
+
+
+.room-card .card__links {
+    background: var(--primary-color);
+    color: var(--whitish);
+    margin-top: 20px;
+    width: fit-content;
+    padding: 4px 16px;
+}
+.room-card .amenity-icons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: nowrap;
+    transition: transform 0.4s cubic-bezier(0.39, 0.58, 0.57, 1);
+}
+
+.room-card .amenity-icon {
+    padding: 4px;
+    list-style: none;
+    border-radius: 8px;
+    border: 1px solid var(--greyish);
+    background-color: var(--light-primary-color);
+
+    flex: 0 0 calc(100% / 4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: fit-content;
+}
+.slider-container {
+    margin: 8px 0;
+    padding: 8px;
+    font-size: 10px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    /* background-color: var(--room-card-background-color); */
+}
+.slider-ctrl {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider-ctrl * {
+    cursor: pointer;
+    font-size: 16px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--whitish);
+    box-shadow: 0px 2px 6px 0px #9b9b9b;
+}
+.left {
+    left: 0px;
+    /* background: linear-gradient(to right, var(--room-card-background-color), 80%, transparent); */
+}
+.right {
+    right: 0px;
+    /* background: linear-gradient(to left, var(--room-card-background-color), 80%, transparent); */
+}
+
+.room-card .collect {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    background: var(--whitish);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 12px -2px #bababa;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* BUTTON PRESSED STATE */
+.room-card .collect:active,
+.round-icon:active,
+.slider-ctrl *:active,
+.close-panel:active,
+.filter-btn:active {
+    transform: scale(0.9);
+}
+
+.room-card .collect img {
+    width: 30px;
+}
+
+.room-card .bedspace {
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+/* 
+.room-card:hover .bedspace{
+    color: var(--primary-color);
+} */
+
+.room-card .amenity-icons img {
+    width: 20px;
+    height: 20px;
+}
+
+.room-card .price {
+    /* position: absolute;
+    right: 10px;
+    top: 16px; */
+    font-size: 16px;
+    color: #d34095;
+}
+
+.room-card .description {
+    color: #777777;
+    margin-bottom: 8px;
+}
+
+.room-card .sex {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.room-card .sex-icon {
+    width: 20px;
+    background-color: var(--grey);
+    border-radius: 100%;
+    padding: 3px;
+}

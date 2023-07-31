@@ -1,12 +1,26 @@
 :root {
   --whitish: #fefefe;
   --grey: #dfdfdf;
+  --greyish: #c1c1c1;
   --primary-color: #5a70ff;
+  --light-primary-color: #e8e9ee;
+  --secondary-color: #fd8cc8;
+  /* DAY LIGHT THEME COLORS */
+  --background-color: #f0f0f0; /* Light mode background color */
+  --text-color: #333; /* Light mode text color */
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+html, main {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+main.dark-mode {
+  --background-color: #1a1a1a; /* Dark mode background color */
+  --text-color: #f0f0f0; /* Dark mode text color */
 }

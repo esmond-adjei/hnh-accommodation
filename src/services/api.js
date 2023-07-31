@@ -13,7 +13,7 @@ export const registerUser = async (userData) => {
 // LOGIN API REQUEST
 export const loginUser = async (loginData) => {
   try {
-    const response = await axios.post('http://localhost:8000/api/login/', loginData);
+    const response = await axios.post('http://localhost:8000/api/token/', loginData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred during login.');
@@ -44,7 +44,7 @@ export const deleteHostel = async (hostelId) => {
 // HOSTEL ROOM LISTINGS API REQUEST
 export const getHostelRoomListings = async (hostelId) => {
   try {
-    console.log('Fetching room listings for hostel:', hostelId);
+    // console.log('Fetching room listings for hostel:', hostelId);
     const url = (!hostelId) ? // this is a choke; update in the future
     `http://localhost:8000/api/rooms/` :
      `http://localhost:8000/api/hostel/${hostelId}/rooms/`;
@@ -112,5 +112,41 @@ export const getHostel = async (hostelId) => {
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel.');
+  }
+}
+
+// API REQUEST FOR GET COLLECTIONS
+export const getCollections = async () => {
+  try {
+    const user_id = "c1e56777-c1dc-4b32-a3ff-983ef507ec1f"; // this is a choke; update in the future
+
+    const response = await axios.get(`http://localhost:8000/api/collections/${user_id}/`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while fetching the collection.');
+  }
+}
+
+// API REQUEST FOR ADD COLLECTIONS
+export const addCollection = async (room_id) => {
+  try {
+    const user_id = "c1e56777-c1dc-4b32-a3ff-983ef507ec1f"; // this is a choke; update in the future
+
+    const response = await axios.post(`http://localhost:8000/api/collections/${user_id}/add/`,{room_id: room_id});
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while creating the collection.');
+  }
+}
+
+// API REQUEST FOR DELETE COLLECTIONS
+export const removeCollection = async (room_id) => {
+  try {
+    const user_id = "c1e56777-c1dc-4b32-a3ff-983ef507ec1f"; // this is a choke; update in the future
+
+    const response = await axios.post(`http://localhost:8000/api/collections/${user_id}/remove/`, {room_id: room_id});
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while deleting the collection.');
   }
 }

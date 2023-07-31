@@ -11,6 +11,7 @@ const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, a
 
   const openPanel = () => {
     const roomPreviews = document.querySelector('.room-previews');
+    roomPreviews.classList.remove('closed');
     roomPreviews.classList.add('show');
   };
 

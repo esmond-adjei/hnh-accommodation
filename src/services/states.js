@@ -9,7 +9,10 @@ import {
   deleteHostel,
   createHostel,
   updateHostel,
-  getHostel
+  getHostel,
+  getCollections,
+  // addCollection,
+  removeCollection,
 } from './api';
 
 // REGISTRATION STATE
@@ -262,3 +265,44 @@ export const useAppNavigation = () => {
 
   return { showRooms, showHostels, showMap, handleShowRooms, handleShowHostels, handleShowMap };
 };
+
+
+// COLLECTIONS STATE
+export const useCollectionsState = () => {
+  const [collectionListings, setCollections] = useState([]);
+  const [selectedCollectionId, setSelectedCollectionId] = useState(null);
+
+  const fetchCollections = async () => {
+    try {
+      const response = await getCollections();
+      setCollections(response);
+    } catch (error) {
+      console.error('Error fetching collections:', error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchCollections();
+  }, []);
+
+  const handleCollectionRemove = async (roomID) => {
+    try {
+      await removeCollection(roomID);
+      setCollections((prevCollections) =>
+        prevCollections.filter((collection) => collection.id !== roomID)
+      );
+      setSelectedCollectionId(null);
+    } catch (error) {
+      console.error('Error deleting collection:', error.message);
+    }
+  };
+
+  return { 
+    collectionListings, 
+    setCollections, 
+    selectedCollectionId,
+    handleCollectionRemove,
+    fetchCollections,
+    setSelectedCollectionId
+  };
+}

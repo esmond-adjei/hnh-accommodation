@@ -1,11 +1,10 @@
 import React from 'react';
 import { useListings } from './listingsContext';
-
+// components
 import PreviewCard from '../components/Card';
 
 
 const HostelListings = () => {
-
   const {hostelListings} = useListings();
 
   return (
