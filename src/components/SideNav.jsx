@@ -15,7 +15,7 @@ const SideNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSignIn, setSignIn] = useState(false);
   const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
-  const isSignedIn = true;
+  const isSignedIn = false;
   const navigationElements = [
       {
         name: 'Hostel',
