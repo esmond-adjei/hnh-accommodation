@@ -6,7 +6,7 @@ const refreshToken = async (refreshToken) => {
       refresh: refreshToken,
     });
     const newAccessToken = response.data.access;
-    localStorage.setItem('your_access_token_storage_key', newAccessToken);
+    localStorage.setItem('access_token', newAccessToken);
     return newAccessToken;
   } catch (error) {
     throw new Error('Failed to refresh access token.');
@@ -15,13 +15,19 @@ const refreshToken = async (refreshToken) => {
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000/api/',
+  ContentType: 'application/json',
+  headers: {
+    Authorization: localStorage.getItem('access_token')
+        ? `Bearer ${localStorage.getItem('access_token')}`
+        : null,
+  },
 });
 
 axiosInstance.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
-    const refreshToken = localStorage.getItem('your_refresh_token_storage_key');
+    const refreshToken = localStorage.getItem('refresh_token');
 
     if (error.response.status === 401 && refreshToken && !originalRequest._retry) {
       originalRequest._retry = true;
@@ -43,11 +49,36 @@ export const loginUser = async (loginData) => {
   try {
     const response = await axiosInstance.post('token/', loginData);
     const accessToken = response.data.access;
+    localStorage.setItem('access_token', accessToken);
     console.log('Login response:', response.data, '\nAccess token:', accessToken);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred during login.');
   }
 };
+
+
+//  Registeration API Request
+export const registerUser = async (registrationData) => {
+    try {
+      console.log('Registration data:', registrationData);
+      const response = await axiosInstance.post('register/', registrationData);
+      const accessToken = response.data.access;
+      localStorage.setItem('access_token', accessToken);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || 'An error occurred during registration.');
+    }
+};
+
+
+// logout user
+export const logoutUser = () => {
+    console.log(`User ${localStorage.getItem('access_token')} before logout`);
+    console.log('Logging out user...');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    console.log(`User ${localStorage.getItem('access_token')} after logout`);
+  };
 
 export { refreshToken };

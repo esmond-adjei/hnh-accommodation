@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import '../../styles/auth_form.css';
 import logo from '../../assets/images/hnh-gradient-logo.png';
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser } from '../../services/auth_api';
+import { loginUser, registerUser, logoutUser } from '../../services/auth_api';
 
 const AuthForm = ({ formType }) => {
   const history = useNavigate();
@@ -12,6 +12,7 @@ const AuthForm = ({ formType }) => {
     email: "",
     password: "",
     confirmPassword: "",
+    user_type: "guest",
   });
 
   const handleChange = (e) => {
@@ -22,8 +23,9 @@ const AuthForm = ({ formType }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await loginUser(formData);
-      localStorage.setItem("access_token", res.access);
+      logoutUser();
+      const res = isSignUp ? await registerUser(formData) : await loginUser(formData);
+
       console.log(res);
       history("/hostels");
     } catch (err) {

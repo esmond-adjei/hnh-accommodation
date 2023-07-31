@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../services/auth_api';
 // SVGs
 import hostelIcon from '../assets/icons/home.svg';
 import roomIcon from '../assets/icons/room.svg';
@@ -103,7 +104,7 @@ const SideNav = () => {
       }
 
       {
-        showMenu &&
+        (showMenu && isSignedIn) &&
         <div className="profile-menu">
           <button className="close-btn close-panel" onClick={handleDisplayMenu}>X</button>
           <Link to="#">
@@ -112,7 +113,7 @@ const SideNav = () => {
           <Link to="#">
           <p>Help</p>
           </Link>
-          <Link to="#">
+          <Link to="/hostels" onClick={logoutUser}>
           <p>Logout</p>
           </Link>
         </div>
