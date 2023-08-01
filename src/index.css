@@ -5,6 +5,7 @@
   --primary-color: #5a70ff;
   --light-primary-color: #e8e9ee;
   --secondary-color: #fd8cc8;
+  --shadow-color: #363636;
   /* DAY LIGHT THEME COLORS */
   --background-color: #f0f0f0; /* Light mode background color */
   --text-color: #333; /* Light mode text color */
@@ -23,4 +24,9 @@ html, main {
 main.dark-mode {
   --background-color: #1a1a1a; /* Dark mode background color */
   --text-color: #f0f0f0; /* Dark mode text color */
+  --whitish: #34383d;
+  --grey: #444d56;
+  --greyish: #6a737d;
+  --shadow-color: #000;
+  --light-primary-color: #24292e;
 }

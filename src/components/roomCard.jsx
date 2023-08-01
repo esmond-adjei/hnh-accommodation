@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 // api requests
 import { addCollection, removeCollection } from '../services/api';
+import { isLoggedIn } from '../services/auth_api';
 // SVGs
 import ac from '../assets/icons/air-condition.svg';
 import bathroom from '../assets/icons/bathroom.svg';
@@ -60,7 +61,10 @@ const RoomCard = ({ room_id, bedspace, description, price, number_available, sex
     }
     
     const handleCollect = () => {
-      console.log('Collecting room: ', room_id);
+      if (!isLoggedIn()) {
+        alert('Please login to add to collection');
+        return;
+      }
       setIsCollected(!isCollected);
       isCollected ? removeCollection(room_id) : addCollection(room_id);
     };

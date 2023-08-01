@@ -1,9 +1,10 @@
-import axios from 'axios';
+// import axios from 'axios';
+import { axiosInstance } from './auth_api';
 
 // REGISTER API REQUEST
 export const registerUser = async (userData) => {
   try {
-    const response = await axios.post('http://localhost:8000/api/register/', userData);
+    const response = await axiosInstance.post('http://localhost:8000/api/register/', userData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred during registration.');
@@ -13,7 +14,7 @@ export const registerUser = async (userData) => {
 // LOGIN API REQUEST
 export const loginUser = async (loginData) => {
   try {
-    const response = await axios.post('http://localhost:8000/api/token/', loginData);
+    const response = await axiosInstance.post('http://localhost:8000/api/token/', loginData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred during login.');
@@ -23,7 +24,7 @@ export const loginUser = async (loginData) => {
 // HOSTEL LISTINGS API REQUEST
 export const getHostelListings = async () => {
   try {
-    const response = await axios.get('http://localhost:8000/api/hostels/');
+    const response = await axiosInstance.get('http://localhost:8000/api/hostels/');
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel listings.');
@@ -33,7 +34,7 @@ export const getHostelListings = async () => {
 // API REQUEST: Delete a hostel by ID
 export const deleteHostel = async (hostelId) => {
   try {
-    const response = await axios.delete(`http://localhost:8000/api/hostel/${hostelId}/delete`);
+    const response = await axiosInstance.delete(`http://localhost:8000/api/hostel/${hostelId}/delete`);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while deleting the hostel.');
@@ -48,7 +49,7 @@ export const getHostelRoomListings = async (hostelId) => {
     const url = (!hostelId) ? // this is a choke; update in the future
     `http://localhost:8000/api/rooms/` :
      `http://localhost:8000/api/hostel/${hostelId}/rooms/`;
-    const response = await axios.get(url);
+    const response = await axiosInstance.get(url);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel room listings.');
@@ -58,7 +59,7 @@ export const getHostelRoomListings = async (hostelId) => {
 // API Request to search rooms
 export const searchRoom = async (searchData) => {
   try {
-    const response = await axios.get('http://localhost:8000/api/search/rooms', { params: searchData });
+    const response = await axiosInstance.get('http://localhost:8000/api/search/rooms', { params: searchData });
     console.log('API Search response:', response.data);
     return response.data;
   } catch (error) {
@@ -72,7 +73,7 @@ export const searchRoom = async (searchData) => {
 // API REQUEST: Create a new hostel
 export const createHostel = async (hostelData) => {
   try {
-    const response = await axios.post('http://localhost:8000/api/hostel/create/', hostelData);
+    const response = await axiosInstance.post('http://localhost:8000/api/hostel/create/', hostelData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while creating the hostel.');
@@ -83,7 +84,7 @@ export const createHostel = async (hostelData) => {
 // API Request to search hostels
 export const searchHostels = async (searchData) => {
   try {
-    const response = await axios.get('http://localhost:8000/api/search/hostels', { params: searchData });
+    const response = await axiosInstance.get('http://localhost:8000/api/search/hostels', { params: searchData });
     console.log('API Search response:', response.data);
     return response.data;
   } catch (error) {
@@ -97,7 +98,7 @@ export const searchHostels = async (searchData) => {
 // API Request to update a hostel
 export const updateHostel = async (hostelId, updateData) => {
   try {
-    const response = await axios.put(`http://localhost:8000/api/hostel/${hostelId}/update/`, updateData);
+    const response = await axiosInstance.put(`http://localhost:8000/api/hostel/${hostelId}/update/`, updateData);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while updating the hostel.');
@@ -108,7 +109,7 @@ export const updateHostel = async (hostelId, updateData) => {
 // API REQUEST TO GET HOSTEL
 export const getHostel = async (hostelId) => {
   try {
-    const response = await axios.get(`http://localhost:8000/api/hostel/${hostelId}/`);
+    const response = await axiosInstance.get(`http://localhost:8000/api/hostel/${hostelId}/`);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel.');
@@ -118,9 +119,8 @@ export const getHostel = async (hostelId) => {
 // API REQUEST FOR GET COLLECTIONS
 export const getCollections = async () => {
   try {
-    const user_id = "c1e56777-c1dc-4b32-a3ff-983ef507ec1f"; // this is a choke; update in the future
-
-    const response = await axios.get(`http://localhost:8000/api/collections/${user_id}/`);
+    const user_id = localStorage.getItem('user_id'); // this is a choke; update in the future
+    const response = await axiosInstance.get(`http://localhost:8000/api/collections/${user_id}/`);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the collection.');
@@ -130,9 +130,9 @@ export const getCollections = async () => {
 // API REQUEST FOR ADD COLLECTIONS
 export const addCollection = async (room_id) => {
   try {
-    const user_id = "c1e56777-c1dc-4b32-a3ff-983ef507ec1f"; // this is a choke; update in the future
+    const user_id = localStorage.getItem('user_id'); // this is a choke; update in the future
 
-    const response = await axios.post(`http://localhost:8000/api/collections/${user_id}/add/`,{room_id: room_id});
+    const response = await axiosInstance.post(`http://localhost:8000/api/collections/${user_id}/add/`,{room_id: room_id});
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while creating the collection.');
@@ -142,9 +142,9 @@ export const addCollection = async (room_id) => {
 // API REQUEST FOR DELETE COLLECTIONS
 export const removeCollection = async (room_id) => {
   try {
-    const user_id = "c1e56777-c1dc-4b32-a3ff-983ef507ec1f"; // this is a choke; update in the future
+    const user_id = localStorage.getItem('user_id'); // this is a choke; update in the future
 
-    const response = await axios.post(`http://localhost:8000/api/collections/${user_id}/remove/`, {room_id: room_id});
+    const response = await axiosInstance.post(`http://localhost:8000/api/collections/${user_id}/remove/`, {room_id: room_id});
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while deleting the collection.');

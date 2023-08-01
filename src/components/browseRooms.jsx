@@ -9,21 +9,29 @@ const BrowseRooms = () => {
   const { roomListings } = useRoomListings(null);
 
   return (
-    <div className="main-content rooms-view">
-        {roomListings.map((room) => (
-          <RoomCard
-            key={room.room_id}
-            room_id={room.room_id}
-            bedspace={room.bedspace}
-            description={room.description}
-            price={room.price}
-            number_available={room.number_available}
-            sex={room.sex}
-            amenities={room.amenities}
-            hostel={room.hostel}
-          />
+    <>
+    { (roomListings.length === 0) ?
+      <div className="main-content rooms-view">
+        <h1>No rooms found.</h1>
+      </div>
+      :
+      <div className="main-content rooms-view">
+      {roomListings.map((room) => (
+        <RoomCard
+          key={room.room_id}
+          room_id={room.room_id}
+          bedspace={room.bedspace}
+          description={room.description}
+          price={room.price}
+          number_available={room.number_available}
+          sex={room.sex}
+          amenities={room.amenities}
+          hostel={room.hostel}
+        />
         ))}
-    </div>
+        </div>
+     }
+    </>
   );
 };
 

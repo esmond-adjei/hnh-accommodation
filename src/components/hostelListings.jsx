@@ -24,7 +24,7 @@ const HostelListings = () => {
             availableRooms={hostel.available_rooms}
             rating={hostel.rating}
             description={hostel.description}
-            managerLink={'https://www.example.com'}
+            managerUsername={hostel.manager_username}
           />))}
           </>
       }

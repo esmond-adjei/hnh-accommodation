@@ -95,3 +95,11 @@ nav .logo {
 .hero-cta .cta-btn:hover span {
   margin-left: 10px ;
 }
+
+.error-message {
+  font-size: 14px;
+  padding: 4px 8px;
+  border: 1px solid red;
+  background: #ffb4b4;
+  border-radius: 20px;
+}

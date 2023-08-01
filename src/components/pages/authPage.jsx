@@ -4,9 +4,10 @@ import logo from '../../assets/images/hnh-gradient-logo.png';
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, registerUser, logoutUser } from '../../services/auth_api';
 
-const AuthForm = ({ formType }) => {
+const AuthForm = ({ formType, prevStateUpdate }) => {
   const history = useNavigate();
   const isSignUp = formType === '/sign-up' ? true : false;
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -27,8 +28,11 @@ const AuthForm = ({ formType }) => {
       const res = isSignUp ? await registerUser(formData) : await loginUser(formData);
 
       console.log(res);
-      history("/hostels");
+      prevStateUpdate && prevStateUpdate();
+      history("/rooms");
+      window.location.reload();
     } catch (err) {
+      setError(err.message);
       console.log(err);
     }
   };
@@ -42,6 +46,11 @@ const AuthForm = ({ formType }) => {
             <img src={logo} alt="logo"/>
             <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
           </div>
+
+          {error && <p className="error-message">
+            {/* {error} */}
+             Error, check your Username and Password
+            </p>}
 
           <div className="input-group">
             <input

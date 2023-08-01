@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useListings } from './listingsContext';
 // assets
 import logo from '../assets/images/hnh-logo-30.png';
-import menu from '../assets/icons/hamburger-menu.svg';
+// import menu from '../assets/icons/hamburger-menu.svg';
 import darkIcon from '../assets/icons/dark_mode.svg';
 import lightIcon from '../assets/icons/light_mode.svg';
 import notificationIcon from '../assets/icons/notifications.svg';
@@ -20,8 +20,8 @@ const Header = () => {
     <header className="nav-bar">
       <div className="logo-box">
       {/* logo box */}
-        <img className="menu" 
-            src={menu} alt="hamburger" />
+        {/* <img className="menu" 
+            src={menu} alt="hamburger" /> */}
 
         <Link to='/'>
         <img

@@ -28,7 +28,7 @@ header.nav-bar {
 
 /* ------ logo box ------- */
 .header {
-    box-shadow: 0px 14px 40px #333;
+    box-shadow: 0px 14px 40px var(--shadow-color);
 }
 
 header .logo-box {
@@ -123,20 +123,22 @@ header .utility-box {
     gap: 10px;
 }
 
-header .utility-box .round-icon {
+.round-icon {
     width: 40px;
     height: 40px;
     padding: 8px;
     border-radius: 100%;
+    background-color: var(--grey);
+    transition: background-color 0.2s ease-in-out;
+}
+.round-icon:hover {
+    background-color: var(--greyish);
 }
 
 header .utility-box .create,
 header .utility-box .notification {
     cursor: pointer;
     border-radius: 100%;
-}
-header .utility-box .round-icon:hover {
-    background-color: var(--grey);
 }
 
 header div.utility-box div.profile {
@@ -171,7 +173,7 @@ main .side-nav {
     min-height: inherit;
     
     position: fixed;
-    top: 106px;
+    top: 100px;
     z-index: 4;
     border-right: 1px solid var(--grey);
 }
@@ -189,6 +191,7 @@ main .side-nav .side-nav-icon {
     margin: 4px;
     padding: 4px;
     border-radius: 10px;
+    color: var(--text-color);
 
     display: flex;
     flex-direction: column;
@@ -208,13 +211,28 @@ main .side-nav .side-nav-icon > p {
     width: 40px;
     height: 40px;
     border-radius: 100%;
+}
+.user-profile-icon.guest {
     background-color: var(--secondary-color);
+    border: 2px solid;
+    padding: 4px;
 }
 .center-absolute {
     position: absolute;
     bottom: 123px;
     left: 10%;
     right: 10%;
+}
+.user-name {
+    font-size: 10px;
+    background: var(--primary-color);
+    color: var(--whitish);
+    padding: 2px 4px;
+    overflow: hidden;
+    border-radius: 24px;
+    width: 100%;
+    text-align: center;
+    /* text-wrap: nowrap; */
 }
 
 .profile-menu {
@@ -227,7 +245,7 @@ main .side-nav .side-nav-icon > p {
     bottom: 150px;
     padding: 16px;
     border-radius: 12px;
-    box-shadow: 0px 0px 32px -4px #7c7c7ca6;
+    box-shadow: 0px 0px 32px -4px var(--shadow-color);
 }
 .profile-menu p {
     color: var(--text-color);
@@ -248,16 +266,14 @@ main .main-content {
     background-color: var(--light-primary-color);
 
     display: flex;
-    justify-content: space-between;
     position: relative;
 }
 
 .filters {
-    height: 50px;
-    padding: 0 30px;
+    padding: 8px 30px;
     background-color: var(--whitish);
     border-bottom: 1px solid var(--grey);
-    box-shadow: 0px 6px 14px -12px #333;
+    box-shadow: 0px 6px 14px -12px var(--shadow-color);
 
     display: flex;
     align-items: center;
@@ -271,11 +287,9 @@ main .main-content {
 }
 
 .filters span {
-    font-size: 14px;
-    min-width: fit-content;
-    padding: 8px 12px;
-
-    border-radius: 8px;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 40px;
     border: 1px solid var(--grey);
 }
 
@@ -294,22 +308,16 @@ main .main-content .hostel-previews {
 }
 
 /* responsive styles with media queries */
-@media screen and (max-width:1000px){
+/* @media screen and (max-width:1000px){
     main .main-content .hostel-previews {
-        /* this is to help see the effect 
-        ... when the screen size is 1000px and below
-        */
         background-color: pink;
     }
 }
 @media screen and (max-width:800px){
     main .main-content .hostel-previews {
-        /* this is to help see the effect 
-        ... when the screen size is 800px and below
-        */
         background-color: lightgreen;
     }
-}
+} */
 /* end of responsive styles */
 
 main .main-content .hostel-previews .hostel-card {
@@ -446,7 +454,7 @@ p {
     top: 106px;
     background-color: var(--whitish);
     border-radius: 16px 0px 0px 16px;
-    box-shadow: 7px 10px 20px 0px #6161619e;
+    box-shadow: 7px 10px 20px 0px var(--shadow-color);
     overflow-y: scroll;
     overflow-x: hidden;
     width: 0;

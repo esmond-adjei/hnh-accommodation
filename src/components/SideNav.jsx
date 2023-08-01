@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { logoutUser } from '../services/auth_api';
+import { logoutUser, isLoggedIn } from '../services/auth_api';
 // SVGs
 import hostelIcon from '../assets/icons/home.svg';
 import roomIcon from '../assets/icons/room.svg';
 import mapIcon from '../assets/icons/home_map.svg';
 import collectionsIcon from '../assets/icons/collections.svg';
 import profilePicture from '../assets/images/profile.jpg';
+import userIcon from '../assets/icons/user-icon.svg';
 // components
 import { useListings } from './listingsContext';
 import { NavElement } from './navELement';
@@ -16,7 +17,9 @@ const SideNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSignIn, setSignIn] = useState(false);
   const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
-  const isSignedIn = false;
+  const isSignedIn = isLoggedIn();
+  
+
   const navigationElements = [
       {
         name: 'Hostel',
@@ -55,7 +58,6 @@ const SideNav = () => {
     document.getElementsByTagName('header')[0].style.zIndex = showSignIn ? '' : '4';   
   };
 
-
   return (
     <div className="side-nav">
       {
@@ -81,11 +83,17 @@ const SideNav = () => {
           <div className="side-nav-icon center-absolute"
               onClick={openSignIn}
             >
-            <div className="user-profile-icon" />
+            <img
+              className="user-profile-icon guest"
+              src={userIcon}
+              width="100%"
+              alt="profile"
+              onClick={handleDisplayMenu}
+              />
           </div>
           { showSignIn && 
             <div className="sign-in overlay-page">
-              <AuthForm formType={'/sign-in'} />
+              <AuthForm formType={'/sign-in'} prevStateUpdate={openSignIn} />
               <button className="close-btn close-panel" onClick={openSignIn}>X</button>
             </div>
             }
@@ -100,6 +108,7 @@ const SideNav = () => {
             alt="profile"
             onClick={handleDisplayMenu}
             />
+          <small className="user-name">{localStorage.getItem('username')}</small>
         </div>
       }
 
@@ -113,7 +122,11 @@ const SideNav = () => {
           <Link to="#">
           <p>Help</p>
           </Link>
-          <Link to="/hostels" onClick={logoutUser}>
+          <Link to="/hostels" onClick={() => {
+                logoutUser();
+                setShowMenu(false);
+                window.location.reload();
+              }}>
           <p>Logout</p>
           </Link>
         </div>

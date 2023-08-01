@@ -2,10 +2,12 @@ import React from 'react';
 import { useListings } from './listingsContext';
 
 import roomIcon from '../assets/icons/room-icon.svg';
+import userIcon from '../assets/icons/user-icon.svg';
+import star from '../assets/icons/star.svg';
 import locationIcon from '../assets/icons/location-icon.svg';
 
 
-const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, availableRooms, managerLink, }) => {
+const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, availableRooms, managerUsername }) => {
 
   const { setSelectedHostelId } = useListings();
 
@@ -37,10 +39,14 @@ const PreviewCard = ({ hostelID, imageSrc, hostelName, hostelLocation, rating, a
           {availableRooms}
         </p>
         <div className="card__links">
-          <a href={managerLink} className="card__link">
-            Hostle Manager Name
-          </a>
-          <p>⭐ {rating}</p>
+          <span className='manager-footnote'>
+            <img src={userIcon} alt="manager" className='round-icon'/>
+            <span>{managerUsername}</span>
+          </span>
+          <span className='rating-footnote'>
+            <img src={star} alt='rating' className='rating' />
+            <p>{rating}</p>
+          </span>
         </div>
       </div>
     </div>
