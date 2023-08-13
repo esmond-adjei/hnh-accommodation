@@ -119,7 +119,7 @@ export const getHostel = async (hostelId) => {
 // API REQUEST FOR GET COLLECTIONS
 export const getCollections = async () => {
   try {
-    const user_id = localStorage.getItem('user_id'); // this is a choke; update in the future
+    const user_id = localStorage.user_id; // this is a choke; update in the future
     const response = await axiosInstance.get(`http://localhost:8000/api/collections/${user_id}/`);
     return response.data;
   } catch (error) {
@@ -130,8 +130,8 @@ export const getCollections = async () => {
 // API REQUEST FOR ADD COLLECTIONS
 export const addCollection = async (room_id) => {
   try {
-    const user_id = localStorage.getItem('user_id'); // this is a choke; update in the future
-
+    const user_id = localStorage.user_id; // this is a choke; update in the future
+    console.log(user_id)
     const response = await axiosInstance.post(`http://localhost:8000/api/collections/${user_id}/add/`,{room_id: room_id});
     return response.data;
   } catch (error) {
@@ -142,7 +142,7 @@ export const addCollection = async (room_id) => {
 // API REQUEST FOR DELETE COLLECTIONS
 export const removeCollection = async (room_id) => {
   try {
-    const user_id = localStorage.getItem('user_id'); // this is a choke; update in the future
+    const user_id = localStorage.user_id; // this is a choke; update in the future
 
     const response = await axiosInstance.post(`http://localhost:8000/api/collections/${user_id}/remove/`, {room_id: room_id});
     return response.data;

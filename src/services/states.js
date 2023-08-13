@@ -89,7 +89,7 @@ export const useRoomListings = (hostelId) => {
         if (hostelId === '__search__') { // this is a choke; update in the future
           console.log('searching for rooms...');
         } else {
-          console.log('Fetching room listings for hostel:', hostelId);
+          // console.log('Fetching room listings for hostel:', hostelId);
           const listings = await getHostelRoomListings(hostelId);
           setRoomListings(listings);
           setLoading(false);

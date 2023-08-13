@@ -29,7 +29,6 @@ export function ListingsProvider({ children }) {
 
     const [darkMode, toggleDarkMode] = useDarkMode();
 
-
     return (
         <ListingsContext.Provider value={{ 
             hostelListings, 

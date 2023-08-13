@@ -15,7 +15,7 @@ import woman from '../assets/icons/woman.svg';
 import bookmarkFill from '../assets/icons/bookmark-fill.svg';
 import bookmarkEmpty from '../assets/icons/bookmark-empty.svg';
 
-const RoomCard = ({ room_id, bedspace, description, price, number_available, sex, amenities, hostel }) => {
+const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_available, sex, amenities, hostel }) => {
 
   const [isCollected, setIsCollected] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -71,7 +71,9 @@ const RoomCard = ({ room_id, bedspace, description, price, number_available, sex
 
 
   return (
-    <div key={room_id} className='room-card'>
+    <div key={room_id} className='room-card'
+      style={{backgroundImage: `url(${room_img_url})`}}
+    >
     <div className='card-overlay'>
       <h3 className='bedspace'>{bedspace}</h3>
     

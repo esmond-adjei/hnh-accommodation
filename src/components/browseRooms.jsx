@@ -20,6 +20,7 @@ const BrowseRooms = () => {
         <RoomCard
           key={room.room_id}
           room_id={room.room_id}
+          room_img_url={room.room_img_url}
           bedspace={room.bedspace}
           description={room.description}
           price={room.price}
