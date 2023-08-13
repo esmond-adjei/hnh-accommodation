@@ -2,6 +2,8 @@
 
 A hall, hostel and homestel booking web application to help students discover available accommodation options in their school of choice.
 
+This is hte frontend of the application. The backend is available at [hnh-backend](https://github.com/esmond-adjei/hnh-backend)
+
 ---
 
 ![hnh-coming-soon](docs/hnh-coming-soon.gif)
