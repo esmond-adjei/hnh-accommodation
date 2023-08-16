@@ -30,3 +30,8 @@ main.dark-mode {
   --shadow-color: #000;
   --light-primary-color: #24292e;
 }
+
+svg {
+  /* fill: var(--text-color); */
+  fill: red;
+}
