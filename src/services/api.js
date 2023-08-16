@@ -49,6 +49,8 @@ export const getHostelRoomListings = async (hostelId) => {
     const url = (!hostelId) ? // this is a choke; update in the future
     `http://localhost:8000/api/rooms/` :
      `http://localhost:8000/api/hostel/${hostelId}/rooms/`;
+    
+    console.log('Fetching Rooms for hostel:', hostelId);
     const response = await axiosInstance.get(url);
     return response.data;
   } catch (error) {
@@ -109,6 +111,7 @@ export const updateHostel = async (hostelId, updateData) => {
 // API REQUEST TO GET HOSTEL
 export const getHostel = async (hostelId) => {
   try {
+    console.log('Fetching hostel detail for hostel:', hostelId);
     const response = await axiosInstance.get(`http://localhost:8000/api/hostel/${hostelId}/`);
     return response.data;
   } catch (error) {
@@ -120,6 +123,7 @@ export const getHostel = async (hostelId) => {
 export const getCollections = async () => {
   try {
     const user_id = localStorage.user_id; // this is a choke; update in the future
+    console.log('Fetching collections for user:', user_id);
     const response = await axiosInstance.get(`http://localhost:8000/api/collections/${user_id}/`);
     return response.data;
   } catch (error) {
@@ -131,7 +135,7 @@ export const getCollections = async () => {
 export const addCollection = async (room_id) => {
   try {
     const user_id = localStorage.user_id; // this is a choke; update in the future
-    console.log(user_id)
+    console.log("Adding collections for user:", user_id)
     const response = await axiosInstance.post(`http://localhost:8000/api/collections/${user_id}/add/`,{room_id: room_id});
     return response.data;
   } catch (error) {
@@ -143,7 +147,7 @@ export const addCollection = async (room_id) => {
 export const removeCollection = async (room_id) => {
   try {
     const user_id = localStorage.user_id; // this is a choke; update in the future
-
+    console.log('Removing collections for user:', user_id);
     const response = await axiosInstance.post(`http://localhost:8000/api/collections/${user_id}/remove/`, {room_id: room_id});
     return response.data;
   } catch (error) {

@@ -66,7 +66,8 @@ const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_
         return;
       }
       setIsCollected(!isCollected);
-      isCollected ? removeCollection(room_id) : addCollection(room_id);
+      const status = isCollected ? removeCollection(room_id) : addCollection(room_id);
+      console.log("Handle Collection", status); // xx try and catch the error
     };
 
 

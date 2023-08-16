@@ -16,6 +16,7 @@ const refreshToken = async (refreshToken) => {
 export const axiosInstance = axios.create({
     baseURL: 'http://localhost:8000/api/',
     ContentType: 'application/json',
+    user_id: localStorage.getItem('user_id'),
   });
   
   axiosInstance.interceptors.response.use(
