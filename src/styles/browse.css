@@ -203,7 +203,7 @@ main .side-nav .side-nav-icon:hover {
     background-color: var(--grey);
 }
 
-#svg-object {
+#svg-object, .side-nav-icon .icon {
     width: 30px;
     height: 30px;
 }
