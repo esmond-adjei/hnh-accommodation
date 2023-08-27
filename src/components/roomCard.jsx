@@ -15,9 +15,9 @@ import woman from '../assets/icons/woman.svg';
 import bookmarkFill from '../assets/icons/bookmark-fill.svg';
 import bookmarkEmpty from '../assets/icons/bookmark-empty.svg';
 
-const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_available, sex, amenities, hostel }) => {
+const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_available, sex, amenities, is_collected, hostel }) => {
 
-  const [isCollected, setIsCollected] = useState(false);
+  const [isCollected, setIsCollected] = useState(is_collected);
   const [currentIndex, setCurrentIndex] = useState(0);
   const slideContainerRef = useRef(null);
 

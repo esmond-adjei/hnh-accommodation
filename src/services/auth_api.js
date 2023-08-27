@@ -5,18 +5,23 @@ const refreshToken = async (refreshToken) => {
     const response = await axios.post('http://localhost:8000/api/token/refresh/', {
       refresh: refreshToken,
     });
+    console.log('-->> Refresh token response:', response.data); //xx
     const newAccessToken = response.data.access;
     localStorage.setItem('access_token', newAccessToken);
     return newAccessToken;
   } catch (error) {
+    console.log('Failed to refresh access token.'); //xx
     throw new Error('Failed to refresh access token.');
   }
 };
 
 export const axiosInstance = axios.create({
     baseURL: 'http://localhost:8000/api/',
-    ContentType: 'application/json',
-    user_id: localStorage.getItem('user_id'),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      'user_id': localStorage.getItem('user_id'),
+  }
   });
   
   axiosInstance.interceptors.response.use(
@@ -28,10 +33,12 @@ export const axiosInstance = axios.create({
       if (error.response.status === 401 && refreshToken && !originalRequest._retry) {
         originalRequest._retry = true;
         try {
+          console.log(`Refreshing access token... OLD TOKEN: ${refreshToken} \n OLD ACCESS TOKEN: ${localStorage.getItem('access_token')}`);
           const newAccessToken = await refreshToken(refreshToken);
-  
+          
           // Update access token in local storage
           localStorage.setItem('access_token', newAccessToken);
+          console.log(`== NEW TOKEN: ${refreshToken} \n NEW ACCESS TOKEN: ${newAccessToken}`);
   
           // Update headers with the new access token
           axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
@@ -96,6 +103,13 @@ export const logoutUser = () => {
 
 
 // IS LOGGED IN
+function unixTimeToHumanTime(unixTimestamp) {
+  const milliseconds = unixTimestamp * 1000;
+  const dateObject = new Date(milliseconds);
+  // const humanDateFormat = dateObject.toLocaleString();
+  return dateObject;
+}
+
 export const isLoggedIn = () => {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) return false;
@@ -108,6 +122,7 @@ export const isLoggedIn = () => {
     // Check if the access token is expired
     const expirationTime = decodedToken.exp;
     const currentTime = Math.floor(Date.now() / 1000);
+    console.log('Access token expires at:', (unixTimeToHumanTime(expirationTime) - unixTimeToHumanTime(currentTime)).toLocaleString());
     return expirationTime > currentTime;
   };
   

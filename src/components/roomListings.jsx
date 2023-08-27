@@ -47,6 +47,7 @@ const HostelRoomListings = () => {
             price={room.price}
             number_available={room.number_available}
             sex={room.sex}
+            is_collected={room.is_collected} // xx
             amenities={room.amenities}
           />
         ))}

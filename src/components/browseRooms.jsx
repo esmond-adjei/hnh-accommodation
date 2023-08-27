@@ -28,6 +28,7 @@ const BrowseRooms = () => {
           sex={room.sex}
           amenities={room.amenities}
           hostel={room.hostel}
+          is_collected={room.is_collected} //xx
         />
         ))}
         </div>

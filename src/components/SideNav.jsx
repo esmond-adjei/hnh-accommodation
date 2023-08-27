@@ -78,7 +78,6 @@ const SideNav = () => {
       <hr />
       {
         isSignedIn === false ?
-        // <Link to="/sign-up" target='_blank'>
           <>
           <div className="side-nav-icon center-absolute"
               onClick={openSignIn}
@@ -98,7 +97,6 @@ const SideNav = () => {
             </div>
             }
           </>
-        // </Link>
         : 
         <div className="side-nav-icon center-absolute">
           <img
