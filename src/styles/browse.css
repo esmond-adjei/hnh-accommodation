@@ -72,15 +72,17 @@ header .search-box input[type="search"] {
     
     /* SPACING */
     padding: 0px 12px;
-    
+    color: var(--text-color);
     /* BORDER STYLES */
     border-style: none;
-    border: 1px solid #e2e2e2;
+    border: 1px solid var(--grey);
+    background-color: var(--whitish);
     border-radius: 120px 0 0 120px;
 }
 
 header .search-box input[type="search"]:focus-visible {
-    outline: thin solid rgb(0, 98, 255);
+    outline: thin solid var(--primary-color);
+    border: thin solid var(--primary-color);
     outline-offset: -2px;
 }
 
@@ -93,7 +95,7 @@ header .search-box input[type="image"] {
     padding: 8px;
     
     /* decoration */
-    border: 1px solid #e2e2e2;
+    border: 1px solid var(--grey);
     border-left-width: 0;
     border-radius: 0 120px 120px 0;
     background-color: var(--grey);
@@ -231,7 +233,7 @@ main .side-nav .side-nav-icon > p {
 .user-name {
     font-size: 10px;
     background: var(--primary-color);
-    color: var(--whitish);
+    color: var(--text-color);
     padding: 2px 4px;
     overflow: hidden;
     border-radius: 24px;

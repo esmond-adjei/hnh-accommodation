@@ -1,6 +1,7 @@
 import React, { createContext, useContext } from 'react';
-import { useHostelListingsState, useAppNavigation } from '../services/states';
+import { useHostelListingsState } from '../services/states';
 import { useDarkMode } from '../services/utilityState';
+import { useLocation } from 'react-router-dom';
 
 const ListingsContext = createContext();
 
@@ -18,14 +19,39 @@ export function ListingsProvider({ children }) {
       setSelectedHostelId
     } = useHostelListingsState();
 
-    const {
-      showRooms,
-      handleShowRooms,
-      showHostels,
-      handleShowHostels,
-      showMap,
-      handleShowMap,
-    } = useAppNavigation();
+    // const {
+    //   showRooms,
+    //   handleShowRooms,
+    //   showHostels,
+    //   handleShowHostels,
+    //   showMap,
+    //   handleShowMap,
+    // } = useAppNavigation();
+    const useAppNavigation = () => {
+      const location = useLocation();
+      let showRooms = location.pathname === '/rooms';
+      let showHostels = location.pathname === '/hostels';
+      let showMap = location.pathname === '/map';
+
+      if (showRooms) {
+        showHostels = false;
+        showMap = false;
+      }
+      if (showHostels) {
+        showRooms = false;
+        showMap = false;
+      }
+      if (showMap) {
+        showRooms = false;
+        showHostels = false;
+      }
+
+      return { showRooms, showHostels, showMap,}
+    }
+
+    const { showRooms, showHostels, showMap } = useAppNavigation();
+
+    
 
     const [darkMode, toggleDarkMode] = useDarkMode();
 
@@ -39,10 +65,10 @@ export function ListingsProvider({ children }) {
             setSelectedHostelId,
             showRooms,
             showHostels,
-            handleShowRooms,
-            handleShowHostels,
             showMap,
-            handleShowMap,
+            // handleShowRooms,
+            // handleShowHostels,
+            // handleShowMap,
             darkMode,
             toggleDarkMode
         }}>

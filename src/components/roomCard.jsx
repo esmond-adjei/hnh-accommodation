@@ -15,7 +15,21 @@ import woman from '../assets/icons/woman.svg';
 import bookmarkFill from '../assets/icons/bookmark-fill.svg';
 import bookmarkEmpty from '../assets/icons/bookmark-empty.svg';
 
-const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_available, sex, amenities, is_collected, hostel }) => {
+const RoomCard = (props) => {
+  const {
+    room_id, 
+    room_img_url, 
+    bedspace, 
+    description, 
+    price, 
+    number_available, 
+    sex, 
+    amenities, 
+    is_collected, 
+    hostel,
+    hostel_location,
+    cardType
+  } = props;
 
   const [isCollected, setIsCollected] = useState(is_collected);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,9 +52,14 @@ const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_
 
     const updateSlide = () => {
       const slideContainer = slideContainerRef.current;
-      const slideWidth = slideContainer.clientWidth;
-      const translateX = -currentIndex * slideWidth / 2; // Adjust the number of visible icons
-      slideContainer.style.transform = `translateX(${translateX}px)`;
+      try {
+        const slideWidth = slideContainer.clientWidth;
+        const translateX = -currentIndex * slideWidth / 2; // Adjust the number of visible icons
+        slideContainer.style.transform = `translateX(${translateX}px)`;
+      }
+      catch (error) {
+        console.log("Error updating slide", error);
+      }
     };
     
     useEffect(() => {
@@ -70,17 +89,20 @@ const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_
       console.log("Handle Collection", status); // xx try and catch the error
     };
 
+  if (cardType === 'collected' && !isCollected) {
+    return;
+  }
 
   return (
     <div key={room_id} className='room-card'
       style={{backgroundImage: `url(${room_img_url})`}}
     >
-    <div className='card-overlay'>
-      <h3 className='bedspace'>{bedspace}</h3>
-    
       <span className='collect' onClick={handleCollect}>
         <img src={ isCollected? bookmarkFill: bookmarkEmpty } alt="add to collectoin"/>
       </span>
+    <div className='card-overlay'>
+      <h3 className='bedspace'>{bedspace}</h3>
+    
     
       <p className='price'>&cent;{price}</p>
       <p className='description'>{description}</p>
@@ -104,7 +126,7 @@ const RoomCard = ({ room_id, room_img_url, bedspace, description, price, number_
             <span onClick={nextSlide}>&gt;</span>
           </span>
       </div>
-    {hostel && <p className='card__links'>{hostel}</p> }
+    {hostel && <p className='card__links'>{hostel} | {hostel_location}</p> }
     </div>
   </div>
   );

@@ -25,19 +25,22 @@ const CollectedRooms = () => {
   return (
     <>
     <div className="main-content rooms-view">
+      <h2 style={{width: '100%'}}>{'Collection: '+ collectionListings[0].name}</h2>
         {collectionListings[0].rooms.map((room) => (
-        <RoomCard
+          <RoomCard
             key={room.room_id}
             room_id={room.room_id}
             bedspace={room.bedspace}
+            room_img_url={room.room_img_url}
             description={room.description}
             price={room.price}
             number_available={room.number_available}
             sex={room.sex}
             amenities={room.amenities}
             hostel={room.hostel}
-            is_collected={room.is_collected} //xx
-        />
+            is_collected={room.is_collected}
+            cardType={'collected'}
+          />
         ))}
     </div>
     </>

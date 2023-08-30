@@ -28,7 +28,8 @@ const BrowseRooms = () => {
           sex={room.sex}
           amenities={room.amenities}
           hostel={room.hostel}
-          is_collected={room.is_collected} //xx
+          hostel_location={room.hostel_location}
+          is_collected={room.is_collected}
         />
         ))}
         </div>

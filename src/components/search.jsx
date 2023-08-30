@@ -9,19 +9,15 @@ import Filter from './filter';
 
 const Search = () => {
   const { setHostelListings, showRooms } = useListings();
-  const { setRoomListings } = useRoomListings('__search__');
+  const { setRoomListings } = useRoomListings('__SEARCH__');
 
   const category = showRooms ? 'room' : 'hostel';
-  const {
-    query,
-    setQuery,
-    handleSearch
-  } = useSearchState(category);
+  const { query, setQuery, handleSearch } = useSearchState(category);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const searchResults = await handleSearch();
-    console.log("Setting Results: ", searchResults);
+    console.log("Setting Results for :", category, showRooms, searchResults);
     showRooms ? setRoomListings(searchResults) : setHostelListings(searchResults);
   };
 

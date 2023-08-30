@@ -16,7 +16,8 @@ import AuthForm from './pages/authPage';
 const SideNav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSignIn, setSignIn] = useState(false);
-  const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
+  // const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
+  const { showRooms, showHostels, showMap } = useListings();
   const isSignedIn = isLoggedIn();
   
 
@@ -25,25 +26,25 @@ const SideNav = () => {
         name: 'Hostel',
         icon: hostelIcon,
         link: '/hostels',
-        handleFunction: handleShowHostels,
+        handleFunction: showHostels,
       },
       {
         name: 'Rooms',
         icon: roomIcon,
         link: '/rooms',
-        handleFunction: handleShowRooms,
+        handleFunction: showRooms,
       },
       {
         name: 'Map view',
         icon: mapIcon,
         link: '/map',
-        handleFunction: handleShowMap,
+        handleFunction: showMap,
       },
       {
         name: 'Collections',
         icon: collectionsIcon,
         link: '/collections',
-        handleFunction: handleShowHostels,
+        handleFunction: showHostels,
       }
     ]
     

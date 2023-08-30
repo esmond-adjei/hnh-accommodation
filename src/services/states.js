@@ -86,10 +86,10 @@ export const useRoomListings = (hostelId) => {
   useEffect(() => {
     const getRoomListings = async () => {
       try {
-        if (hostelId === '__search__') { // this is a choke; update in the future
+        if (hostelId === '__SEARCH__') { // this is a choke; update in the future
           console.log('searching for rooms...');
+          return { setRoomListings }
         } else {
-          // console.log('Fetching room listings for hostel:', hostelId);
           const listings = await getHostelRoomListings(hostelId);
           setRoomListings(listings);
           setLoading(false);
