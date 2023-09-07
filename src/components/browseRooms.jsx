@@ -1,8 +1,8 @@
 import React from 'react';
 import '../styles/browse.css';
 
-import {useRoomListings} from '../services/states';
-import RoomCard from './roomCard';
+import { useRoomListings } from '../services/states';
+import RoomCard from './cardRoom';
 
 
 const BrowseRooms = () => {

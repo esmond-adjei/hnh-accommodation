@@ -5,11 +5,11 @@ import BrowseHostel from './components/browseHostel';
 import BrowseRooms from './components/browseRooms';
 import CollectedRooms from './components/browseCollections';
 import Header from './components/Header';
-import SideNav from './components/SideNav';
+import SideNav from './components/sideNav';
 import MapApp from './components/map';
 import LandingPage from './components/pages/landingPage';
 import AuthForm from './components/pages/authPage';
-import { useListings } from './components/listingsContext';
+import { useListings } from './components/contextManager';
 
 
 const App = () => {

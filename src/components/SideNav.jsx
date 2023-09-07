@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { logoutUser, isLoggedIn } from '../services/auth_api';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { logoutUser, isLoggedIn } from "../services/auth_api";
 // SVGs
-import hostelIcon from '../assets/icons/home.svg';
-import roomIcon from '../assets/icons/room.svg';
-import mapIcon from '../assets/icons/home_map.svg';
-import collectionsIcon from '../assets/icons/collections.svg';
-import profilePicture from '../assets/images/profile.jpg';
-import userIcon from '../assets/icons/user-icon.svg';
+import hostelIcon from "../assets/icons/home.svg";
+import roomIcon from "../assets/icons/room.svg";
+import mapIcon from "../assets/icons/home_map.svg";
+import collectionsIcon from "../assets/icons/collections.svg";
+import profilePicture from "../assets/images/profile.jpg";
+import userIcon from "../assets/icons/user-icon.svg";
 // components
-import { useListings } from './listingsContext';
-import { NavElement } from './navELement';
-import AuthForm from './pages/authPage';
+import { useListings } from "./contextManager";
+import { NavElement } from "./navELement";
+import AuthForm from "./pages/authPage";
 
 const SideNav = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -19,35 +19,33 @@ const SideNav = () => {
   // const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
   const { showRooms, showHostels, showMap } = useListings();
   const isSignedIn = isLoggedIn();
-  
 
   const navigationElements = [
-      {
-        name: 'Hostel',
-        icon: hostelIcon,
-        link: '/hostels',
-        handleFunction: showHostels,
-      },
-      {
-        name: 'Rooms',
-        icon: roomIcon,
-        link: '/rooms',
-        handleFunction: showRooms,
-      },
-      {
-        name: 'Map view',
-        icon: mapIcon,
-        link: '/map',
-        handleFunction: showMap,
-      },
-      {
-        name: 'Collections',
-        icon: collectionsIcon,
-        link: '/collections',
-        handleFunction: showHostels,
-      }
-    ]
-    
+    {
+      name: "Hostel",
+      icon: hostelIcon,
+      link: "/hostels",
+      handleFunction: showHostels,
+    },
+    {
+      name: "Rooms",
+      icon: roomIcon,
+      link: "/rooms",
+      handleFunction: showRooms,
+    },
+    {
+      name: "Map view",
+      icon: mapIcon,
+      link: "/map",
+      handleFunction: showMap,
+    },
+    {
+      name: "Collections",
+      icon: collectionsIcon,
+      link: "/collections",
+      handleFunction: showHostels,
+    },
+  ];
 
   const handleDisplayMenu = () => {
     setShowMenu(!showMenu);
@@ -55,50 +53,49 @@ const SideNav = () => {
 
   const openSignIn = () => {
     setSignIn(!showSignIn);
-    document.body.style.overflow = showSignIn ? 'auto' : 'hidden';
-    document.getElementsByTagName('header')[0].style.zIndex = showSignIn ? '' : '4';   
+    document.body.style.overflow = showSignIn ? "auto" : "hidden";
+    document.getElementsByTagName("header")[0].style.zIndex = showSignIn
+      ? ""
+      : "4";
   };
 
   return (
     <div className="side-nav">
-      {
-        navigationElements.map((element, index) => {
-          return (
-            <Link to={element.link} key={index}>
-              <NavElement
-                key={index}
-                icon={element.icon}
-                title={element.name}
-                handleFunction={element.handleFunction}
-              />
-            </Link>
-          )
-        })
-      }
+      {navigationElements.map((element, index) => {
+        return (
+          <Link to={element.link} key={index}>
+            <NavElement
+              key={index}
+              icon={element.icon}
+              title={element.name}
+              handleFunction={element.handleFunction}
+            />
+          </Link>
+        );
+      })}
 
       <hr />
-      {
-        isSignedIn === false ?
-          <>
-          <div className="side-nav-icon center-absolute"
-              onClick={openSignIn}
-            >
+      {isSignedIn === false ? (
+        <>
+          <div className="side-nav-icon center-absolute" onClick={openSignIn}>
             <img
               className="user-profile-icon guest"
               src={userIcon}
               width="100%"
               alt="profile"
               onClick={handleDisplayMenu}
-              />
+            />
           </div>
-          { showSignIn && 
+          {showSignIn && (
             <div className="sign-in overlay-page">
-              <AuthForm formType={'/sign-in'} prevStateUpdate={openSignIn} />
-              <button className="close-btn close-panel" onClick={openSignIn}>X</button>
+              <AuthForm formType={"/sign-in"} prevStateUpdate={openSignIn} />
+              <button className="close-btn close-panel" onClick={openSignIn}>
+                X
+              </button>
             </div>
-            }
-          </>
-        : 
+          )}
+        </>
+      ) : (
         <div className="side-nav-icon center-absolute">
           <img
             className="user-profile-icon"
@@ -106,32 +103,36 @@ const SideNav = () => {
             width="100%"
             alt="profile"
             onClick={handleDisplayMenu}
-            />
-          <small className="user-name">{localStorage.getItem('username')}</small>
+          />
+          <small className="user-name">
+            {localStorage.getItem("username")}
+          </small>
         </div>
-      }
+      )}
 
-      {
-        (showMenu && isSignedIn) &&
+      {showMenu && isSignedIn && (
         <div className="profile-menu">
-          <button className="close-btn close-panel" onClick={handleDisplayMenu}>X</button>
+          <button className="close-btn close-panel" onClick={handleDisplayMenu}>
+            X
+          </button>
           <Link to="#">
-          <p>Account</p>
+            <p>Account</p>
           </Link>
           <Link to="#">
-          <p>Help</p>
+            <p>Help</p>
           </Link>
-          <Link to="/hostels" onClick={() => {
-                logoutUser();
-                setShowMenu(false);
-                window.location.reload();
-              }}>
-          <p>Logout</p>
+          <Link
+            to="/hostels"
+            onClick={() => {
+              logoutUser();
+              setShowMenu(false);
+              window.location.reload();
+            }}
+          >
+            <p>Logout</p>
           </Link>
         </div>
-      }
-
-
+      )}
     </div>
   );
 };
