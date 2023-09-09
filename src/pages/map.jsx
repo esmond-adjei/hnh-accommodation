@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { loadModules } from "esri-loader";
+// CSS
+import './styles/pages.css'
 
 const MapApp = () => {
   const { mapError, setMapError } = useState();

@@ -1,19 +1,21 @@
 import React from "react";
-import { useListings } from "./contextManager";
+import { useListings } from "../services/contextManager";
+// CSS
+import './styles/containers.css'
 // components
-import PreviewCard from "./cardHostel";
+import HostelCard from "../components/cardHostel";
 
 const HostelListings = () => {
   const { hostelListings } = useListings();
 
   return (
-    <>
-      {hostelListings.length === 0 || hostelListings === undefined ? (
+    <div className="hostels-container">
+      {hostelListings.length === 0 || false ? (
         <h1>No Hostel Listings</h1>
       ) : (
         <>
           {hostelListings.map((hostel) => (
-            <PreviewCard
+            <HostelCard
               key={hostel.id}
               hostelID={hostel.id}
               imageSrc={hostel.hostel_img_url}
@@ -27,7 +29,7 @@ const HostelListings = () => {
           ))}
         </>
       )}
-    </>
+    </div>
   );
 };
 

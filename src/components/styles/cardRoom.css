@@ -2,10 +2,9 @@
 .room-card {
     --room-card-background-color: var(--whitish);
     font-size: 14px;
-    /* padding: 20px; */
+    flex: 0 1 366px;
     height: 250px;
     overflow: hidden;
-    margin: 24px;
     border-radius: 12px;
     border: 1px solid var(--grey);
     background-color: var(--room-card-background-color);
@@ -18,7 +17,7 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-.main-content.rooms-view .room-card {
+.main-content.rooms-container .room-card {
     align-self: flex-start;
     width: 375px;
     height: 275px;
@@ -68,7 +67,7 @@
     list-style: none;
     border-radius: 8px;
     border: 1px solid var(--greyish);
-    background-color: var(--light-primary-color);
+    background-color: var(--light-white);
 
     flex: 0 0 calc(100% / 4);
     display: flex;
@@ -140,7 +139,8 @@
 .round-icon:active,
 .slider-ctrl *:active,
 .close-panel:active,
-.filter-btn:active {
+.filter-btn:active,
+input[type="image"]:active {
     transform: scale(0.9);
 }
 
@@ -152,10 +152,6 @@
     font-size: 24px;
     transition: all 0.3s ease;
 }
-/* 
-.room-card:hover .bedspace{
-    color: var(--primary-color);
-} */
 
 .room-card .amenity-icons img {
     width: 20px;
@@ -163,9 +159,6 @@
 }
 
 .room-card .price {
-    /* position: absolute;
-    right: 10px;
-    top: 16px; */
     font-size: 16px;
     color: #d34095;
 }

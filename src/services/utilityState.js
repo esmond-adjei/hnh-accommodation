@@ -24,11 +24,10 @@ export const useDarkMode = () => {
 
   // Function to toggle dark mode and save the preference in local storage
   const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
+    setDarkMode(!darkMode);
+    document.querySelector("body").className = darkMode ? '' : 'dark-mode'
   };
 
-  return [darkMode, toggleDarkMode];
+  return [ darkMode, toggleDarkMode ];
 };
 

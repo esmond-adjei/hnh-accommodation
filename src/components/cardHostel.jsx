@@ -1,12 +1,14 @@
 import React from "react";
-import { useListings } from "./contextManager";
-
+import { useListings } from "../services/contextManager";
+// CSS
+import "./styles/cardHostel.css";
+// SVG
 import roomIcon from "../assets/icons/room-icon.svg";
 import userIcon from "../assets/icons/user-icon.svg";
 import star from "../assets/icons/star.svg";
 import locationIcon from "../assets/icons/location-icon.svg";
 
-const PreviewCard = ({
+const HostelCard = ({
   hostelID,
   imageSrc,
   hostelName,
@@ -19,8 +21,10 @@ const PreviewCard = ({
 
   const openPanel = () => {
     const roomPreviews = document.querySelector(".room-previews");
-    roomPreviews.classList.remove("closed");
-    roomPreviews.classList.add("show");
+    if (roomPreviews) {
+      roomPreviews.classList.remove("closed");
+      roomPreviews.classList.add("show");
+    }
   };
 
   const handleClick = () => {
@@ -29,7 +33,7 @@ const PreviewCard = ({
   };
 
   return (
-    <div className="card" onClick={handleClick}>
+    <div className="hostel-card" onClick={handleClick}>
       <div
         className="card__image"
         style={{ backgroundImage: `url(${imageSrc})` }}
@@ -60,4 +64,4 @@ const PreviewCard = ({
   );
 };
 
-export default PreviewCard;
+export default HostelCard;

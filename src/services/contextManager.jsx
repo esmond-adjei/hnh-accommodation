@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
-import { useHostelListingsState } from '../services/states';
-import { useDarkMode } from '../services/utilityState';
+import { useHostelListingsState } from './states';
+import { useDarkMode } from './utilityState';
 import { useLocation } from 'react-router-dom';
 
 const ListingsContext = createContext();

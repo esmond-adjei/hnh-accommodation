@@ -1,9 +1,8 @@
 /* ---------- CUSTOM FORMS ------------ */
 .devForm, .devView, .devListings, .devRoomListings {
-  margin: auto;
   width: 500px;
   padding: 20px;
-  margin-bottom: 50px;
+  margin: auto auto 50px;
 }
 
 .devForm {
@@ -59,10 +58,4 @@ h1, h2 {
   border: 1px solid #127c3c;
   padding: 20px;
   font-size: 12px;
-}
-
-/* ------------------ */
-
-.hnh-logo {
-  border-radius: 32px;
 }

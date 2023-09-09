@@ -1,0 +1,70 @@
+.room-previews {
+    height: 84vh;
+    position: sticky;
+    top: 106px;
+    background-color: var(--whitish);
+    border-radius: 16px 0 0 16px;
+    box-shadow: 7px 10px 20px 0 var(--shadow-color);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 0;
+    transition: width 0.6s;
+}
+.room-previews.show {
+    min-width: 40%;
+    width: 40%;
+    animation: slide-in 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+}
+.room-previews.closed {
+    animation: slide-out 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background-color: var(--whitish);
+    cursor: pointer;
+
+    /* xxx */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.room-listings-header {
+    border-bottom: 1px solid #aaa;
+    overflow: hidden;
+    position: sticky;
+    height: 54px;
+    top: 0;
+    padding: 12px 24px;
+    z-index: 4;
+    color: var(--whitish);
+    background-color: var(--primary-color);
+}
+
+@keyframes slide-in {
+    0% {
+        /* min-width: 0%; */
+        transform: translateX(100%);
+    }
+    100% {
+        /* min-width: 40%; */
+        transform: translateX(0%);
+    }
+}
+@keyframes slide-out {
+    0% {
+        /* min-width: 40%; */
+        transform: translateX(0%);
+    }
+    100% {
+        /* min-width: 0%; */
+        transform: translateX(100%);
+    }
+}

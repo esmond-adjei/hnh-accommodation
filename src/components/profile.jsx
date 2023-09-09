@@ -1,52 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { logoutUser, isLoggedIn } from "../services/auth_api";
-// SVGs
-import hostelIcon from "../assets/icons/home.svg";
-import roomIcon from "../assets/icons/room.svg";
-import mapIcon from "../assets/icons/home_map.svg";
-import collectionsIcon from "../assets/icons/collections.svg";
-import profilePicture from "../assets/images/profile.jpg";
+import { isLoggedIn, logoutUser } from "../services/auth_api";
+// assets (svg, jpg, ...)
 import userIcon from "../assets/icons/user-icon.svg";
-// components
-import { useListings } from "./contextManager";
-import { NavElement } from "./navELement";
-import AuthForm from "./pages/authPage";
+import profilePicture from "../assets/images/profile.jpg";
+// CSS
+import "./styles/profile.css";
+// component
+import AuthForm from "./authForm";
 
-const SideNav = () => {
+const Profile = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSignIn, setSignIn] = useState(false);
-  // const { handleShowRooms, handleShowHostels, handleShowMap } = useListings();
-  const { showRooms, showHostels, showMap } = useListings();
   const isSignedIn = isLoggedIn();
-
-  const navigationElements = [
-    {
-      name: "Hostel",
-      icon: hostelIcon,
-      link: "/hostels",
-      handleFunction: showHostels,
-    },
-    {
-      name: "Rooms",
-      icon: roomIcon,
-      link: "/rooms",
-      handleFunction: showRooms,
-    },
-    {
-      name: "Map view",
-      icon: mapIcon,
-      link: "/map",
-      handleFunction: showMap,
-    },
-    {
-      name: "Collections",
-      icon: collectionsIcon,
-      link: "/collections",
-      handleFunction: showHostels,
-    },
-  ];
-
   const handleDisplayMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -54,30 +20,15 @@ const SideNav = () => {
   const openSignIn = () => {
     setSignIn(!showSignIn);
     document.body.style.overflow = showSignIn ? "auto" : "hidden";
-    document.getElementsByTagName("header")[0].style.zIndex = showSignIn
-      ? ""
-      : "4";
+    document.querySelector(".side-nav").style.zIndex = showSignIn ? "" : "4";
   };
 
   return (
-    <div className="side-nav">
-      {navigationElements.map((element, index) => {
-        return (
-          <Link to={element.link} key={index}>
-            <NavElement
-              key={index}
-              icon={element.icon}
-              title={element.name}
-              handleFunction={element.handleFunction}
-            />
-          </Link>
-        );
-      })}
-
-      <hr />
+    <>
       {isSignedIn === false ? (
         <>
-          <div className="side-nav-icon center-absolute" onClick={openSignIn}>
+          <div className="side-nav-icon center-absolute" onClick={openSignIn}
+          >
             <img
               className="user-profile-icon guest"
               src={userIcon}
@@ -133,8 +84,8 @@ const SideNav = () => {
           </Link>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
-export default SideNav;
+export default Profile;

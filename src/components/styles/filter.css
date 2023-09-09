@@ -2,31 +2,11 @@
     border-style: none;
     min-height: 40px;
     width: 60px;
-    border-radius: 12px;
+    border-radius: 48px;
     color: var(--whitish);
     background-color: var(--primary-color);
     transition: all 0.3s ease;
 }
-
-.overlay-page {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000000a3;
-    left: 0;
-    top: 0;
-    padding: 100px;
-}
-.sign-in.overlay-page {
-    z-index: 6;
-    top: -106px;
-    padding: 16px 100px;
-}
-.sign-in.overlay-page .close-btn {
-    top: 60px;
-    right: 100px;
-}
-
 
 .filter-box {
     position: relative;
@@ -36,7 +16,7 @@
     height: 100%;
     background: var(--whitish);
     border-radius: 16px;
-    box-shadow: 0px 10px 32px 0px #2b2b2bad;
+    box-shadow: 0 10px 32px 0 var(--shadow-color);
 }
 
 .filter-header {

@@ -1,11 +1,14 @@
 import React from "react";
 import { useRoomListings } from "../services/states";
-import { useListings } from "./contextManager";
-import RoomCard from "./cardRoom";
+import { useListings } from "../services/contextManager";
+// CSS
+import './styles/listingHostelRooms.css'
+// components
+import RoomCard from "../components/cardRoom";
 
 const HostelRoomListings = () => {
   const { selectedHostelId } = useListings();
-  const { roomListings, loading, error } = useRoomListings(selectedHostelId);
+  const { roomListings , loading, error } = useRoomListings(selectedHostelId);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -22,11 +25,11 @@ const HostelRoomListings = () => {
   };
 
   return (
-    <div>
+    <div className="room-previews">
       {roomListings.length === 0 ? (
         <div className="room-listings-header">
           <h2>No Room Listings</h2>
-          <span className="close-panel" onClick={collapsePanel}>
+          <span className="close-panel" onClick={() => collapsePanel}>
             X
           </span>
         </div>
@@ -38,6 +41,7 @@ const HostelRoomListings = () => {
               X
             </span>
           </div>
+          <div className="rooms-container" >
           {roomListings.map((room) => (
             <RoomCard
               key={room.room_id}
@@ -48,10 +52,11 @@ const HostelRoomListings = () => {
               price={room.price}
               number_available={room.number_available}
               sex={room.sex}
-              is_collected={room.is_collected} // xx
+              is_collected={room.is_collected}
               amenities={room.amenities}
             />
           ))}
+          </div>
         </>
       )}
     </div>

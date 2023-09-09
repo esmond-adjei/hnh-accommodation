@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../../assets/images/hnh-gradient-logo.png';
-import '../../styles/landing_page.css';
+import logo from '../assets/images/hnh-gradient-logo.png';
+import './styles/landingPage.css';
 import { Link } from 'react-router-dom';
 
 const LandingPage = () => {

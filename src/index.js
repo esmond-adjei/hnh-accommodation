@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ListingsProvider } from './components/contextManager';
+import { ListingsProvider } from './services/contextManager';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

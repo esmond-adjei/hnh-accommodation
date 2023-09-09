@@ -1,13 +1,13 @@
-.card {
+.hostel-card {
     padding: 8px;
-    max-width: 700px;
+    /* max-width: 700px; */
+    flex: 1 1 280px;
     width: 280px;
-    max-height: fit-content;
-    min-height: 300px;
+    /* max-height: fit-content; */
+    /* min-height: 300px; */
     border-radius: 24px;
     /* border: 1px solid #ccc; */
     background-color: var(--whitish);
-  
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -27,7 +27,7 @@
     border-radius: 16px;
     transition: all 0.3s ease;
 }
-.card:hover .card__image {
+.hostel-card:hover .card__image {
     transform: scale(1.02);
 }
 
@@ -89,27 +89,5 @@
 }
 .manager-footnote .round-icon {
     padding: 2px;
-    background-color: var(--light-primary-color);
-}
-
-@media (max-width: 620px) {
-    /* CARD */
-    .card {
-        flex-direction: column;
-        width: 100%;
-        align-self: center;
-        position: relative;
-    }
-    .card .card__image {
-        width: 100%;
-    }
-    .card .card__icons {
-        position: absolute;
-        right: 40px;
-        top: 50%;
-        box-shadow: var(--multiple-shadow);
-    }
-    .card .card__description {
-        height: fit-content;
-    }
+    background-color: var(--light-white);
 }

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import '../../styles/auth_form.css';
-import logo from '../../assets/images/hnh-gradient-logo.png';
+import './styles/auth_form.css';
+import logo from '../assets/images/hnh-gradient-logo.png';
 import { Link, useNavigate } from "react-router-dom";
-import { loginUser, registerUser, logoutUser } from '../../services/auth_api';
+import { loginUser, registerUser, logoutUser } from '../services/auth_api';
 
 const AuthForm = ({ formType, prevStateUpdate }) => {
   const history = useNavigate();
-  const isSignUp = formType === '/sign-up' ? true : false;
+  const isSignUp = formType === '/sign-up';
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
@@ -38,7 +38,6 @@ const AuthForm = ({ formType, prevStateUpdate }) => {
   };
 
   return (
-    <div className="main-container a-wrapper">
       <div className="form-wrapper sign-up">
         <form onSubmit={handleSubmit}>
 
@@ -106,17 +105,16 @@ const AuthForm = ({ formType, prevStateUpdate }) => {
           <div className="sign-link">
             <p>
               {isSignUp ? "Already have an account? " : "Don't have an account? "}
-                  <Link to={isSignUp ? "/sign-in" : "/sign-up"}
-                    className="signIn-link"
-                  >
-                    {isSignUp ? "Sign In" : "Sign Up"}
-                  </Link>
+                <Link to={isSignUp ? "/sign-in" : "/sign-up"}
+                  className="signIn-link"
+                >
+                  {isSignUp ? "Sign In" : "Sign Up"}
+                </Link>
             </p>
           </div>
 
         </form>
       </div>
-    </div>
   );
 };
 

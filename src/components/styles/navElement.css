@@ -1,0 +1,29 @@
+.side-nav-icon {
+    height: 70px;
+    margin: 4px;
+    padding: 4px;
+    border-radius: 10px;
+    color: var(--text-color);
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+.side-nav-icon:hover {
+    background-color: var(--grey);
+}
+
+#svg-object, .side-nav-icon .icon {
+    width: 30px;
+    height: 30px;
+}
+
+.side-nav-icon > p {
+    font-size: 10px;
+}
+
+.side-nav-icon.active {
+    background-color: var(--grey);
+}

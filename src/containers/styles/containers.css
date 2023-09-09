@@ -1,0 +1,50 @@
+/* ========= SIDE NAV CONTAINER ======= */
+.side-nav {
+    display: inline-block;
+    background-color: var(--whitish);
+}
+
+
+.side-nav {
+    min-width: var(--side-nav-width);
+    padding: 10px;
+    min-height: inherit;
+
+    position: fixed;
+    border-right: 1px solid var(--grey);
+}
+/* ========= HOSTEL CONTAINER ======= */
+.hostels-container {
+    padding: 10px 30px;
+    display: flex;
+    gap: 30px 20px;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+    align-content: flex-start;
+}
+/* ========= ROOM CONTAINER ======= */
+.rooms-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px 50px;
+    flex-wrap: wrap;
+}
+
+/* ======== POP UP OVERLAY ======== */
+.overlay-page {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000a3;
+    left: 0;
+    top: 0;
+    padding: 100px;
+}
+.sign-in.overlay-page {
+    top: -110px;
+    padding: 16px 100px;
+}
+.sign-in.overlay-page .close-btn {
+    top: 80px;
+    right: 480px;
+}
