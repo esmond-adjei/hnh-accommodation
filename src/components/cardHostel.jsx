@@ -21,16 +21,16 @@ const HostelCard = ({
 
   const openPanel = () => {
     const roomPreviews = document.querySelector(".room-previews");
-    if (roomPreviews) {
       roomPreviews.classList.remove("closed");
       roomPreviews.classList.add("show");
-    }
   };
 
   const handleClick = () => {
     setSelectedHostelId(hostelID);
+    // document.addEventListener('DOMContentLoaded', openPanel);
     openPanel();
   };
+
 
   return (
     <div className="hostel-card" onClick={handleClick}>

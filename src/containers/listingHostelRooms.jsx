@@ -29,7 +29,7 @@ const HostelRoomListings = () => {
       {roomListings.length === 0 ? (
         <div className="room-listings-header">
           <h2>No Room Listings</h2>
-          <span className="close-panel" onClick={() => collapsePanel}>
+          <span className="close-panel" onClick={collapsePanel}>
             X
           </span>
         </div>

@@ -90,25 +90,25 @@ export const logoutUser = () => {
 
 
 // IS LOGGED IN
-function unixTimeToHumanTime(unixTimestamp) {
-  const milliseconds = unixTimestamp * 1000;
-  const dateObject = new Date(milliseconds);
-  // const humanDateFormat = dateObject.toLocaleString();
-  return dateObject;
-}
+// function unixTimeToHumanTime(unixTimestamp) {
+//   const milliseconds = unixTimestamp * 1000;
+//   const dateObject = new Date(milliseconds);
+//   // const humanDateFormat = dateObject.toLocaleString();
+//   return dateObject;
+// }
 
-function checkTokenExpire(accessToken) {
-  // Decode and verify the access token
-  const base64Url = accessToken.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const decodedToken = JSON.parse(atob(base64));
-
-  // Check if the access token is expired
-  const expirationTime = decodedToken.exp;
-  const currentTime = Math.floor(Date.now() / 1000);
-  console.log('Access token expires at:', (unixTimeToHumanTime(expirationTime) - unixTimeToHumanTime(currentTime)).toLocaleString());
-  return expirationTime > currentTime;
-}
+// function checkTokenExpire(accessToken) {
+//   // Decode and verify the access token
+//   const base64Url = accessToken.split('.')[1];
+//   const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+//   const decodedToken = JSON.parse(atob(base64));
+//
+//   // Check if the access token is expired
+//   const expirationTime = decodedToken.exp;
+//   const currentTime = Math.floor(Date.now() / 1000);
+//   console.log('Access token expires at:', (unixTimeToHumanTime(expirationTime) - unixTimeToHumanTime(currentTime)).toLocaleString());
+//   return expirationTime > currentTime;
+// }
 
 export const isLoggedIn = () => {
   const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY);

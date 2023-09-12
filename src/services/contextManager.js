@@ -3,7 +3,7 @@ import { useHostelListingsState } from './states';
 import { useDarkMode } from './utilityState';
 import { useLocation } from 'react-router-dom';
 
-const ListingsContext = createContext();
+const ListingsContext = createContext(undefined);
 
 export function useListings() {
   return useContext(ListingsContext);

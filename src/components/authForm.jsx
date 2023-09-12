@@ -53,6 +53,7 @@ const AuthForm = ({ formType, prevStateUpdate }) => {
 
           <div className="input-group">
             <input
+              autoFocus={true}
               type="text"
               name="username"
               value={formData.username}
