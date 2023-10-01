@@ -1,22 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchRooms } from "../redux/roomSlice";
 // CSS
 import './styles/pages.css'
-import { useRoomListings } from '../services/states';
 import RoomCard from '../components/cardRoom';
 
 
 const BrowseRooms = () => {
-  const { roomListings } = useRoomListings(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchRooms());
+  }, [dispatch])
+
+  const roomListings = useSelector((state) => state.roomListing);
 
   return (
     <div className="rooms-view">
-    { (roomListings.length === 0) ?
+    { roomListings.isLoading && <h1>Loading rooms...</h1> }
+    { (roomListings.data.length === 0) ?
       <div className="rooms-container">
         <h1>No rooms found.</h1>
       </div>
       :
       <div className="rooms-container">
-        {roomListings.map((room) => (
+        {roomListings.data.map((room) => (
           <RoomCard
             key={room.room_id}
             room_id={room.room_id}

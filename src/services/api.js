@@ -49,12 +49,35 @@ export const getHostelRoomListings = async (hostelId) => {
     const url = (!hostelId) ? // this is a choke; update in the future
     `http://localhost:8000/api/rooms/` :
      `http://localhost:8000/api/hostel/${hostelId}/rooms/`;
-    
+
     console.log('Fetching Rooms for hostel:', hostelId);
     const response = await axiosInstance.get(url);
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.message || 'An error occurred while fetching the hostel room listings.');
+  }
+}
+
+export const getRoomListings = async () => {
+  try {
+    const response = await axiosInstance.get('http://localhost:8000/api/rooms/');
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred while fetching the room listings.');
+  }
+}
+
+export const getHostelRooms = async (hostelId) => {
+  if (!hostelId) {
+    console.log(`hostel id undefined: ${hostelId}`);
+    return;
+  }
+  try {
+    console.log(`Fetching rooms for hostel: ${hostelId}`);
+    const response = await axiosInstance.get(`http://localhost:8000/api/hostel/${hostelId}/rooms/`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || `An error occurred while fetching the hostel room listings for ${hostelId}`);
   }
 }
 

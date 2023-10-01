@@ -1,5 +1,7 @@
 import React from "react";
-import { useListings } from "../services/contextManager";
+import { useDispatch } from "react-redux";
+import { fetchHostelRooms } from "../redux/roomSlice";
+import { setSelectedHostelName } from "../redux/hostelSlice";
 // CSS
 import "./styles/cardHostel.css";
 // SVG
@@ -8,16 +10,9 @@ import userIcon from "../assets/icons/user-icon.svg";
 import star from "../assets/icons/star.svg";
 import locationIcon from "../assets/icons/location-icon.svg";
 
-const HostelCard = ({
-  hostelID,
-  imageSrc,
-  hostelName,
-  hostelLocation,
-  rating,
-  availableRooms,
-  managerUsername,
-}) => {
-  const { setSelectedHostelId } = useListings();
+const HostelCard = (props) => {
+  const { hostelID: hostelId, imageSrc, hostelName, hostelLocation, rating, availableRooms, managerUsername, } = props;
+  const dispatch = useDispatch();
 
   const openPanel = () => {
     const roomPreviews = document.querySelector(".room-previews");
@@ -26,8 +21,8 @@ const HostelCard = ({
   };
 
   const handleClick = () => {
-    setSelectedHostelId(hostelID);
-    // document.addEventListener('DOMContentLoaded', openPanel);
+    dispatch(fetchHostelRooms(hostelId));
+    dispatch(setSelectedHostelName(hostelName));
     openPanel();
   };
 

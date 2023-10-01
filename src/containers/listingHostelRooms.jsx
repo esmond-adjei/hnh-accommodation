@@ -1,22 +1,17 @@
 import React from "react";
-import { useRoomListings } from "../services/states";
-import { useListings } from "../services/contextManager";
+import { useSelector } from "react-redux";
+// import { useRoomListings } from "../services/states";
+// import { useListings } from "../services/contextManager";
 // CSS
 import './styles/listingHostelRooms.css'
 // components
 import RoomCard from "../components/cardRoom";
 
 const HostelRoomListings = () => {
-  const { selectedHostelId } = useListings();
-  const { roomListings , loading, error } = useRoomListings(selectedHostelId);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  // const { selectedHostelId } = useListings();
+  const isLoading = useSelector((state) => state.roomListing.isLoading);
+  const roomListings = useSelector((state) => state.roomListing.selectedHostelRooms);
+  const selectedHostelName = useSelector((state)=> state.hostelListing.selectedHostelName);
 
   const collapsePanel = () => {
     const roomPreviews = document.querySelector(".room-previews");
@@ -26,39 +21,30 @@ const HostelRoomListings = () => {
 
   return (
     <div className="room-previews">
-      {roomListings.length === 0 ? (
-        <div className="room-listings-header">
-          <h2>No Room Listings</h2>
-          <span className="close-panel" onClick={collapsePanel}>
-            X
-          </span>
-        </div>
-      ) : (
-        <>
           <div className="room-listings-header">
-            <h2>{roomListings[0].hostel} Room Listings</h2>
-            <span className="close-panel" onClick={collapsePanel}>
-              X
-            </span>
+            <h1>{ selectedHostelName } Room Listings</h1>
+            <span className="close-panel" onClick={collapsePanel}>X</span>
           </div>
           <div className="rooms-container" >
-          {roomListings.map((room) => (
-            <RoomCard
-              key={room.room_id}
-              room_id={room.room_id}
-              room_img_url={room.room_img_url}
-              bedspace={room.bedspace}
-              description={room.description}
-              price={room.price}
-              number_available={room.number_available}
-              sex={room.sex}
-              is_collected={room.is_collected}
-              amenities={room.amenities}
-            />
-          ))}
+             { isLoading && <h1>Loading hostel rooms...</h1>}
+             { (roomListings.length === 0 && !isLoading) ?
+               <h1>No Hostel Listings</h1> :
+               roomListings.map((room) =>
+                <RoomCard
+                  key={room.room_id}
+                  room_id={room.room_id}
+                  room_img_url={room.room_img_url}
+                  bedspace={room.bedspace}
+                  description={room.description}
+                  price={room.price}
+                  number_available={room.number_available}
+                  sex={room.sex}
+                  is_collected={room.is_collected}
+                  amenities={room.amenities}
+                />
+               )
+             }
           </div>
-        </>
-      )}
     </div>
   );
 };

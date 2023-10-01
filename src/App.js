@@ -1,5 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Provider } from "react-redux";
+import { store } from './redux/store'
 // components
 import Header from './components/Header';
 import SideNav from './containers/sideNav';
@@ -10,13 +12,12 @@ import MapApp from './pages/map';
 import LandingPage from './pages/landingPage';
 import Auth from './pages/authentication';
 
-
 const App = () => {
   const location = useLocation();
   const showNav = ['/','/sign-in', '/sign-up'].includes(location.pathname);
 
   return (
-    <>
+    <Provider store={store}>
       {!showNav && <Header />}
       <main>
         {!showNav && <SideNav />}
@@ -30,7 +31,7 @@ const App = () => {
           <Route path="/collections" element={<CollectedRooms />} />
         </Routes>
       </main>
-    </>
+    </Provider>
   );
 };
 

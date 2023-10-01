@@ -223,7 +223,7 @@ export const useSearchState = (category) => {
 };
 
 
-// APP NAVIGATIO TRIGGERS
+// APP NAVIGATION TRIGGERS
 export const useAppNavigation = () => {
   const [showRooms, setShowRooms] = useState(false);
   const [showHostels, setShowHostels] = useState(true);
