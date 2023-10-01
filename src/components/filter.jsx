@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PriceSlider from "../microcomponents/slider";
+import PriceSlider from "./slider";
 // CSS
 import "./styles/filter.css";
 
