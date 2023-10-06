@@ -1,33 +1,30 @@
-import React from "react";
-import { useSearchState } from "../services/states";
-import { useRoomListings } from "../services/states";
-import { useListings } from "../services/contextManager";
+import React, {useState} from "react";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 // CSS
 import "./styles/search.css";
 // SVG
 import searchIcon from "../assets/icons/search.svg";
 // Component
 import Filter from "./filter";
+import { findRoom } from "../redux/roomSlice";
+import { findHostel } from "../redux/hostelSlice";
 
 const Search = () => {
-  const { setHostelListings, showRooms } = useListings();
-  const { setRoomListings } = useRoomListings("__SEARCH__"); // return room listing state manager; __SEARCH__ is a trigger
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const [query, setQuery] = useState('');
 
-  const category = showRooms ? "room" : "hostel";
-  const { query, setQuery, handleSearch } = useSearchState(category);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const searchResults = await handleSearch();
-    console.log("Setting Results for :", category, showRooms, searchResults);
-    showRooms
-      ? setRoomListings(searchResults)
-      : setHostelListings(searchResults);
+    if (location.pathname === '/hostels') dispatch(findHostel({q: query}));
+    else if (location.pathname === '/rooms') dispatch(findRoom({q: query}))
   };
 
   return (
     <div className="search-box">
-      <form onSubmit={handleSubmit} className="search">
+      <form onSubmit={ handleSubmit } className="search">
         <input type="image" src={searchIcon} alt="search icons" />
         <input
           className="search-input"

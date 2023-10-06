@@ -85,8 +85,7 @@ export const getHostelRooms = async (hostelId) => {
 export const searchRoom = async (searchData) => {
   try {
     const response = await axiosInstance.get('http://localhost:8000/api/search/rooms', { params: searchData });
-    console.log('API Search response:', response.data);
-    return response.data;
+    return response.data['roomResults'];
   } catch (error) {
     throw new Error(
       error.response?.data?.message || 'An error occurred while searching for rooms.'
@@ -111,7 +110,7 @@ export const searchHostels = async (searchData) => {
   try {
     const response = await axiosInstance.get('http://localhost:8000/api/search/hostels', { params: searchData });
     console.log('API Search response:', response.data);
-    return response.data;
+    return response.data['hostelResults'];
   } catch (error) {
     throw new Error(
       error.response?.data?.message || 'An error occurred while searching for hostels.'

@@ -23,7 +23,7 @@ const BrowseRooms = () => {
       </div>
       :
       <div className="rooms-container">
-        {roomListings.data.map((room) => (
+        { roomListings.data.map((room) => (
           <RoomCard
             key={room.room_id}
             room_id={room.room_id}

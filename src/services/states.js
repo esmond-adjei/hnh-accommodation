@@ -10,9 +10,6 @@ import {
   createHostel,
   updateHostel,
   getHostel,
-  getCollections,
-  // addCollection,
-  removeCollection,
 } from './api';
 
 // REGISTRATION STATE
@@ -221,84 +218,3 @@ export const useSearchState = (category) => {
 
   return { query, setQuery, handleSearch };
 };
-
-
-// APP NAVIGATION TRIGGERS
-export const useAppNavigation = () => {
-  const [showRooms, setShowRooms] = useState(false);
-  const [showHostels, setShowHostels] = useState(true);
-  const [showMap, setShowMap] = useState(false);
-
-  const handleActiveState = (e) => {
-    const sideNavIcons = document.querySelectorAll('.side-nav-icon');
-    sideNavIcons.forEach((icon) => {
-      icon.classList.remove('active');
-    });
-    e.target.classList.add('active');
-  };
-
-
-  const handleShowRooms = (e) => {
-    setShowRooms(true);
-    setShowHostels(false);
-    setShowMap(false);
-    handleActiveState(e);
-  }
-
-  const handleShowHostels = (e) => {
-    setShowRooms(false);
-    setShowHostels(true);
-    setShowMap(false);
-    handleActiveState(e);
-  }
-
-  const handleShowMap = (e) => {
-    setShowRooms(false);
-    setShowHostels(false);
-    setShowMap(true);
-    handleActiveState(e);
-  }
-
-  return { showRooms, showHostels, showMap, handleShowRooms, handleShowHostels, handleShowMap };
-};
-
-
-// COLLECTIONS STATE
-export const useCollectionsState = () => {
-  const [collectionListings, setCollections] = useState([]);
-  const [selectedCollectionId, setSelectedCollectionId] = useState(null);
-
-  const fetchCollections = async () => {
-    try {
-      const response = await getCollections();
-      setCollections(response);
-    } catch (error) {
-      console.error('Error fetching collections:', error.message);
-    }
-  };
-
-  useEffect(() => {
-    fetchCollections();
-  }, []);
-
-  const handleCollectionRemove = async (roomID) => {
-    try {
-      await removeCollection(roomID);
-      setCollections((prevCollections) =>
-        prevCollections.filter((collection) => collection.id !== roomID)
-      );
-      setSelectedCollectionId(null);
-    } catch (error) {
-      console.error('Error deleting collection:', error.message);
-    }
-  };
-
-  return { 
-    collectionListings, 
-    setCollections, 
-    selectedCollectionId,
-    handleCollectionRemove,
-    fetchCollections,
-    setSelectedCollectionId
-  };
-}

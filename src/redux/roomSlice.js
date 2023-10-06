@@ -4,7 +4,7 @@ import {
   removeCollection,
   getCollections,
   getHostelRooms,
-  getRoomListings,
+  getRoomListings, searchRoom,
 } from "../services/api";
 
 
@@ -26,16 +26,12 @@ const initialState = {
 };
 
 export const fetchRooms = createAsyncThunk("fetchRooms", getRoomListings);
-export const fetchHostelRooms = createAsyncThunk(
-  "fetchHostelRooms",
-  getHostelRooms
-);
-export const fetchCollections = createAsyncThunk(
-  "fetchCollections",
-  getCollections
-);
+export const fetchHostelRooms = createAsyncThunk("fetchHostelRooms", getHostelRooms);
+export const fetchCollections = createAsyncThunk("fetchCollections", getCollections);
 export const makeCollection = createAsyncThunk("makeCollection", addCollection);
 export const delCollection = createAsyncThunk("delCollection", removeCollection);
+export const findRoom = createAsyncThunk("findRoom", searchRoom);
+
 
 export const roomListingSlice = createSlice({
   name: "roomListing",
@@ -45,6 +41,7 @@ export const roomListingSlice = createSlice({
     createAsyncReducer(fetchHostelRooms, "data")(builder);
     createAsyncReducer(fetchRooms, "data")(builder);
     createAsyncReducer(fetchCollections, "collections")(builder);
+    createAsyncReducer(findRoom, "data")(builder);
 
     builder.addCase(makeCollection.fulfilled, (state) => {
       state.isLoading = false;

@@ -1,5 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getHostelListings } from "../services/api";
+import { getHostelListings, searchHostels } from "../services/api";
+
+
+const createAsyncReducer = (asyncThunk, stateKey) => (builder) => {
+  builder
+    .addCase(asyncThunk.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(asyncThunk.fulfilled, (state, action) => {
+      state[stateKey] = action.payload;
+      state.isLoading = false;
+    });
+};
+
 const initialState = {
   data: [],
   selectedHostelName: '',
@@ -7,6 +20,8 @@ const initialState = {
 };
 
 export const fetchHostels = createAsyncThunk("fetchHostels", getHostelListings);
+export const findHostel = createAsyncThunk("findHostel", searchHostels);
+
 
 export const hostelListingSlice = createSlice({
    name: "hostelListing",
@@ -17,11 +32,8 @@ export const hostelListingSlice = createSlice({
       }
     },
    extraReducers: (builder) => {
-     builder.addCase(fetchHostels.pending, (state) => {state.isLoading = true});
-     builder.addCase(fetchHostels.fulfilled, (state, action) => {
-       state.isLoading = false;
-       state.data = action.payload;
-     });
+     createAsyncReducer(fetchHostels, "data")(builder);
+     createAsyncReducer(findHostel, "data")(builder);
    }
 });
 
