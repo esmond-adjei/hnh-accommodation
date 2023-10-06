@@ -1,37 +1,61 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getHostelRooms, getRoomListings } from "../services/api";
+import {
+  addCollection,
+  removeCollection,
+  getCollections,
+  getHostelRooms,
+  getRoomListings,
+} from "../services/api";
 
 
-// initial state properties
+const createAsyncReducer = (asyncThunk, stateKey) => (builder) => {
+  builder
+    .addCase(asyncThunk.pending, (state) => {
+      state.isLoading = true;
+    })
+    .addCase(asyncThunk.fulfilled, (state, action) => {
+      state[stateKey] = action.payload;
+      state.isLoading = false;
+    });
+};
+
 const initialState = {
   data: [],
-  selectedHostelRooms: [],
+  collections: [],
   isLoading: false,
 };
 
-// thunk: for api calls
 export const fetchRooms = createAsyncThunk("fetchRooms", getRoomListings);
-export const fetchHostelRooms = createAsyncThunk("fetchHostelRooms", getHostelRooms);
+export const fetchHostelRooms = createAsyncThunk(
+  "fetchHostelRooms",
+  getHostelRooms
+);
+export const fetchCollections = createAsyncThunk(
+  "fetchCollections",
+  getCollections
+);
+export const makeCollection = createAsyncThunk("makeCollection", addCollection);
+export const delCollection = createAsyncThunk("delCollection", removeCollection);
 
 export const roomListingSlice = createSlice({
-   name: "roomListing",
-   initialState,
-   reducers: {
-   },
-   extraReducers: (builder) => {
-     builder.addCase(fetchHostelRooms.pending, (state) => {state.isLoading = true});
-     builder.addCase(fetchHostelRooms.fulfilled, (state, action) => {
-       state.selectedHostelRooms = action.payload;
-       state.isLoading = false;
-     });
+  name: "roomListing",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    createAsyncReducer(fetchHostelRooms, "data")(builder);
+    createAsyncReducer(fetchRooms, "data")(builder);
+    createAsyncReducer(fetchCollections, "collections")(builder);
 
-     builder.addCase(fetchRooms.pending, (state) => {state.isLoading = true});
-     builder.addCase(fetchRooms.fulfilled, (state, action) => {
-       state.data = action.payload;
-       state.isLoading = false;
-     });
+    builder.addCase(makeCollection.fulfilled, (state) => {
+      state.isLoading = false;
+      console.log("Make Collection Item Successful");
+    });
 
-   }
+    builder.addCase(delCollection.fulfilled, (state) => {
+      state.isLoading = false;
+      console.log("Remove Collection Item Successful");
+    });
+  },
 });
 
 export default roomListingSlice.reducer;

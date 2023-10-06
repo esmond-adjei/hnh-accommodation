@@ -1,16 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
-// import { useRoomListings } from "../services/states";
-// import { useListings } from "../services/contextManager";
 // CSS
 import './styles/listingHostelRooms.css'
 // components
 import RoomCard from "../components/cardRoom";
 
 const HostelRoomListings = () => {
-  // const { selectedHostelId } = useListings();
   const isLoading = useSelector((state) => state.roomListing.isLoading);
-  const roomListings = useSelector((state) => state.roomListing.selectedHostelRooms);
+  const roomListings = useSelector((state) => state.roomListing.data);
   const selectedHostelName = useSelector((state)=> state.hostelListing.selectedHostelName);
 
   const collapsePanel = () => {

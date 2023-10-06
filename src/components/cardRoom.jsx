@@ -1,56 +1,37 @@
 import React, { useState, useRef, useEffect } from "react";
-// CSS
-import "./styles/cardRoom.css";
-// api requests
-import { addCollection, removeCollection } from "../services/api";
+import { useDispatch } from "react-redux";
 import { isLoggedIn } from "../services/auth_api";
-// SVGs
-import ac from "../assets/icons/air-condition.svg";
-import bathroom from "../assets/icons/bathroom.svg";
-import fridge from "../assets/icons/fridge.svg";
-import study from "../assets/icons/study.svg";
-import tv from "../assets/icons/tv.svg";
-import kitchen from "../assets/icons/kitchen.svg";
-import wardrobe from "../assets/icons/wardrobe.svg";
-import man from "../assets/icons/man.svg";
-import woman from "../assets/icons/woman.svg";
+import { delCollection, makeCollection } from "../redux/roomSlice";
+import "./styles/cardRoom.css";
 import bookmarkFill from "../assets/icons/bookmark-fill.svg";
 import bookmarkEmpty from "../assets/icons/bookmark-empty.svg";
 
-const RoomCard = (props) => {
-  const {
-    room_id,
-    room_img_url,
-    bedspace,
-    description,
-    price,
-    number_available,
-    sex,
-    amenities,
-    is_collected,
-    hostel,
-    hostel_location,
-    cardType,
-  } = props;
+const amenityIcons = {
+  "Air Condition": require("../assets/icons/air-condition.svg").default,
+  Bathroom: require("../assets/icons/bathroom.svg").default,
+  Refrigerator: require("../assets/icons/fridge.svg").default,
+  "Study Desk": require("../assets/icons/study.svg").default,
+  TV: require("../assets/icons/tv.svg").default,
+  Kitchen: require("../assets/icons/kitchen.svg").default,
+  Wardrobe: require("../assets/icons/wardrobe.svg").default,
+};
 
+const sexIcon = {
+  male: require("../assets/icons/man.svg").default,
+  female: require("../assets/icons/woman.svg").default,
+};
+
+const RoomCard = (props) => {
+  const { room_id: roomId, room_img_url, bedspace,
+          description, price, number_available,
+          sex, amenities, is_collected, hostel,
+          hostel_location, cardType,
+        } = props;
+
+  const dispatch = useDispatch();
   const [isCollected, setIsCollected] = useState(is_collected);
   const [currentIndex, setCurrentIndex] = useState(0);
   const slideContainerRef = useRef(null);
-
-  const amenityIcons = {
-    "Air Condition": ac,
-    Bathroom: bathroom,
-    Refrigerator: fridge,
-    "Study Desk": study,
-    TV: tv,
-    Kitchen: kitchen,
-    Wardrobe: wardrobe,
-  };
-
-  const sexIcon = {
-    male: man,
-    female: woman,
-  };
 
   const updateSlide = () => {
     const slideContainer = slideContainerRef.current;
@@ -85,10 +66,7 @@ const RoomCard = (props) => {
       return;
     }
     setIsCollected(!isCollected);
-    const status = isCollected
-      ? removeCollection(room_id)
-      : addCollection(room_id);
-    console.log("Handle Collection", status); // xx try and catch the error
+    !isCollected ? dispatch(makeCollection(roomId)) : dispatch(delCollection(roomId));
   };
 
   if (cardType === "collected" && !isCollected) {
@@ -97,7 +75,7 @@ const RoomCard = (props) => {
 
   return (
     <div
-      key={room_id}
+      key={roomId}
       className="room-card"
       style={{ backgroundImage: `url(${room_img_url})` }}
     >

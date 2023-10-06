@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getHostelListings } from "../services/api";
-
-// initial state properties
 const initialState = {
   data: [],
   selectedHostelName: '',
   isLoading: false,
 };
 
-// thunk: for api calls
 export const fetchHostels = createAsyncThunk("fetchHostels", getHostelListings);
 
 export const hostelListingSlice = createSlice({
