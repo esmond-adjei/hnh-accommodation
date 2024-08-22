@@ -4,7 +4,8 @@ header {
     z-index: 4;
     top: 0;
     background-color: var(--whitish);
-    width: 100%;
+    border-bottom: thin solid var(--greyish);
+    padding: 0 20px;
 }
 
 .main-header {
@@ -12,7 +13,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 14px 40px var(--shadow-color);
 
     /* SPACING */
     padding: 8px 16px;
@@ -68,7 +68,7 @@ header {
 }
 
 /* ====== applied filters ====== */
-.filters {
+/* .filters {
     padding: 8px 30px;
     background-color: var(--whitish);
     border-bottom: 1px solid var(--grey);
@@ -90,4 +90,30 @@ header {
 .filters span:hover {
     cursor: pointer;
     background-color: var(--grey);
+} */
+
+/* =============== NAV LINKS ============== */
+.nav-list {
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+}
+.nav-link-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 8px;
+    color: var(--text-color);
+    transition: background-color 0.4s ease-out;
+}
+.nav-link-item > small {
+    font-size: 12px;
+}
+.nav-link-item.active, .nav-link-item:hover {
+    background-color: var(--greyish);
 }

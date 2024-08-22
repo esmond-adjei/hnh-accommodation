@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from "react-redux";
-import { store } from './redux/store'
+import { store } from './redux/store';
 // components
 import Header from './components/Header';
 import SideNav from './containers/sideNav';
@@ -20,7 +20,7 @@ const App = () => {
     <Provider store={store}>
       {!showNav && <Header />}
       <main>
-        {!showNav && <SideNav />}
+        {/* {!showNav && <SideNav />} */}
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/sign-in" element={<Auth formType={'/sign-in'} />} />

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { isLoggedIn, logoutUser } from "../services/auth_api";
+import { useListings } from "../services/contextManager";
 // assets (svg, jpg, ...)
+import darkIcon from "../assets/icons/dark_mode.svg";
+import lightIcon from "../assets/icons/light_mode.svg";
+import notificationIcon from "../assets/icons/notifications.svg";
 import userIcon from "../assets/icons/user-icon.svg";
 import profilePicture from "../assets/images/profile.jpg";
 // CSS
@@ -17,17 +21,19 @@ const Profile = () => {
     setShowMenu(!showMenu);
   };
 
+  const { darkMode, toggleDarkMode } = useListings();
+
+
   const openSignIn = () => {
     setSignIn(!showSignIn);
     document.body.style.overflow = showSignIn ? "auto" : "hidden";
-    document.querySelector(".side-nav").style.zIndex = showSignIn ? "" : "4";
   };
 
   return (
     <>
       {isSignedIn === false ? (
         <>
-          <div className="side-nav-icon center-absolute" onClick={openSignIn}
+          <div className="side-nav-icon" onClick={openSignIn}
           >
             <img
               className="user-profile-icon guest"
@@ -47,7 +53,7 @@ const Profile = () => {
           )}
         </>
       ) : (
-        <div className="side-nav-icon center-absolute">
+        <div className="side-nav-icon">
           <img
             className="user-profile-icon"
             src={profilePicture}
@@ -66,12 +72,8 @@ const Profile = () => {
           <button className="close-btn close-panel" onClick={handleDisplayMenu}>
             X
           </button>
-          <Link to="#">
-            <p>Account</p>
-          </Link>
-          <Link to="#">
-            <p>Help</p>
-          </Link>
+          <Link to="#"><p>Account</p></Link>
+          <Link to="#"><p>Help</p></Link>
           <Link
             to="/hostels"
             onClick={() => {
@@ -79,9 +81,18 @@ const Profile = () => {
               setShowMenu(false);
               window.location.reload();
             }}
-          >
-            <p>Logout</p>
-          </Link>
+          ><p>Logout</p></Link>
+            <img
+            src={darkMode ? darkIcon : lightIcon}
+            alt="switch theme"
+            className="round-icon"
+            onClick={toggleDarkMode}
+          />
+          <img
+            src={notificationIcon}
+            alt="notifications"
+            className="round-icon"
+          />
         </div>
       )}
     </>

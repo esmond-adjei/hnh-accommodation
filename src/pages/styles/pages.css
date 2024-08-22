@@ -1,6 +1,6 @@
 main {
     min-height: 100vh;
-    --side-nav-width: 100px;
+    /* --side-nav-width: 100px; */
 }
 
 .hostels-view, .rooms-view, .collections-view {
@@ -12,9 +12,7 @@ main {
     /*position: relative;*/
 }
 
-.hostels-view {
-    display: flex;
-}
+.hostels-view { display: flex; }
 
 .collections-view .collections-heading {
     width: 100%;

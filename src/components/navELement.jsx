@@ -1,11 +1,12 @@
 import React from 'react';
 import './styles/navElement.css'
+import { Link } from 'react-router-dom';
 
-export const NavElement = ({icon, title, handleFunction}) => {
+export const NavElement = ({element}) => {
     return (
-        <div className="side-nav-icon" onClick={(e) => handleFunction}>
-            <img src={icon} className="icon" alt={title} />
-            <p>{title}</p>
-        </div>
+        <Link to={element.link} className=".side-nav-icon" onClick={(e) => element.handleFunction}>
+            <img src={element.icon} className=".icon" alt={element.title} />
+            <small>{element.name}</small>
+        </Link>
     )
 }

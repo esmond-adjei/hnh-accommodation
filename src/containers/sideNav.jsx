@@ -1,16 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// SVGs
-import hostelIcon from "../assets/icons/home.svg";
-import roomIcon from "../assets/icons/room.svg";
-import mapIcon from "../assets/icons/home_map.svg";
-import collectionsIcon from "../assets/icons/collections.svg";
 // CSS
 import "./styles/containers.css";
 // components
 import { useListings } from "../services/contextManager";
-import { NavElement } from "../components/navELement";
-import Profile from "../components/profile";
 
 const SideNav = () => {
   const { showRooms, showHostels, showMap } = useListings();
@@ -18,47 +11,40 @@ const SideNav = () => {
   const navigationElements = [
     {
       name: "Hostel",
-      icon: hostelIcon,
+      icon: '/icons/home.svg',
       link: "/hostels",
       handleFunction: showHostels,
     },
     {
       name: "Rooms",
-      icon: roomIcon,
+      icon: '/icons/room.svg',
       link: "/rooms",
       handleFunction: showRooms,
     },
     {
       name: "Map view",
-      icon: mapIcon,
+      icon: '/icons/home_map.svg',
       link: "/map",
       handleFunction: showMap,
     },
     {
       name: "Collections",
-      icon: collectionsIcon,
+      icon: '/icons/collections.svg',
       link: "/collections",
       handleFunction: showHostels,
     },
   ];
 
   return (
-    <div className="side-nav">
+    <div className="nav-list">
       {navigationElements.map((element, index) => {
         return (
-          <Link to={element.link} key={index}>
-            <NavElement
-              key={index}
-              icon={element.icon}
-              title={element.name}
-              handleFunction={element.handleFunction}
-            />
-          </Link>
+            <Link to={element.link} className="nav-link-item" onClick={(e) => element.handleFunction}>
+              <img src={element.icon} className=".icon" alt={element.title} width={20} height={20} />
+              <small>{element.name}</small>
+            </Link>
         );
       })}
-
-      <hr />
-      <Profile />
     </div>
   );
 };
