@@ -50,7 +50,6 @@
 }
 
 .room-listings-header {
-    border-bottom: 1px solid #aaa;
     overflow: hidden;
     position: sticky;
     top: 0;
@@ -58,7 +57,7 @@
     z-index: 4;
     font-size: 0.85rem;
     color: var(--whitish);
-    background-color: var(--primary-color);
+    background-color: var(--text-color);
 }
 
 @keyframes slide-in {

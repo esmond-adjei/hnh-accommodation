@@ -7,7 +7,6 @@ import "./styles/cardHostel.css";
 // SVG
 // import userIcon from "../assets/icons/user-icon.svg";
 import roomIcon from "../assets/icons/room-icon.svg";
-import star from "../assets/icons/star.svg";
 import locationIcon from "../assets/icons/location-icon.svg";
 
 const HostelCard = (props) => {
@@ -44,7 +43,8 @@ const HostelCard = (props) => {
             {hostelName} 
           </span>
           <span className="rating-footnote">
-            <img src={star} alt="rating" className="rating" width={30} height={30} />
+            {/* <img src={star} alt="rating" className="rating" width={30} height={30} /> */}
+            ⭐
             {rating}
           </span>
         </div>
@@ -62,7 +62,7 @@ const HostelCard = (props) => {
             <span>{managerUsername}</span>
           </span>
           <span className="rating-footnote">
-            <img src={star} alt="rating" className="rating" />
+            <img src='/icons/star.svg' alt="rating" className="rating" />
             <p>{rating}</p>
           </span>
         </div> */}

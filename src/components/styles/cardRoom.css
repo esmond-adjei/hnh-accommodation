@@ -2,7 +2,6 @@
 .room-card {
     --room-card-background-color: var(--whitish);
     font-size: 14px;
-    flex: 0 1 366px;
     height: 250px;
     overflow: hidden;
     border-radius: 12px;
@@ -11,16 +10,12 @@
     align-self: flex-start;
     position: relative;
     transition: all 0.3s ease;
-
-    /* background: url("https://rnb.scene7.com/is/image/roomandboard/MHH_Liv_ES1021_0523?size=900,900&scl=1"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-.main-content.rooms-container .room-card {
-    align-self: flex-start;
-    width: 375px;
-    height: 275px;
+.rooms-view .rooms-container .room-card {
+    max-width: 400px;
     margin: 0;
 }
 
