@@ -1,10 +1,10 @@
 .hostel-card {
     padding: 8px;
-    flex: 1 1 280px;
+    /* flex: 1 1 280px; */
     width: 280px;
     max-width: 333px;
     border-radius: 24px;
-    background-color: var(--whitish);
+    /* background-color: var(--whitish); */
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -25,9 +25,9 @@
     border-radius: 16px;
     transition: all 0.3s ease;
 }
-.hostel-card:hover .card__image {
+/* .hostel-card:hover .card__image {
     transform: scale(1.02);
-}
+} */
 
 .card__details {
     flex-grow: 1;
@@ -35,9 +35,19 @@
     font-size: 14px;
 }
 
+.card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .card__title {
-    /* font-size: 1.625rem; */
-    margin: 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: color 0.2s ease;
+}
+
+.hostel-card:hover .card__title {
     color: var(--primary-color);
 }
 

@@ -1,22 +1,35 @@
 .room-previews {
-    height: 84vh;
-    position: sticky;
-    top: 106px;
+    height: 80vh;
+    position: fixed;
+    top: 130px;
+    z-index: 10;
+    right: 0;
     background-color: var(--whitish);
     border-radius: 16px 0 0 16px;
     box-shadow: 7px 10px 20px 0 var(--shadow-color);
     overflow-y: scroll;
     overflow-x: hidden;
     width: 0;
-    transition: width 0.6s;
+    transition: width 0.3s;
 }
 .room-previews.show {
     min-width: 40%;
-    width: 40%;
-    animation: slide-in 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+    width: 50%;
+    animation: slide-in 0.3s cubic-bezier(0, 0, 0.25, 0.99);
 }
 .room-previews.closed {
-    animation: slide-out 0.6s cubic-bezier(0, 0, 0.25, 0.99);
+    animation: slide-out 0.3s cubic-bezier(0, 0, 0.25, 0.99);
+}
+
+.room-previews-header {
+    color: var(--text-color-light);
+}
+
+/* .room-previews-listings {
+    padding: 20px;
+} */
+.room-previews-listings > * {
+    margin: 20px;
 }
 
 .close-panel {
@@ -40,10 +53,10 @@
     border-bottom: 1px solid #aaa;
     overflow: hidden;
     position: sticky;
-    height: 54px;
     top: 0;
-    padding: 12px 24px;
+    padding: 6px 16px;
     z-index: 4;
+    font-size: 0.85rem;
     color: var(--whitish);
     background-color: var(--primary-color);
 }

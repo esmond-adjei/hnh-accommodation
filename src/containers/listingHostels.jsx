@@ -14,10 +14,10 @@ const HostelListings = () => {
 
   return (
     <div className="hostels-container">
-      { hostelListingState.isLoading && <h1>Loading Hostels...</h1> }
-      { hostelListingState.data.length === 0 && !hostelListingState.isLoading ? (
-        <h1>No Hostel Listings</h1>
-      ) : (
+      { 
+      hostelListingState.isLoading ? <h1 className="loader-animation">😴 Loading Hostels...</h1>
+      : hostelListingState.data.length === 0 ? <h1 className="loader-animation">📭 No Hostel Listings</h1>
+      : 
         <>
           {hostelListingState.data.map((hostel) => (
             <HostelCard
@@ -33,7 +33,7 @@ const HostelListings = () => {
             />
           ))}
         </>
-      )}
+      }
     </div>
   );
 };

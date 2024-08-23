@@ -11,6 +11,7 @@
   /* DAY LIGHT THEME COLORS */
   --background-color: #f0f0f0; /* Light mode background color */
   --text-color: #333; /* Light mode text color */
+  --text-color-light: #888; /* Light mode text color */
 }
 
 body {
@@ -19,7 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Poppins', sans-serif;
 
-  background-color: var(--background-color);
+  /* background-color: var(--background-color); */
   color: var(--text-color);
 }
 

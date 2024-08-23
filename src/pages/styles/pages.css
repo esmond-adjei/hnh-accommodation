@@ -1,18 +1,18 @@
-main {
-    min-height: 100vh;
+/* main { */
+    /* min-height: 100vh; */
     /* --side-nav-width: 100px; */
-}
+/* } */
 
-.hostels-view, .rooms-view, .collections-view {
+/* .hostels-view, .rooms-view, .collections-view { */
     /*width: calc( 100% - var(--side-nav-width));*/
     /*min-height: inherit;*/
-    margin-left: var(--side-nav-width);
+    /* margin-left: var(--side-nav-width); */
     /*background-color: var(--light-white);*/
     /*display: flex;*/
     /*position: relative;*/
-}
+/* } */
 
-.hostels-view { display: flex; }
+/* .hostels-view { display: flex; } */
 
 .collections-view .collections-heading {
     width: 100%;
@@ -24,8 +24,6 @@ main {
 /* ===================== MAP PAGE ================= */
 .esri-view{
     padding: 0;
-    overflow: hidden;
     height: 81vh;
-    margin: 10px 24px 0 100px;
-    border-radius: 16px;
 }
+

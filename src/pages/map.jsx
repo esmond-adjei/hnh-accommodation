@@ -29,6 +29,7 @@ const MapApp = () => {
           BasemapToggle,
           BasemapGallery,
         ]) => {
+          // TODO: remove API Key to a .env file
           esriConfig.apiKey =
             "AAPK13852bb4eba44307955e94b1cc66d636ALGgoLwxcscEtv_Uc5xGy_F5mhPpmqV_fWDAejSaIqg4D6gRQV2co_i7prRGF2Rw";
 

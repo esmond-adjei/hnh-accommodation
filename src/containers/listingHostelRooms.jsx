@@ -12,6 +12,8 @@ const HostelRoomListings = () => {
 
   const collapsePanel = () => {
     const roomPreviews = document.querySelector(".room-previews");
+    const hostelContainer = document.querySelector(".hostels-container");
+    hostelContainer.classList.remove("shrink");
     roomPreviews.classList.remove("show");
     roomPreviews.classList.add("closed");
   };
@@ -19,14 +21,18 @@ const HostelRoomListings = () => {
   return (
     <div className="room-previews">
           <div className="room-listings-header">
-            <h1>{ selectedHostelName } Room Listings</h1>
+            <h1>🏠 { selectedHostelName } Room Listings </h1>
             <span className="close-panel" onClick={collapsePanel}>X</span>
           </div>
-          <div className="rooms-container" >
-             { isLoading && <h1>Loading hostel rooms...</h1>}
-             { (roomListings.length === 0 && !isLoading) ?
-               <h1>No Hostel Listings</h1> :
-               roomListings.map((room) =>
+          <>
+          {/* <h2 className="room-previews-header">🛌 Room Listings</h2> */}
+             { 
+             isLoading ? <h1 className="loader-animation">😴 Loading hostel rooms...</h1>
+             : roomListings.length === 0 ?
+               <h1 className="loader-animation">📭 No Hostel Listings</h1> 
+            : 
+            <div className="room-previews-listings">
+            {roomListings.map((room) =>
                 <RoomCard
                   key={room.room_id}
                   room_id={room.room_id}
@@ -39,9 +45,10 @@ const HostelRoomListings = () => {
                   is_collected={room.is_collected}
                   amenities={room.amenities}
                 />
-               )
+               )}
+            </div>
              }
-          </div>
+          </>
     </div>
   );
 };

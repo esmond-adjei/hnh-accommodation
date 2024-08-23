@@ -16,12 +16,11 @@ const BrowseRooms = () => {
 
   return (
     <div className="rooms-view">
-    { roomListings.isLoading && <h1>Loading rooms...</h1> }
-    { (roomListings.data.length === 0) ?
-      <div className="rooms-container">
-        <h1>No rooms found.</h1>
-      </div>
-      :
+    { 
+    roomListings.isLoading ? <h1 className="loader-animation">😴 Loading rooms...</h1> 
+    : roomListings.data.length === 0 ?
+      <h1 className="loader-animation">📭 No rooms found.</h1>
+    :
       <div className="rooms-container">
         { roomListings.data.map((room) => (
           <RoomCard

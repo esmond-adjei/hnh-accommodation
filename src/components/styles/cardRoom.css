@@ -141,7 +141,7 @@
 .close-panel:active,
 .filter-btn:active,
 input[type="image"]:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
 }
 
 .room-card .collect img {
