@@ -5,8 +5,6 @@ import './styles/header.css'
 // components
 import Search from "./search";
 // assets (png, svg)
-import logo from "../assets/images/hnh-logo-30.png";
-// import menu from '../assets/icons/hamburger-menu.svg';
 import SideNav from "../containers/sideNav";
 import Profile from "./profile";
 
@@ -18,7 +16,7 @@ const Header = () => {
           <div className="logo-box">
 
             <Link to="/">
-              <img className="app-logo" src={logo} alt="logo" />
+              <img className="app-logo" src="/images/chf-logo.png" alt="logo" />
             </Link>
           </div>
           <Search />

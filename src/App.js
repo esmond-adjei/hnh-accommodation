@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { store } from './redux/store';
 // components
 import Header from './components/Header';
-import SideNav from './containers/sideNav';
 import BrowseHostel from './pages/browseHostel';
 import BrowseRooms from './pages/browseRooms';
 import CollectedRooms from './pages/browseCollections';
@@ -20,7 +19,6 @@ const App = () => {
     <Provider store={store}>
       {!showNav && <Header />}
       <main>
-        {/* {!showNav && <SideNav />} */}
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/sign-in" element={<Auth formType={'/sign-in'} />} />

@@ -31,7 +31,6 @@
     display: grid;
     gap: 30px 20px;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    /* align-content: flex-start; */
 }
 
 .hostels-container.shrink {
