@@ -20,7 +20,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
 } */
-.loader-animation {
+.preloader-context {
     text-align: center;
     color: var(--grey);
     margin: 50px 0;

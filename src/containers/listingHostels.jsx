@@ -1,39 +1,37 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHostels } from "../redux/hostelSlice";
-// CSS
-import './styles/containers.css'
-// components
 import HostelCard from "../components/cardHostel";
 
 const HostelListings = () => {
   const dispatch = useDispatch();
-  useEffect(() => {dispatch(fetchHostels())}, [dispatch]);
+  const { data, isLoading, error } = useSelector((state) => state.hostelListing);
 
-  const hostelListingState = useSelector((state) => state.hostelListing);
+  useEffect(() => {
+    if (data.length === 0) {
+      dispatch(fetchHostels());
+    }
+  }, [dispatch, data.length]);
+
+  if (isLoading) {
+    return <h1 className="preloader-context">😴 Loading Hostels...</h1>;
+  }
+
+  if (error && data.length === 0) {
+    return <h1 className="preloader-context">😟 Error: {error}</h1>;
+  }
 
   return (
     <div className="hostels-container">
-      { 
-      hostelListingState.isLoading ? <h1 className="loader-animation">😴 Loading Hostels...</h1>
-      : hostelListingState.data.length === 0 ? <h1 className="loader-animation">📭 No Hostel Listings</h1>
-      : 
+      {data.length === 0 ? (
+        <h1 className="preloader-context">📭 No Hostel Listings</h1>
+      ) : (
         <>
-          {hostelListingState.data.map((hostel) => (
-            <HostelCard
-              key={hostel.id}
-              hostelID={hostel.id}
-              imageSrc={hostel["hostel_img_url"]}
-              hostelName={hostel.name}
-              hostelLocation={hostel.location}
-              availableRooms={hostel["available_rooms"]}
-              rating={hostel.rating}
-              description={hostel.description}
-              managerUsername={hostel["manager_username"]}
-            />
+          {data.map((hostel) => (
+            <HostelCard key={hostel.id} hostel={hostel} />
           ))}
         </>
-      }
+      )}
     </div>
   );
 };

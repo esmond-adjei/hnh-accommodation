@@ -27,9 +27,9 @@ const HostelRoomListings = () => {
           <>
           {/* <h2 className="room-previews-header">🛌 Room Listings</h2> */}
              { 
-             isLoading ? <h1 className="loader-animation">😴 Loading hostel rooms...</h1>
+             isLoading ? <h1 className="preloader-context">😴 Loading hostel rooms...</h1>
              : roomListings.length === 0 ?
-               <h1 className="loader-animation">📭 No Hostel Listings</h1> 
+               <h1 className="preloader-context">📭 No Hostel Listings</h1> 
             : 
             <div className="room-previews-listings">
             {roomListings.map((room) =>

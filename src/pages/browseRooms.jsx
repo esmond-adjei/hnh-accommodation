@@ -17,9 +17,9 @@ const BrowseRooms = () => {
   return (
     <div className="rooms-view">
     { 
-    roomListings.isLoading ? <h1 className="loader-animation">😴 Loading rooms...</h1> 
+    roomListings.isLoading ? <h1 className="preloader-context">😴 Loading rooms...</h1> 
     : roomListings.data.length === 0 ?
-      <h1 className="loader-animation">📭 No rooms found.</h1>
+      <h1 className="preloader-context">📭 No rooms found.</h1>
     :
       <div className="rooms-container">
         { roomListings.data.map((room) => (
