@@ -20,6 +20,7 @@ const HostelDetail = () => {
   useEffect(() => {
     dispatch(fetchHostelDetail(uuid));
     dispatch(fetchHostelRooms(uuid));
+    window.scrollTo(0, 0);
     return () => {
       dispatch(clearSelectedHostel());
     };
@@ -142,7 +143,7 @@ const HostelDetail = () => {
         {rooms.length === 0 ? (
           <h3 className="text-center text-xl">👻 No rooms available.</h3>
         ) : (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid md:grid-cols-2 gap-2">
             {rooms.map((room, index) => (
               <GalleryView key={index} gallery={gallery} >
                 <RoomCard key={room.room_id} room={room}/>

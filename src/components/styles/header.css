@@ -18,6 +18,10 @@ header {
     padding: 8px 16px;
 }
 
+.side-nav-icon, .logo-box {
+    flex-shrink: 0;
+}
+
 .main-header .logo-box {
     cursor: pointer;
     display: flex;

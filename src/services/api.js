@@ -1,11 +1,11 @@
 import { axiosInstance } from './auth_api';
 
 const formatErrorMessage = (error) => {
-  console.error("X_ERROR:", error, typeof error);
+  // console.error("X_ERROR:", error, typeof error);
 
-  if (!navigator.onLine) {
-    return 'It seems you are offline. Please check your network connection.';
-  }
+  // if (error === undefined && !navigator.onLine) {
+  //   return 'It seems you are offline. Please check your network connection.';
+  // }
   
   const status = error.response?.status;
   const message = error.message || 'An unexpected error occurred.';

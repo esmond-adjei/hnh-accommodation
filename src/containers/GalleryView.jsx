@@ -4,10 +4,16 @@ import '../components/styles/cardRoom.css';
 
 const GalleryView = ({ gallery, children }) => {
   const child = React.Children.only(children);
-
-  const initialImageIndex = gallery.findIndex(
-    (img) => img === child.props.room.room_img_url
-  );
+  
+  let initialImageIndex;
+  if (gallery === undefined) {
+    initialImageIndex = 0;
+    gallery = [child.props.room.room_img_url]; 
+  } else {
+    initialImageIndex = gallery.findIndex(
+      (img) => img === child.props.room.room_img_url
+    );
+  }
 
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(initialImageIndex);
@@ -51,7 +57,7 @@ const GalleryView = ({ gallery, children }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-white bg-whitish bg-opacity-50 rounded-full p-1"
+              className="absolute top-2 z-10 right-2 text-white bg-whitish bg-opacity-50 rounded-full p-1"
               onClick={handleCloseExpanded}
             >
               <XIcon size={24} />

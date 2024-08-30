@@ -4,6 +4,7 @@ import { fetchRooms } from "../redux/roomSlice";
 // CSS
 import './styles/pages.css'
 import { RoomCard } from '../components/cardRoom';
+import GalleryView from '../containers/GalleryView';
 
 
 const BrowseRooms = () => {
@@ -23,7 +24,9 @@ const BrowseRooms = () => {
     :
       <div className="rooms-container">
         { roomListings.data.map((room) => (
-          <RoomCard key={room.room_id} room={room} />
+          <GalleryView key={room.room_id} >
+            <RoomCard key={room.room_id} room={room} />
+          </GalleryView>
           ))}
         </div>
      }
