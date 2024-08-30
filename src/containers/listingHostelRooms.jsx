@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 // CSS
 import './styles/listingHostelRooms.css'
 // components
-import RoomCard from "../components/cardRoom";
+import { RoomCard } from "../components/cardRoom";
 
 const HostelRoomListings = () => {
   const isLoading = useSelector((state) => state.roomListing.isLoading);
@@ -25,7 +25,6 @@ const HostelRoomListings = () => {
             <span className="close-panel" onClick={collapsePanel}>X</span>
           </div>
           <>
-          {/* <h2 className="room-previews-header">🛌 Room Listings</h2> */}
              { 
              isLoading ? <h1 className="preloader-context">😴 Loading hostel rooms...</h1>
              : roomListings.length === 0 ?
@@ -33,18 +32,7 @@ const HostelRoomListings = () => {
             : 
             <div className="room-previews-listings">
             {roomListings.map((room) =>
-                <RoomCard
-                  key={room.room_id}
-                  room_id={room.room_id}
-                  room_img_url={room.room_img_url}
-                  bedspace={room.bedspace}
-                  description={room.description}
-                  price={room.price}
-                  number_available={room.number_available}
-                  sex={room.sex}
-                  is_collected={room.is_collected}
-                  amenities={room.amenities}
-                />
+                <RoomCard key={room.room_id} room={room} />
                )}
             </div>
              }

@@ -11,6 +11,7 @@
   --primary-color: #fa5252;
   --light-white: #e8e9ee;
   --secondary-color: #5a70ff;
+  --secondary-color-dark: #2032ac;
   --shadow-color: #32323232;
   /* DAY LIGHT THEME COLORS */
   --background-color: #f0f0f0; /* Light mode background color */
@@ -23,10 +24,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'Poppins', sans-serif;
-
-  /* background-color: var(--background-color); */
   color: var(--text-color);
 }
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+
+.lucide {
+  fill: none;
+  stroke: var(--text-color);
+}
+
 
 .dark-mode {
   --background-color: #1a1a1a; /* Dark mode background color */
@@ -36,11 +57,6 @@ body {
   --greyish: #6a737d;
   --shadow-color: #00000032;
   --light-white: #24292e;
-}
-
-svg {
-  /* fill: var(--text-color); */
-  fill: red;
 }
 
 

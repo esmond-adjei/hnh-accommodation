@@ -32,7 +32,6 @@ export const fetchHostelDetail = createAsyncThunk(
   "fetchHostelDetail",
   async (hostelId) => {
     const response = await getHostel(hostelId);
-    console.log('Hostel Detail:', response);
     return response;
   }
 );

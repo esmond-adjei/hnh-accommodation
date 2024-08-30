@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchRooms } from "../redux/roomSlice";
 // CSS
 import './styles/pages.css'
-import RoomCard from '../components/cardRoom';
+import { RoomCard } from '../components/cardRoom';
 
 
 const BrowseRooms = () => {
@@ -23,20 +23,7 @@ const BrowseRooms = () => {
     :
       <div className="rooms-container">
         { roomListings.data.map((room) => (
-          <RoomCard
-            key={room.room_id}
-            room_id={room.room_id}
-            room_img_url={room.room_img_url}
-            bedspace={room.bedspace}
-            description={room.description}
-            price={room.price}
-            number_available={room.number_available}
-            sex={room.sex}
-            amenities={room.amenities}
-            hostel={room.hostel}
-            hostel_location={room.hostel_location}
-            is_collected={room.is_collected}
-          />
+          <RoomCard key={room.room_id} room={room} />
           ))}
         </div>
      }

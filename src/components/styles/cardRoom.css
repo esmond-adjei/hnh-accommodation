@@ -175,3 +175,33 @@ input[type="image"]:active {
     border-radius: 100%;
     padding: 3px;
 }
+
+/* -------------- expandable room card ------------------ */
+/* Fade-in for the overlay */
+.overlay-fade { animation: fadeIn 0.3s ease-in-out; }
+  
+/* Slide-in for the modal */
+.slide-in { animation: slideIn 0.4s ease-out; }
+  
+/* Keyframes for fade-in */
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+  
+/* Keyframes for slide-in */
+@keyframes slideIn {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  

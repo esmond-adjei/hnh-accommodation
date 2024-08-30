@@ -5,7 +5,7 @@ import { isLoggedIn } from "../services/auth_api";
 // CSS
 import './styles/pages.css'
 // components
-import RoomCard from "../components/cardRoom";
+import { RoomCard } from "../components/cardRoom";
 import { fetchCollections } from "../redux/roomSlice";
 
 const CollectedRooms = () => {

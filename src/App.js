@@ -11,16 +11,17 @@ import MapApp from './pages/map';
 import LandingPage from './pages/landingPage';
 import Auth from './pages/authentication';
 import HostelDetail from './pages/hostelDetail';
+import Footer from './components/Footer';
 
 
 const App = () => {
   const location = useLocation();
-  const showNav = ['/','/sign-in', '/sign-up'].includes(location.pathname);
+  const isHeadless = ['/','/sign-in', '/sign-up'].includes(location.pathname);
 
   return (
     <Provider store={store}>
-      {!showNav && <Header />}
-      <main>
+      {!isHeadless && <Header />}
+      <main className='min-h-[40vh]'>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/sign-in" element={<Auth formType={'/sign-in'} />} />
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/hostel/:uuid" element={<HostelDetail />} /> {/* New route for hostel detail */}
         </Routes>
       </main>
+      {!isHeadless && <Footer />}
     </Provider>
   );
 };
