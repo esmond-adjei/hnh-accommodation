@@ -1,7 +1,7 @@
 .header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('../../assets/images/background.jpg');
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url('../../../public/images/background.jpg');
     background-position: center;
     background-size: cover;
     position: relative;
@@ -47,6 +47,13 @@ nav .logo {
   text-align: center;
   font-size: 87px;
 }
+
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 50px;
+  }
+}
+
 .hero h1 span {
   color: rgb(53, 32, 160);
 }

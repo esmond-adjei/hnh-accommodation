@@ -10,6 +10,7 @@ module.exports = {
           'light-white': 'var(--light-white)',
           'secondary-color': 'var(--secondary-color)',
           'secondary-color-dark': 'var(--secondary-color-dark)',
+          'secondary-color-darkest': 'var(--secondary-color-darkest)',
           'shadow-color': 'var(--shadow-color)',
           'background-color': 'var(--background-color)',
           'text-color': 'var(--text-color)',
