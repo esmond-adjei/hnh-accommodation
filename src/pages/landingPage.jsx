@@ -3,12 +3,11 @@ import { BadgeCentIcon, DiffIcon, SearchCheckIcon } from 'lucide-react';
 import './styles/landingPage.css';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import logo from '../assets/images/hnh-gradient-logo.png';
 import SlidingImage from '../components/slidingImages';
 
 const testimonialData = [
   {
-    image: '/images/testimonials/enock-jackson-kwofie.png',
+    image: '/images/testimonials/enock-jackson-kwofie.jpg',
     name: 'Enock Jackson',
     title: 'Computer Engineering Student',
     text: `Finding a place to stay during my university years was stressful until I found this platform. 
@@ -16,7 +15,7 @@ const testimonialData = [
            The whole process was seamless, and I moved into my new hostel without any issues.`
   },
   {
-    image: '/images/testimonials/tetteh-magnus.png',
+    image: '/images/testimonials/tetteh-magnus.jpg',
     name: 'Tetteh Magnus',
     title: 'Computer Engineering Student',
     text: `This platform was a lifesaver! I was able to quickly find a hostel that fit my budget and had all the amenities I needed. 
@@ -32,7 +31,7 @@ const testimonialData = [
            I've been living in my chosen hostel for a few months now, and it's been a great experience.`
   },
   {
-    image: '/images/testimonials/ignatus-anim.png',
+    image: '/images/testimonials/ignatus-anim.jpg',
     name: 'Ignatus Anim',
     title: 'Computer Engineering Student',
     text: `The campus hostel finder made what used to be a tedious task into something so simple. 
@@ -48,12 +47,18 @@ const testimonialData = [
            It made my transition to campus life so much easier!`
   },
   {
-    image: '/images/testimonials/isaac-amponsah.png',
+    image: '/images/testimonials/isaac-amponsah.jpg',
     name: 'Isaac Amponsah',
     title: 'Computer Engineering Student',
     text: `I was worried about finding a decent place to stay for my final year, but this platform had so many great options. 
            I quickly found a hostel that matched all my criteria, and the booking process was hassle-free. 
            Highly recommended!`
+  },
+  {
+    image: '/images/testimonials/nana-kofi-apeagyei.jpg',
+    name: 'Nana Kofi Apeagyei',
+    title: 'Computer Engineering Student',
+    text: `Finding a hostel was a breeze with this platform. I love my new place!`
   }
 ];
 
@@ -64,7 +69,7 @@ const LandingPage = () => {
       <section className="header">
       <nav>
         <Link to="/">
-          <img src={logo} alt="HnH" className='logo' />
+          <img src='/chf-logo.png' alt="chf" className='logo rounded-lg' />
         </Link> 
 
         <ul className="nav-links">
@@ -74,7 +79,7 @@ const LandingPage = () => {
         </ul>
       </nav>
 
-      <div className="hero ">
+      <div className="hero">
         <h1>
           Find your <span>home</span> away from home
         </h1>
@@ -87,19 +92,22 @@ const LandingPage = () => {
     </section>
 
       {/* About Us Section */}
-      <section className="bg-gray-100 p-8 md:p-16 flex flex-col md:flex-row gap-8 justify-center items-center">
+      <section className="bg-gray-100 p-8 md:p-16 flex flex-col md:flex-row gap-8 justify-center items-center min-h-[90vh]">
         <div className="text-center md:text-left">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">About Us</h2>
           <p className="text-lg text-gray-600 max-w-prose m-auto md:m-0">
             HnH is your one-stop solution for finding the perfect student accommodation. 
-            We connect you with a variety of options to ensure you find the best place to call your second home.
+            Whether you're a first-year student or nearing graduation, we understand the importance of having a safe, comfortable, and convenient place to call home during your academic journey. 
+            Our platform connects you with a wide range of hostel options tailored to suit different budgets, locations, and preferences, ensuring that you find the best place to fit your needs. 
+            Let us help you find your home away from home, so you can focus on what truly matters—your education and campus life.
           </p>
+
         </div>
         <img src='/images/people-black.png' alt="About Us" className="w-full max-w-sm md:w-[400px] mt-8 md:mt-0" />
       </section>
 
       {/* How It Works Section */}
-      <section className="bg-white py-16 px-4 md:px-8">
+      <section className="bg-white py-16 px-4 md:px-8  min-h-[90vh]">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-semibold text-gray-800 mb-12">How It Works</h2>
           <div className="flex flex-col md:flex-row justify-center items-stretch md:space-x-8 space-y-8 md:space-y-0">
@@ -125,7 +133,7 @@ const LandingPage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-secondary-color-darkest py-16 px-4 md:px-8">
+      <section className="bg-secondary-color-darkest py-16 px-4 md:px-8  min-h-[90vh]">
         <div className="container mx-auto text-center text-whitish">
           <h2 className="text-3xl font-semibold text-whitish mb-12">What Our Users Say</h2>
           
@@ -135,7 +143,7 @@ const LandingPage = () => {
       </section>
 
       {/* Footer Section */}
-    <Footer />
+      <Footer />
     </div>
   );
 };
