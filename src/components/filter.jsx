@@ -29,6 +29,7 @@ const Filter = () => {
                 X
               </span>
             </div>
+            
             <div className="filter-content">
               <PriceSlider />
 

@@ -19,6 +19,19 @@
   --text-color-light: #888; /* Light mode text color */
 }
 
+.filter-radio {
+  @apply cursor-pointer p-2 rounded-xl border border-gray-300 bg-white text-gray-800 transition-colors duration-200;
+}
+
+.filter-radio:hover {
+  @apply bg-gray-100;
+}
+
+input:checked + .filter-radio {
+  @apply bg-primary-color text-white border-primary-color;
+}
+
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;

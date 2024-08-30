@@ -96,7 +96,7 @@ const HostelDetail = () => {
           {selectedHostel.description && (
             <div className="mb-8">
               <h2 className="text-2xl font-semibold  mb-2 flex items-center">
-                <TextIcon className="h-5 w-5 mr-2 text-secondary-color" />
+                <TextIcon className="h-5 w-5 mr-2 "/>
                 Description
               </h2>
               <p className="text-text-color">{selectedHostel.description}</p>
@@ -106,7 +106,7 @@ const HostelDetail = () => {
           {/* Location */}
           <div className="mb-8">
               <h2 className="text-2xl font-semibold  mb-2 flex items-center">
-                <MapPinIcon className="h-5 w-5 mr-2 text-secondary-color" />
+                <MapPinIcon className="h-5 w-5 mr-2 "/>
                 Location
               </h2>
               <p className="flex items-center text-text-color">{selectedHostel.location}</p>
@@ -117,7 +117,7 @@ const HostelDetail = () => {
           {/* Manager */}
           <div className="mb-8">
               <h2 className="text-2xl font-semibold  mb-2 flex items-center">
-                <UserIcon className="h-5 w-5 mr-2 text-secondary-color" />
+                <UserIcon className="h-5 w-5 mr-2 "/>
                 Manager
               </h2>
               <p className="text-text-color">{selectedHostel.manager_username}</p>
@@ -135,7 +135,7 @@ const HostelDetail = () => {
       <div className="w-full bg-white p-6 rounded-lg border border-gray-200">
         <div className="mb-8">
           <h2 className="text-2xl font-semibold  mb-2 flex items-center hover:text-primary-color">
-            <BedDoubleIcon className="h-5 w-5 mr-2 text-secondary-color" />
+            <BedDoubleIcon className="h-5 w-5 mr-2 "/>
             Room Gallery
           </h2>
         </div>
