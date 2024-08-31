@@ -9,9 +9,9 @@ import BrowseRooms from './pages/browseRooms';
 import CollectedRooms from './pages/browseCollections';
 import MapApp from './pages/map';
 import LandingPage from './pages/landingPage';
-import Auth from './pages/authentication';
 import HostelDetail from './pages/hostelDetail';
 import Footer from './components/Footer';
+import AuthPage from './pages/auth/authPage';
 
 
 const App = () => {
@@ -21,16 +21,16 @@ const App = () => {
   return (
     <Provider store={store}>
       {!isHeadless && <Header />}
-      <main className='min-h-[40vh]'>
+      <main className='min-h-[70vh]'>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-          <Route exact path="/sign-in" element={<Auth formType={'/sign-in'} />} />
-          <Route exact path="/sign-up" element={<Auth formType={'/sign-up'} />} />
+          <Route exact path="/sign-in" element={<AuthPage />} />
+          <Route exact path="/sign-up" element={<AuthPage />} />
           <Route path="/hostels" element={<BrowseHostel />} />
           <Route path="/rooms" element={<BrowseRooms />} />
           <Route path="/map" element={<MapApp />} />
           <Route path="/collections" element={<CollectedRooms />} />
-          <Route path="/hostel/:uuid" element={<HostelDetail />} /> {/* New route for hostel detail */}
+          <Route path="/hostel/:uuid" element={<HostelDetail />} />
         </Routes>
       </main>
       {!isHeadless && <Footer />}

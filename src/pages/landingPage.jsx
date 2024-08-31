@@ -4,6 +4,7 @@ import './styles/landingPage.css';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import SlidingImage from '../components/slidingImages';
+import { API_BASE_URL } from '../services/auth_api';
 
 const testimonialData = [
   {
@@ -73,7 +74,7 @@ const LandingPage = () => {
         </Link> 
 
         <ul className="nav-links">
-          <Link to="/about"><li className="cta-btn">Manager Panel</li></Link>
+          <Link to={`${API_BASE_URL}/admin`}><li className="cta-btn">Manager Panel</li></Link>
           <Link to="/sign-up"><li className="cta-btn">Sign up</li></Link>
           <Link to="/sign-in"><li className="cta-btn">Sign in</li></Link>
         </ul>
@@ -96,7 +97,7 @@ const LandingPage = () => {
         <div className="text-center md:text-left">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6">About Us</h2>
           <p className="text-lg text-gray-600 max-w-prose m-auto md:m-0">
-            HnH is your one-stop solution for finding the perfect student accommodation. 
+            Campus Hostel Finder is your one-stop solution for finding the perfect student accommodation. 
             Whether you're a first-year student or nearing graduation, we understand the importance of having a safe, comfortable, and convenient place to call home during your academic journey. 
             Our platform connects you with a wide range of hostel options tailored to suit different budgets, locations, and preferences, ensuring that you find the best place to fit your needs. 
             Let us help you find your home away from home, so you can focus on what truly matters—your education and campus life.

@@ -14,11 +14,48 @@
 
 /* .hostels-view { display: flex; } */
 
+
+
+.collected-rooms-container {
+    width: 100%;
+    padding: 12px;
+}
+.collected-rooms-container > * {
+    margin-bottom: 12px;
+}
+
+@media screen and (min-width: 768px) {
+    .collected-rooms-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .collected-rooms-container > * {
+        flex: 0 1 49%;
+        margin: 0;
+    }
+}
+
+
+.collections-view {
+    width: 60vw;
+    margin: 8px auto;
+}
+
+@media screen and (max-width: 768px) {
+    .collections-view {
+        width: 100%;
+        margin: 0 20px;
+    }
+}
+
 .collections-view .collections-heading {
     width: 100%;
     padding: 20px 50px;
-    background: var(--grey);
-    border-bottom: 1px solid var(--greyish);
+    background: var(--greyish);
+    border-radius: 32px;
 }
 
 /* ===================== MAP PAGE ================= */

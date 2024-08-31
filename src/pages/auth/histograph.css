@@ -1,0 +1,52 @@
+.histo {
+    height: 400px;
+    padding: 20px;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  
+  .bar {
+    --bar-max-height: 300px;
+    --animation-duration: 8s;
+  
+    width: 60px;
+    height: var(--bar-max-height);
+    border-radius: 8px 8px;
+
+    background-color: var(--whitish);
+    animation: grow-up var(--animation-duration) infinite;
+    /* border: 2px solid var(--secondary-color); */
+  }
+  
+  .bar:nth-child(1) {
+    height: calc( 0.4 * var(--bar-max-height));
+  }
+  
+  .bar:nth-child(2) {
+    height: calc(0.6*var(--bar-max-height));
+    background-color: var(--secondary-color);
+    animation-delay: 2s;
+  }
+  
+  .bar:nth-child(3) {
+    height: calc(0.8*var(--bar-max-height));
+    animation-delay: 4s;
+    /* animation: grow-down var(--animation-duration) infinite; */
+  }
+  
+  @keyframes grow-up {
+    50% {
+      height: var(--bar-max-height);
+    }
+  }
+
+  @keyframes grow-down {
+    50% {
+      height: 20px;
+    }
+  }
+  

@@ -1,0 +1,19 @@
+div#login-page {
+    height: 100vh;
+    display: flex;
+}
+
+.left-half {
+    background-size: cover;
+    background-blend-mode: color-burn;
+}
+
+.left-half,
+.right-half {
+    width: 50%;
+}
+
+div#login-page .left-half {
+    background-color: var(--secondary-color-darkest);
+}
+

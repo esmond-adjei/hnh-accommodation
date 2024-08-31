@@ -9,6 +9,7 @@ import GalleryView from '../containers/GalleryView';
 
 const BrowseRooms = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchRooms());
   }, [dispatch])

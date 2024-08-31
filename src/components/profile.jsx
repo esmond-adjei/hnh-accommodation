@@ -1,98 +1,99 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import { isLoggedIn, logoutUser } from "../services/auth_api";
 import { useListings } from "../services/contextManager";
-// assets (svg, jpg, ...)
-import darkIcon from "../assets/icons/dark_mode.svg";
-import lightIcon from "../assets/icons/light_mode.svg";
-import notificationIcon from "../assets/icons/notifications.svg";
-import userIcon from "../assets/icons/user-icon.svg";
-import profilePicture from "../assets/images/profile.jpg";
-// CSS
+import { Sun, Moon, User } from 'lucide-react'; 
 import "./styles/profile.css";
-// component
-import AuthForm from "./authForm";
+// import AuthForm from "./authForm";
 
 const Profile = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [showSignIn, setSignIn] = useState(false);
+  // const [showSignIn, setSignIn] = useState(false);
+  const menuRef = useRef(null);
   const isSignedIn = isLoggedIn();
-  const handleDisplayMenu = () => {
-    setShowMenu(!showMenu);
-  };
-
   const { darkMode, toggleDarkMode } = useListings();
 
-
+  const handleDisplayMenu = () => setShowMenu((prev) => !prev);
+  // const openSignIn = () => setSignIn((prev) => !prev);
   const openSignIn = () => {
-    setSignIn(!showSignIn);
-    document.body.style.overflow = showSignIn ? "auto" : "hidden";
+    window.location.href = "/sign-in";
+  }
+
+  const handleLogout = () => {
+    logoutUser();
+    setShowMenu(false);
+    window.location.reload();
   };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setShowMenu(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showMenu]);
 
   return (
     <>
       {isSignedIn === false ? (
         <>
-          <div className="side-nav-icon" onClick={openSignIn}
-          >
-            <img
-              className="user-profile-icon guest"
-              src={userIcon}
-              width="100%"
-              alt="profile"
-              onClick={handleDisplayMenu}
-            />
+          <div className="side-nav-icon" onClick={openSignIn}>
+            <User className="user-profile-icon guest" style={{stroke: 'var(--whitish)'}} size={40} />
           </div>
-          {showSignIn && (
+          {/* {showSignIn && (
             <div className="sign-in overlay-page">
-              <AuthForm formType={"/sign-in"} prevStateUpdate={openSignIn} />
+              <AuthForm formType="/sign-in" prevStateUpdate={openSignIn} />
               <button className="close-btn close-panel" onClick={openSignIn}>
                 X
               </button>
             </div>
-          )}
+          )} */}
         </>
       ) : (
-        <div className="side-nav-icon">
+        <div className="side-nav-icon" onClick={handleDisplayMenu}>
           <img
             className="user-profile-icon"
-            src={profilePicture}
-            width="100%"
+            src='/images/profile.jpg'
             alt="profile"
-            onClick={handleDisplayMenu}
           />
-          <small className="user-name">
+          {/* <small className="user-name">
             {localStorage.getItem("username")}
-          </small>
+          </small> */}
         </div>
       )}
 
       {showMenu && isSignedIn && (
-        <div className="profile-menu">
-          <button className="close-btn close-panel" onClick={handleDisplayMenu}>
+        <div className="profile-menu" ref={menuRef}>
+          {/* <button className="close-btn close-panel" onClick={handleDisplayMenu}>
             X
-          </button>
-          <Link to="#"><p>Account</p></Link>
-          <Link to="#"><p>Help</p></Link>
-          <Link
-            to="/hostels"
-            onClick={() => {
-              logoutUser();
-              setShowMenu(false);
-              window.location.reload();
-            }}
-          ><p>Logout</p></Link>
-            <img
-            src={darkMode ? darkIcon : lightIcon}
-            alt="switch theme"
-            className="round-icon"
-            onClick={toggleDarkMode}
-          />
-          <img
-            src={notificationIcon}
-            alt="notifications"
-            className="round-icon"
-          />
+          </button> */}
+          <div className="menu-header">
+            <p className="menu-username">{localStorage.getItem("username")}</p>
+            <p className="menu-email">{localStorage.getItem("email")}</p>
+          </div>
+          <div className="menu-options">
+            <button
+              className="theme-toggle"
+              onClick={toggleDarkMode}
+            >
+              <Sun className={`round-icon ${darkMode ? 'hidden' : ''}`} size={18} />
+              <Moon className={`round-icon ${darkMode ? '' : 'hidden'}`} size={18} />
+              <p>{darkMode ? 'Light Mode' : 'Dark Mode'}</p>
+            </button>
+            <button
+              className="logout-btn"
+              onClick={handleLogout}
+            >
+              <User className="round-icon" size={18} />
+              <p>Logout</p>
+            </button>
+          </div>
         </div>
       )}
     </>

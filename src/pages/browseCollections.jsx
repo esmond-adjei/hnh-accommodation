@@ -10,59 +10,59 @@ import { fetchCollections } from "../redux/roomSlice";
 
 const CollectedRooms = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCollections());
-  }, [dispatch]);
-
+  const isUserLoggedIn = isLoggedIn();
   const collectionListings = useSelector(state => state.roomListing.collections);
 
-  if (collectionListings.length === 0) {
-    return (
-      <div className="collections-view" style={{ display: "block" }}>
-        <h2 className="collections-heading">No collections found.</h2>
-        {!isLoggedIn() && (
-          <div className="rooms-container">
-            <p>
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      dispatch(fetchCollections());
+    }
+  }, [dispatch, isUserLoggedIn]);
+
+  const renderCollections = () => {
+    if (!isUserLoggedIn) {
+      return (
+        <div className="collections-view">
+          <h2 className="collections-heading text-center">
+            Please log in to view your collections
               <Link to="/sign-in">
                 <button className="cta-btn active">Login</button>
               </Link>
-              to save room collections
-            </p>
-          </div>
-        )}
+          </h2>
+        </div>
+      );
+    }
+
+    if (collectionListings.length === 0) {
+      return (
+        <div className="collections-view">
+          <h2 className="collections-heading">No collections found.</h2>
+        </div>
+      );
+    }
+
+    return collectionListings.map(collection => (
+      <div className="collections-view" key={collection.id}>
+        <h2 className="collections-heading">
+          Collection: {collection.name}
+        </h2>
+        <div className="collected-rooms-container">
+          {collection.rooms.map(room => (
+            <RoomCard
+              key={room.room_id}
+              room={room}
+              cardType="collected"
+            />
+          ))}
+        </div>
       </div>
-    );
-  }
+    ));
+  };
 
   return (
-    <div className="collections-view">
-      {collectionListings.map((collectionItem) => (
-        <div key={collectionItem.id}>
-          <h2 className="collections-heading">
-            Collection: {collectionItem.name}
-          </h2>
-          <div className="rooms-container">
-            {collectionItem.rooms.map((room) => (
-              <RoomCard
-                key={room.room_id}
-                room_id={room.room_id}
-                bedspace={room.bedspace}
-                room_img_url={room.room_img_url}
-                description={room.description}
-                price={room.price}
-                number_available={room.number_available}
-                sex={room.sex}
-                amenities={room.amenities}
-                hostel={room.hostel}
-                is_collected={room.is_collected}
-                cardType={"collected"}
-              />
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
+    <>
+      {renderCollections()}
+    </>
   );
 };
 

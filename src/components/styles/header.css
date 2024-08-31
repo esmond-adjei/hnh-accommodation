@@ -50,18 +50,6 @@ header {
     gap: 10px;
 }
 
-.round-icon {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    border-radius: 100%;
-    background-color: var(--grey);
-    transition: background-color 0.2s ease-in-out;
-}
-.round-icon:hover {
-    background-color: var(--greyish);
-}
-
 .main-header .utility-box .notification {
     cursor: pointer;
     border-radius: 100%;

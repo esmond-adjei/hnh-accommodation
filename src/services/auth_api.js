@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://esmondai.pythonanywhere.com'; //'http://localhost:8000/api/';
+export const API_BASE_URL = 
+// 'https://esmondai.pythonanywhere.com';
+ 'http://localhost:8000';
 const ACCESS_TOKEN_KEY = 'access_token';
 const REFRESH_TOKEN_KEY = 'refresh_token';
 const USER_ID_KEY = 'user_id';
 const USERNAME_KEY = 'username';
+const EMAIL_KEY = 'email';
 
 export const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -28,7 +31,7 @@ axiosInstance.interceptors.response.use(
       const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
       if (refreshToken) {
         try {
-          const response = await axios.post(`${API_BASE_URL}token/refresh/`, {
+          const response = await axios.post(`${API_BASE_URL}/api/token/refresh/`, {
             refresh: refreshToken,
           });
           const newAccessToken = response.data.access;
@@ -49,12 +52,13 @@ axiosInstance.interceptors.response.use(
 
 export const loginUser = async (loginData) => {
   try {
-    const response = await axiosInstance.post('token/', loginData);
+    const response = await axiosInstance.post('/api/token/', loginData);
     const accessToken = response.data.access;
 
     localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
     localStorage.setItem(REFRESH_TOKEN_KEY, response.data.refresh);
-    localStorage.setItem(USERNAME_KEY, loginData.username);
+    localStorage.setItem(USERNAME_KEY, response.data.username);
+    localStorage.setItem(EMAIL_KEY, response.data.email);
     localStorage.setItem(USER_ID_KEY, response.data.user_id);
 
     return response.data;
@@ -65,12 +69,16 @@ export const loginUser = async (loginData) => {
 
 export const registerUser = async (registrationData) => {
   try {
-    const response = await axiosInstance.post('register/', registrationData);
+    console.log('Registering user...', registrationData);
+    const response = await axiosInstance.post('/api/register/', registrationData);
     const accessToken = response.data.access;
+
+    console.log(response.data);
 
     localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
     localStorage.setItem(REFRESH_TOKEN_KEY, response.data.refresh);
     localStorage.setItem(USERNAME_KEY, response.data.username);
+    localStorage.setItem(EMAIL_KEY, response.data.email);
     localStorage.setItem(USER_ID_KEY, response.data.user_id);
 
     return response.data;
@@ -84,6 +92,7 @@ export const logoutUser = () => {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
   localStorage.removeItem(REFRESH_TOKEN_KEY);
   localStorage.removeItem(USERNAME_KEY);
+  localStorage.removeItem(EMAIL_KEY);
   localStorage.removeItem(USER_ID_KEY);
   delete axiosInstance.defaults.headers.common['Authorization'];
 };

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import './styles/auth_form.css';
-import logo from '../assets/images/hnh-gradient-logo.png';
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser, registerUser, logoutUser } from '../services/auth_api';
 
 const AuthForm = ({ formType, prevStateUpdate }) => {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const isSignUp = formType === '/sign-up';
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
@@ -29,7 +28,7 @@ const AuthForm = ({ formType, prevStateUpdate }) => {
 
       console.log(res);
       prevStateUpdate && prevStateUpdate();
-      history("/rooms");
+      navigate("/rooms");
       window.location.reload();
     } catch (err) {
       setError(err.message);
@@ -42,7 +41,7 @@ const AuthForm = ({ formType, prevStateUpdate }) => {
         <form onSubmit={handleSubmit}>
 
           <div className="imageAndHeading">
-            <img src={logo} alt="logo"/>
+            <img src="/chf-logo.png" alt="logo"/>
             <h2>{isSignUp ? "Sign Up" : "Sign In"}</h2>
           </div>
 

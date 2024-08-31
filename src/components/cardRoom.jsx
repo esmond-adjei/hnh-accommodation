@@ -38,7 +38,7 @@ const sexIcon = {
   female: require("../assets/icons/woman.svg").default,
 };
 
-const RoomCard = ({ room }) => {
+const RoomCard = ({ room, cardType='' }) => {
 
   const dispatch = useDispatch();
   const [isCollected, setIsCollected] = useState(room.is_collected);
@@ -81,7 +81,7 @@ const RoomCard = ({ room }) => {
     !isCollected ? dispatch(makeCollection(room.room_id)) : dispatch(delCollection(room.room_id));
   };
 
-  if (room.cardType === "collected" && !isCollected) {
+  if (cardType === "collected" && !isCollected) {
     return;
   }
 
