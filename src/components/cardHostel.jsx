@@ -5,9 +5,8 @@ import { fetchHostelRooms } from "../redux/roomSlice";
 import { setSelectedHostelName } from "../redux/hostelSlice";
 // CSS
 import "./styles/cardHostel.css";
+import { BedDouble, MapPinIcon } from "lucide-react";
 // Icons
-import roomIcon from "../assets/icons/room-icon.svg";
-import locationIcon from "../assets/icons/location-icon.svg";
 
 const HostelCard = ({ hostel }) => {
   const dispatch = useDispatch();
@@ -42,11 +41,11 @@ const HostelCard = ({ hostel }) => {
           </span>
         </div>
         <p className="card__subtitle">
-          <img src={locationIcon} alt="location" />
+          <MapPinIcon size={18} />
           {hostel.location}
         </p>
         <p className="card__subtitle">
-          <img src={roomIcon} alt="rooms available" />
+          <BedDouble size={18} />
           {hostel.available_rooms}
         </p>
       </div>

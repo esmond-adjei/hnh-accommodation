@@ -41,6 +41,11 @@ body {
   color: var(--text-color);
 }
 
+main {
+  background-color: var(--background-color);
+  padding: 8px;
+}
+
 h1 {
   font-size: 2rem;
   font-weight: 700;

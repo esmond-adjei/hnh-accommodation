@@ -41,7 +41,7 @@
 
 .collections-view {
     width: 60vw;
-    margin: 8px auto;
+    margin: auto;
 }
 
 @media screen and (max-width: 768px) {
