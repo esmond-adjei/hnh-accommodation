@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { isLoggedIn } from "../services/auth_api";
 import { delCollection, makeCollection } from "../redux/roomSlice";
@@ -125,9 +126,11 @@ const RoomCard = ({ room, cardType='' }) => {
           </span>
         </div>
         {room.hostel && (
+          <Link to={`/hostel/${room.hostel_id}`}>
           <p className="card__links">
             {room.hostel} | {room.hostel_location}
           </p>
+          </Link>
         )}
       </div>
     </div>

@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const API_BASE_URL = 
-// 'https://esmondai.pythonanywhere.com';
- 'http://localhost:8000';
+'https://esmondai.pythonanywhere.com';
+//  'http://localhost:8000';
 const ACCESS_TOKEN_KEY = 'access_token';
 const REFRESH_TOKEN_KEY = 'refresh_token';
 const USER_ID_KEY = 'user_id';
